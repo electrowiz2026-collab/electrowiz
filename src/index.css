@@ -1,0 +1,81 @@
+/* ===============================
+   RESET & BASE
+   =============================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #020202;
+  color: #e5e7eb;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+
+/* REMOVE VITE CENTERING */
+body {
+  display: block;
+}
+
+/* ===============================
+   LINKS
+   =============================== */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===============================
+   BUTTON RESET (we’ll style later)
+   =============================== */
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===============================
+   TYPOGRAPHY
+   =============================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* ===============================
+   UTILITY
+   =============================== */
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===============================
+   SMOOTH RENDERING
+   =============================== */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
