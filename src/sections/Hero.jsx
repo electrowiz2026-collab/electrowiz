@@ -240,5 +240,4 @@ const Hero = ({ onEnter }) => {
     </div>
   );
 };
-
 export default Hero;
