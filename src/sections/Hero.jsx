@@ -122,7 +122,7 @@ const Hero = ({ onEnter }) => {
       logoRef.current,
       {
         scale: 12,
-        duration: 0.6,
+        duration: 0.9,
         ease: "power2.inOut",
         force3D: true,
         transformOrigin: "center center",
