@@ -24,6 +24,23 @@ const Hero = ({ onEnter }) => {
     []
   );
 
+  // Pre-set elements for GPU acceleration
+  useEffect(() => {
+    if (logoRef.current) {
+      gsap.set(logoRef.current, {
+        force3D: true,
+        z: 0.01,
+        transformStyle: "preserve-3d",
+      });
+    }
+    if (textContentRef.current) {
+      gsap.set(textContentRef.current, {
+        force3D: true,
+        z: 0.01,
+      });
+    }
+  }, []);
+
   // Stage progression
   useEffect(() => {
     const timers = [
@@ -37,69 +54,92 @@ const Hero = ({ onEnter }) => {
     return () => timers.forEach(clearTimeout);
   }, [onEnter]);
 
-  // GSAP Spin + Zoom Transition
+  // OPTIMIZED GSAP Spin + Zoom Transition
   const startSpinZoomTransition = () => {
+    // Pre-set will-change for performance
+    if (logoRef.current) {
+      logoRef.current.style.willChange = "transform, opacity";
+    }
+    if (textContentRef.current) {
+      textContentRef.current.style.willChange = "transform, opacity";
+    }
+    if (backgroundRef.current) {
+      backgroundRef.current.style.willChange = "opacity";
+    }
+
     const tl = gsap.timeline({
       onComplete: () => {
         setStage("complete");
+        // Clean up will-change
+        if (logoRef.current) {
+          logoRef.current.style.willChange = "auto";
+        }
+        if (textContentRef.current) {
+          textContentRef.current.style.willChange = "auto";
+        }
+        if (backgroundRef.current) {
+          backgroundRef.current.style.willChange = "auto";
+        }
         if (onEnter) onEnter();
       },
     });
 
-    // Step 1: Brighten logo first (0.3s)
+    // Step 1: Quick brighten logo (0.05s)
     tl.to(logoRef.current, {
       opacity: 1,
       scale: 1.1,
-      duration: 0.1,
-      ease: "power2.out",
+      duration: 0.05,
+      ease: "power1.out",
       force3D: true,
     });
-    // Step 2: Fade out text content (0.4s)
+
+    // Step 2: Fast fade out text content (0.2s)
     tl.to(
       textContentRef.current,
       {
         opacity: 0,
         scale: 0.9,
-        duration: 0.3,
-        ease: "power2.in",
+        duration: 0.2,
+        ease: "power1.in",
         force3D: true,
       },
-      "-=0.1"
+      "-=0.05"
     );
 
-    // Step 3: Fade background
+    // Step 3: Quick fade background (0.5s)
     tl.to(
       backgroundRef.current,
       {
         opacity: 0,
-        duration: 0.8,
-        ease: "power2.in",
+        duration: 0.5,
+        ease: "power1.in",
       },
       "<"
     );
 
-    // Step 4: SMOOTH Logo spin + zoom (1.2s)
+    // Step 4: ULTRA SMOOTH Logo zoom (0.6s)
     tl.to(
       logoRef.current,
       {
-        scale: 14,
-        duration: .95,
-        ease: "power1.inOut",
+        scale: 12,
+        duration: 0.6,
+        ease: "power2.inOut",
         force3D: true,
         transformOrigin: "center center",
+        rotation: 0.01, // Tiny rotation to force GPU acceleration
       },
-      "+=0.1"
+      "+=0.05"
     );
 
-    // Step 5: Fade wrapper during spin
+    // Step 5: Quick fade wrapper during zoom
     tl.to(
       heroRef.current,
       {
         opacity: 0,
-        duration: 0.3,
-        ease: "power2.out",
+        duration: 0.2,
+        ease: "power1.out",
       },
-      "-=0.6"
+      "-=0.3"
     );
   };
 
@@ -127,13 +167,6 @@ const Hero = ({ onEnter }) => {
     <div ref={heroRef} className={`hero-wrapper stage-${stage}`}>
       {/* Background - will fade out */}
       <div ref={backgroundRef} className="hero-background-container">
-        {/* <div className="hero-background">
-          <div className="bg-gradient"></div>
-          <div className="bg-mesh"></div>
-          <div className="noise-texture"></div>
-          <div className="scanlines"></div>
-        </div> */}
-
         <div className="grid-overlay">
           <div className="grid-fade"></div>
         </div>
@@ -207,5 +240,4 @@ const Hero = ({ onEnter }) => {
     </div>
   );
 };
-
 export default Hero;
