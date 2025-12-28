@@ -606,7 +606,6 @@
     letter-spacing: 0.15em;
   }
 }
-
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .orb,
