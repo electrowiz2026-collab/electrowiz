@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import "../styles/hero.css";
 import logo from "../assets/images/logo192.png";
-import heroVideo from "../assets/videos/hero-bg.mp4";
+import heroVideo from "../assets/videos/try.mp4";
 
 const Hero = ({ onEnter }) => {
   const [isComplete, setIsComplete] = useState(false);
