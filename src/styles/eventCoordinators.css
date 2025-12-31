@@ -1017,3 +1017,250 @@
 }
 
 /* ==================== END ==================== */
+/* ==================== FACULTY COORDINATORS SECTION ==================== */
+.faculty-coordinators-section {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+}
+
+.faculty-coordinators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.faculty-coordinator-card {
+  position: relative;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+  border: 1px solid var(--border-dim);
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.faculty-coordinator-card:hover {
+  border-color: var(--violet);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.3);
+}
+
+.faculty-card-glow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, var(--violet), var(--primary), var(--violet));
+  border-radius: 22px;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity 0.4s ease;
+}
+
+.faculty-coordinator-card:hover .faculty-card-glow {
+  opacity: 0.5;
+}
+
+.faculty-header {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.faculty-avatar {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--violet-dim), var(--violet));
+  border: 2px solid var(--violet);
+  border-radius: 50%;
+  box-shadow: 0 0 30px var(--violet-glow);
+}
+
+.faculty-avatar-icon {
+  font-size: 3rem;
+}
+
+.faculty-avatar-ring {
+  position: absolute;
+  inset: -15px;
+  border: 1px dashed var(--violet-subtle);
+  border-radius: 50%;
+  animation: rotate 20s linear infinite;
+}
+
+.faculty-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid var(--violet);
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--violet);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.faculty-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faculty-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.faculty-role {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--violet-bright);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.faculty-qualification {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.faculty-specialization,
+.faculty-department {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.spec-icon,
+.dept-icon {
+  font-size: 1rem;
+}
+
+.faculty-contact-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.faculty-contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.faculty-contact-btn.phone-btn {
+  border: 1px solid var(--violet);
+  color: var(--violet);
+}
+
+.faculty-contact-btn.phone-btn:hover {
+  background: var(--violet);
+  color: var(--bg-dark);
+  box-shadow: 0 0 20px var(--violet-glow);
+}
+
+.faculty-contact-btn.email-btn {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.faculty-contact-btn.email-btn:hover {
+  background: var(--primary);
+  color: var(--bg-dark);
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+/* ==================== OVERALL COORDINATORS ENHANCEMENTS ==================== */
+.coordinator-responsibility {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(0, 255, 209, 0.05);
+  border-radius: 8px;
+  border-left: 2px solid var(--primary);
+}
+
+.resp-icon {
+  font-size: 1rem;
+}
+
+/* ==================== WORKSHOP CATEGORY STYLES ==================== */
+.workshop-filter.active,
+.workshop-filter:hover {
+  border-color: #8b5cf6;
+}
+
+.workshop-filter::before {
+  background: linear-gradient(135deg, #5b21b6, #8b5cf6);
+}
+
+.workshop-block {
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.workshop-block:hover {
+  border-color: var(--violet);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 30px var(--violet-glow);
+}
+
+.workshop-cat {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid var(--violet);
+  color: var(--violet);
+}
+
+/* ==================== RESPONSIVE FOR FACULTY ==================== */
+@media (max-width: 768px) {
+  .faculty-coordinators-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .faculty-contact-btns {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .faculty-coordinator-card {
+    padding: 1.5rem;
+  }
+
+  .faculty-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .faculty-avatar-icon {
+    font-size: 2.5rem;
+  }
+}

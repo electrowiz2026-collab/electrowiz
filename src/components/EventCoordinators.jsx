@@ -1,6 +1,6 @@
 /* ============================================
-   EVENT COORDINATORS PAGE
-   Display all event coordinators with contact info
+   EVENT COORDINATORS PAGE - COMPLETE
+   Faculty, Overall & Event Coordinators
    ============================================ */
 
 import React, { useState, useEffect } from "react";
@@ -28,210 +28,294 @@ const EventCoordinators = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Coordinators Data
+  // ==================== FACULTY COORDINATORS ====================
+  const facultyCoordinators = [
+    {
+      name: "Dr. R. Kalpana",
+      role: "Head of Department",
+      department: "ECE Department",
+      phone: "+91 98765 43100",
+      email: "hod.ece@velammal.edu.in",
+      qualification: "Ph.D., M.E.",
+      specialization: "VLSI Design & Embedded Systems",
+    },
+    {
+      name: "Dr. S. Rajendran",
+      role: "Chief Faculty Coordinator",
+      department: "ECE Department",
+      phone: "+91 98765 43101",
+      email: "rajendran@velammal.edu.in",
+      qualification: "Ph.D., M.Tech",
+      specialization: "Signal Processing & Communications",
+    },
+    {
+      name: "Prof. M. Lakshmi",
+      role: "Senior Faculty Coordinator",
+      department: "ECE Department",
+      phone: "+91 98765 43102",
+      email: "lakshmi.m@velammal.edu.in",
+      qualification: "M.E., B.E.",
+      specialization: "Wireless Communication",
+    },
+    {
+      name: "Dr. K. Venkatesh",
+      role: "Faculty Coordinator - Technical",
+      department: "ECE Department",
+      phone: "+91 98765 43103",
+      email: "venkatesh.k@velammal.edu.in",
+      qualification: "Ph.D., M.Tech",
+      specialization: "Microelectronics & IoT",
+    },
+    {
+      name: "Prof. A. Priya",
+      role: "Faculty Coordinator - Non-Technical",
+      department: "ECE Department",
+      phone: "+91 98765 43104",
+      email: "priya.a@velammal.edu.in",
+      qualification: "M.E., B.Tech",
+      specialization: "Digital Communications",
+    },
+    {
+      name: "Dr. N. Ramesh",
+      role: "Workshop Coordinator",
+      department: "ECE Department",
+      phone: "+91 98765 43105",
+      email: "ramesh.n@velammal.edu.in",
+      qualification: "Ph.D., M.E.",
+      specialization: "AI & Machine Learning",
+    },
+  ];
+
+  // ==================== OVERALL STUDENT COORDINATORS ====================
+  const overallCoordinators = [
+    {
+      name: "Harish Kumar S",
+      role: "Overall Student Coordinator",
+      department: "Final Year ECE",
+      phone: "+91 98765 43202",
+      email: "harish.student@velammal.edu.in",
+      year: "IV Year",
+      responsibility: "Event Management & Logistics",
+    },
+    {
+      name: "Priyanka Nair R",
+      role: "Overall Co-Coordinator",
+      department: "Final Year ECE",
+      phone: "+91 98765 43203",
+      email: "priyanka.student@velammal.edu.in",
+      year: "IV Year",
+      responsibility: "Participant Relations & Registration",
+    },
+    {
+      name: "Aravind Kumar M",
+      role: "Technical Head",
+      department: "Final Year ECE",
+      phone: "+91 98765 43204",
+      email: "aravind.tech@velammal.edu.in",
+      year: "IV Year",
+      responsibility: "Technical Events Coordination",
+    },
+    {
+      name: "Divya Lakshmi K",
+      role: "Non-Technical Head",
+      department: "Final Year ECE",
+      phone: "+91 98765 43205",
+      email: "divya.nontech@velammal.edu.in",
+      year: "IV Year",
+      responsibility: "Cultural & Non-Tech Events",
+    },
+    {
+      name: "Karthik Prasad V",
+      role: "Sponsorship Head",
+      department: "Final Year ECE",
+      phone: "+91 98765 43206",
+      email: "karthik.sponsor@velammal.edu.in",
+      year: "IV Year",
+      responsibility: "Sponsorship & Marketing",
+    },
+    {
+      name: "Sneha Reddy P",
+      role: "Design & Media Head",
+      department: "Final Year ECE",
+      phone: "+91 98765 43207",
+      email: "sneha.media@velammal.edu.in",
+      year: "IV Year",
+      responsibility: "Design, Social Media & Publicity",
+    },
+  ];
+
+  // ==================== EVENT COORDINATORS DATA ====================
   const coordinatorsData = [
     // Technical Events
     {
-      eventTitle: "CIRCUIT QUEST",
-      eventIcon: "⚡",
+      eventTitle: "SPARKX",
+      eventIcon: "✨",
       category: "Technical",
       coordinators: [
         {
-          name: "Rajesh Kumar",
+          name: "Srinivasan V",
           role: "Lead Coordinator",
-          phone: "+91 98765 43210",
-          email: "rajesh@velammal.edu.in",
+          phone: "+91 93618 89276",
+          email: "srinivasan@velammal.edu.in",
         },
         {
-          name: "Priya Sharma",
+          name: "Madhumithra M",
           role: "Co-Coordinator",
-          phone: "+91 98765 43211",
-          email: "priya@velammal.edu.in",
+          phone: "+91 93618 89277",
+          email: "madhumithra@velammal.edu.in",
         },
       ],
     },
     {
-      eventTitle: "CODE STORM",
-      eventIcon: "💻",
+      eventTitle: "ElectraXpo",
+      eventIcon: "💡",
       category: "Technical",
       coordinators: [
         {
-          name: "Arun Prakash",
+          name: "Naveen Prakash",
           role: "Lead Coordinator",
-          phone: "+91 98765 43212",
-          email: "arun@velammal.edu.in",
+          phone: "+91 96002 89904",
+          email: "naveen@velammal.edu.in",
         },
         {
-          name: "Divya Nair",
+          name: "Rini Rayan",
           role: "Co-Coordinator",
-          phone: "+91 98765 43213",
-          email: "divya@velammal.edu.in",
+          phone: "+91 63824 87338",
+          email: "rini@velammal.edu.in",
+        },
+        {
+          name: "Eswararaju Sneha",
+          role: "Co-Coordinator",
+          phone: "+91 80960 06118",
+          email: "sneha.e@velammal.edu.in",
         },
       ],
     },
     {
-      eventTitle: "ROBO WARS",
-      eventIcon: "🤖",
+      eventTitle: "THINK A THON",
+      eventIcon: "🧠",
       category: "Technical",
       coordinators: [
         {
-          name: "Karthik Reddy",
+          name: "Kaviyarasan S",
           role: "Lead Coordinator",
-          phone: "+91 98765 43214",
-          email: "karthik@velammal.edu.in",
+          phone: "+91 84894 91386",
+          email: "kaviyarasan@velammal.edu.in",
         },
         {
-          name: "Sneha Patel",
+          name: "Vendamani K",
           role: "Co-Coordinator",
-          phone: "+91 98765 43215",
-          email: "sneha@velammal.edu.in",
+          phone: "+91 93849 95398",
+          email: "vendamani@velammal.edu.in",
         },
       ],
     },
     {
-      eventTitle: "HACKATHON",
-      eventIcon: "🚀",
+      eventTitle: "ERROR 404",
+      eventIcon: "🐛",
       category: "Technical",
       coordinators: [
         {
-          name: "Vikram Singh",
+          name: "Harish S",
           role: "Lead Coordinator",
-          phone: "+91 98765 43216",
-          email: "vikram@velammal.edu.in",
+          phone: "+91 63790 04185",
+          email: "harish.s@velammal.edu.in",
         },
         {
-          name: "Anjali Menon",
+          name: "Sushmitha",
           role: "Co-Coordinator",
-          phone: "+91 98765 43217",
-          email: "anjali@velammal.edu.in",
-        },
-      ],
-    },
-    {
-      eventTitle: "PAPER PRESENTATION",
-      eventIcon: "📄",
-      category: "Technical",
-      coordinators: [
-        {
-          name: "Suresh Babu",
-          role: "Lead Coordinator",
-          phone: "+91 98765 43218",
-          email: "suresh@velammal.edu.in",
-        },
-        {
-          name: "Lakshmi Iyer",
-          role: "Co-Coordinator",
-          phone: "+91 98765 43219",
-          email: "lakshmi@velammal.edu.in",
-        },
-      ],
-    },
-    {
-      eventTitle: "IOT CHALLENGE",
-      eventIcon: "🌐",
-      category: "Technical",
-      coordinators: [
-        {
-          name: "Ramesh Kumar",
-          role: "Lead Coordinator",
-          phone: "+91 98765 43220",
-          email: "ramesh@velammal.edu.in",
-        },
-        {
-          name: "Kavya Reddy",
-          role: "Co-Coordinator",
-          phone: "+91 98765 43221",
-          email: "kavya@velammal.edu.in",
+          phone: "+91 74183 36138",
+          email: "sushmitha@velammal.edu.in",
         },
       ],
     },
     // Non-Technical Events
     {
-      eventTitle: "TECH QUIZ",
-      eventIcon: "🧠",
+      eventTitle: "SOUND SPHERE",
+      eventIcon: "🎵",
       category: "Non-Technical",
       coordinators: [
         {
-          name: "Sanjay Gupta",
+          name: "Jeevath M",
           role: "Lead Coordinator",
-          phone: "+91 98765 43222",
-          email: "sanjay@velammal.edu.in",
+          phone: "+91 63833 00579",
+          email: "jeevath@velammal.edu.in",
         },
         {
-          name: "Meera Krishnan",
+          name: "Anjali B",
           role: "Co-Coordinator",
-          phone: "+91 98765 43223",
-          email: "meera@velammal.edu.in",
+          phone: "+91 63834 65759",
+          email: "anjali.b@velammal.edu.in",
         },
       ],
     },
     {
-      eventTitle: "TREASURE HUNT",
-      eventIcon: "🗺️",
+      eventTitle: "CLUE CONNECT",
+      eventIcon: "🔍",
       category: "Non-Technical",
       coordinators: [
         {
-          name: "Arjun Verma",
+          name: "Barath",
           role: "Lead Coordinator",
-          phone: "+91 98765 43224",
-          email: "arjun@velammal.edu.in",
+          phone: "+91 98402 75886",
+          email: "barath@velammal.edu.in",
         },
         {
-          name: "Pooja Shah",
+          name: "Akshitha",
           role: "Co-Coordinator",
-          phone: "+91 98765 43225",
-          email: "pooja@velammal.edu.in",
+          phone: "+91 63740 16868",
+          email: "akshitha@velammal.edu.in",
         },
       ],
     },
     {
-      eventTitle: "PHOTOGRAPHY",
-      eventIcon: "📸",
+      eventTitle: "MIND MAZE",
+      eventIcon: "🎯",
       category: "Non-Technical",
       coordinators: [
         {
-          name: "Rohan Mehta",
+          name: "Dhiyanesh",
           role: "Lead Coordinator",
-          phone: "+91 98765 43226",
-          email: "rohan@velammal.edu.in",
+          phone: "+91 94442 54917",
+          email: "dhiyanesh@velammal.edu.in",
         },
         {
-          name: "Isha Desai",
+          name: "Swedha P S",
           role: "Co-Coordinator",
-          phone: "+91 98765 43227",
-          email: "isha@velammal.edu.in",
+          phone: "+91 63827 32250",
+          email: "swedha@velammal.edu.in",
         },
       ],
     },
     {
-      eventTitle: "DEBATE",
-      eventIcon: "🎤",
+      eventTitle: "DREAM XI",
+      eventIcon: "🏏",
       category: "Non-Technical",
       coordinators: [
         {
-          name: "Nikhil Joshi",
+          name: "Anshul S A",
           role: "Lead Coordinator",
-          phone: "+91 98765 43228",
-          email: "nikhil@velammal.edu.in",
+          phone: "+91 63792 80210",
+          email: "anshul@velammal.edu.in",
         },
         {
-          name: "Swati Rao",
+          name: "Santhosh S",
           role: "Co-Coordinator",
-          phone: "+91 98765 43229",
-          email: "swati@velammal.edu.in",
+          phone: "+91 90258 56034",
+          email: "santhosh.s@velammal.edu.in",
         },
       ],
     },
     {
-      eventTitle: "GAMING ARENA",
-      eventIcon: "🎮",
+      eventTitle: "PIXEL PERFECT",
+      eventIcon: "🎨",
       category: "Non-Technical",
       coordinators: [
         {
-          name: "Aditya Kapoor",
+          name: "Logesh G",
           role: "Lead Coordinator",
-          phone: "+91 98765 43230",
-          email: "aditya@velammal.edu.in",
+          phone: "+91 90250 09593",
+          email: "logesh@velammal.edu.in",
         },
         {
           name: "Tanya Pillai",
@@ -242,15 +326,15 @@ const EventCoordinators = () => {
       ],
     },
     {
-      eventTitle: "MEME MAKING",
-      eventIcon: "😂",
+      eventTitle: "GAMEVERSE",
+      eventIcon: "🎮",
       category: "Non-Technical",
       coordinators: [
         {
-          name: "Rahul Bansal",
+          name: "Prasanth M",
           role: "Lead Coordinator",
-          phone: "+91 98765 43232",
-          email: "rahul@velammal.edu.in",
+          phone: "+91 90924 79171",
+          email: "prasanth@velammal.edu.in",
         },
         {
           name: "Shreya Jain",
@@ -260,37 +344,25 @@ const EventCoordinators = () => {
         },
       ],
     },
-  ];
-
-  // Overall Coordinators
-  const overallCoordinators = [
+    // Workshop
     {
-      name: "Dr. S. Rajendran",
-      role: "Faculty Coordinator",
-      department: "ECE Department",
-      phone: "+91 98765 43200",
-      email: "rajendran@velammal.edu.in",
-    },
-    {
-      name: "Prof. M. Lakshmi",
-      role: "Faculty Co-Coordinator",
-      department: "ECE Department",
-      phone: "+91 98765 43201",
-      email: "lakshmi.m@velammal.edu.in",
-    },
-    {
-      name: "Harish Kumar",
-      role: "Student Coordinator",
-      department: "Final Year ECE",
-      phone: "+91 98765 43202",
-      email: "harish.student@velammal.edu.in",
-    },
-    {
-      name: "Priyanka Nair",
-      role: "Student Co-Coordinator",
-      department: "Final Year ECE",
-      phone: "+91 98765 43203",
-      email: "priyanka.student@velammal.edu.in",
+      eventTitle: "AI & ML WORKSHOP",
+      eventIcon: "🤖",
+      category: "Workshop",
+      coordinators: [
+        {
+          name: "Dr. Anand Kumar",
+          role: "Faculty Lead",
+          phone: "+91 98765 43234",
+          email: "anand.kumar@velammal.edu.in",
+        },
+        {
+          name: "Prof. Neha Singh",
+          role: "Faculty Co-Lead",
+          phone: "+91 98765 43235",
+          email: "neha.singh@velammal.edu.in",
+        },
+      ],
     },
   ];
 
@@ -298,6 +370,8 @@ const EventCoordinators = () => {
   const filteredCoordinators =
     activeCategory === "all"
       ? coordinatorsData
+      : activeCategory === "Workshop"
+      ? coordinatorsData.filter((event) => event.category === "Workshop")
       : coordinatorsData.filter((event) => event.category === activeCategory);
 
   // Handle phone call
@@ -355,16 +429,75 @@ const EventCoordinators = () => {
         </div>
       </section>
 
-      {/* Overall Coordinators Section */}
+      {/* ==================== FACULTY COORDINATORS SECTION ==================== */}
+      <section className="faculty-coordinators-section">
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">
+              <span className="title-icon">🎓</span>
+              Faculty Coordinators
+            </h2>
+            <p className="section-subtitle">
+              Distinguished faculty members guiding ELECTROWIZ 2026
+            </p>
+          </div>
+
+          <div className="faculty-coordinators-grid">
+            {facultyCoordinators.map((faculty, index) => (
+              <div key={index} className="faculty-coordinator-card">
+                <div className="faculty-card-glow"></div>
+                <div className="faculty-header">
+                  <div className="faculty-avatar">
+                    <span className="faculty-avatar-icon">👨‍🏫</span>
+                    <div className="faculty-avatar-ring"></div>
+                  </div>
+                  <div className="faculty-badge">Faculty</div>
+                </div>
+                <div className="faculty-details">
+                  <h3 className="faculty-name">{faculty.name}</h3>
+                  <p className="faculty-role">{faculty.role}</p>
+                  <p className="faculty-qualification">{faculty.qualification}</p>
+                  <p className="faculty-specialization">
+                    <span className="spec-icon">🔬</span>
+                    {faculty.specialization}
+                  </p>
+                  <p className="faculty-department">
+                    <span className="dept-icon">🏛️</span>
+                    {faculty.department}
+                  </p>
+                  <div className="faculty-contact-btns">
+                    <button
+                      className="faculty-contact-btn phone-btn"
+                      onClick={() => handleCall(faculty.phone)}
+                    >
+                      <span className="btn-icon">📞</span>
+                      <span>Call</span>
+                    </button>
+                    <button
+                      className="faculty-contact-btn email-btn"
+                      onClick={() => handleEmail(faculty.email)}
+                    >
+                      <span className="btn-icon">📧</span>
+                      <span>Email</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== OVERALL STUDENT COORDINATORS SECTION ==================== */}
       <section className="overall-coordinators-section">
         <div className="section-container">
           <div className="section-header">
             <h2 className="section-title">
               <span className="title-icon">⭐</span>
-              Overall Coordinators
+              Overall Student Coordinators
             </h2>
             <p className="section-subtitle">
-              Leadership team managing ELECTROWIZ 2026
+              Student leadership team managing ELECTROWIZ 2026
             </p>
           </div>
 
@@ -379,7 +512,13 @@ const EventCoordinators = () => {
                 <div className="coordinator-details">
                   <h3 className="coordinator-name">{coordinator.name}</h3>
                   <p className="coordinator-role">{coordinator.role}</p>
-                  <p className="coordinator-department">{coordinator.department}</p>
+                  <p className="coordinator-department">
+                    {coordinator.department} • {coordinator.year}
+                  </p>
+                  <p className="coordinator-responsibility">
+                    <span className="resp-icon">📋</span>
+                    {coordinator.responsibility}
+                  </p>
                   <div className="coordinator-contact-btns">
                     <button
                       className="contact-btn phone-btn"
@@ -403,7 +542,7 @@ const EventCoordinators = () => {
         </div>
       </section>
 
-      {/* Event Coordinators Section */}
+      {/* ==================== EVENT COORDINATORS SECTION ==================== */}
       <section className="event-coordinators-section">
         <div className="section-container">
           <div className="section-header">
@@ -436,6 +575,12 @@ const EventCoordinators = () => {
             >
               <span>Non-Technical</span>
             </button>
+            <button
+              className={`filter-btn workshop-filter ${activeCategory === "Workshop" ? "active" : ""}`}
+              onClick={() => setActiveCategory("Workshop")}
+            >
+              <span>Workshop</span>
+            </button>
           </div>
 
           {/* Event Coordinators Grid */}
@@ -444,7 +589,11 @@ const EventCoordinators = () => {
               <div
                 key={index}
                 className={`event-coordinator-block ${
-                  event.category === "Technical" ? "tech-block" : "nontech-block"
+                  event.category === "Technical"
+                    ? "tech-block"
+                    : event.category === "Workshop"
+                    ? "workshop-block"
+                    : "nontech-block"
                 }`}
               >
                 <div className="event-block-header">
@@ -453,7 +602,11 @@ const EventCoordinators = () => {
                     <h3 className="event-title">{event.eventTitle}</h3>
                     <span
                       className={`event-category ${
-                        event.category === "Technical" ? "tech-cat" : "nontech-cat"
+                        event.category === "Technical"
+                          ? "tech-cat"
+                          : event.category === "Workshop"
+                          ? "workshop-cat"
+                          : "nontech-cat"
                       }`}
                     >
                       {event.category}

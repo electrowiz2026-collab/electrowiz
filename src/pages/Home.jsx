@@ -1,6 +1,6 @@
 /* ============================================
-   ELECTROWIZ HOME PAGE - WITH SCROLL ANIMATIONS
-   Fade-in effects as you scroll
+   ELECTROWIZ HOME PAGE - ENHANCED VERSION
+   With Smooth Typewriter, Save The Date & Moment Animation
    ============================================ */
 
 import React, {
@@ -8,13 +8,82 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useCallback,
 } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
 import logo from "../assets/images/logo192.png";
+import veclogo from "../assets/images/veclogo.png";
 import Contact from "../pages/Contact.jsx";
+import bgVideo from "../assets/videos/back.mp4";
+import saveTheDateVideo from "../assets/videos/save.mp4";
+import sparkx from "../assets/images/spark.png";
+import think from "../assets/images/think.png";
+import elec from "../assets/images/elect.png";
+import error from "../assets/images/error.png";
+import mind from "../assets/images/mind.png";
+import clue from "../assets/images/clue.png";
+import dream from "../assets/images/dream.png";
+import pixel from "../assets/images/pixel.png";
+import sound from "../assets/images/Sound.png";
+import game from "../assets/images/ff.png";
+import ai from "../assets/images/ai.png";
 
+// ==================== SMOOTH TYPEWRITER HOOK ====================
+const useTypewriter = (text, totalDuration = 2000, startTyping = false) => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
+  const animationRef = useRef(null);
+  const startTimeRef = useRef(null);
+
+  useEffect(() => {
+    if (!startTyping) {
+      setDisplayedText("");
+      setIsComplete(false);
+      startTimeRef.current = null;
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      return;
+    }
+
+    if (!text || text.length === 0) {
+      setDisplayedText("");
+      setIsComplete(true);
+      return;
+    }
+
+    const animate = (timestamp) => {
+      if (!startTimeRef.current) {
+        startTimeRef.current = timestamp;
+      }
+
+      const elapsed = timestamp - startTimeRef.current;
+      const progress = Math.min(elapsed / totalDuration, 1);
+      const charIndex = Math.floor(progress * text.length);
+      
+      setDisplayedText(text.slice(0, charIndex + 1));
+
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(animate);
+      } else {
+        setDisplayedText(text);
+        setIsComplete(true);
+      }
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [text, totalDuration, startTyping]);
+
+  return { displayedText, isComplete };
+};
+
+// ==================== MAIN COMPONENT ====================
 const Home = () => {
   const navigate = useNavigate();
 
@@ -27,17 +96,20 @@ const Home = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
-  
+
   // Scroll animation states
   const [visibleSections, setVisibleSections] = useState(new Set());
 
-  const techScrollRef = useRef(null);
-  const nonTechScrollRef = useRef(null);
-  const [techScrollProgress, setTechScrollProgress] = useState(0);
-  const [nonTechScrollProgress, setNonTechScrollProgress] = useState(0);
+  // Typewriter states
+  const [aboutTypingStarted, setAboutTypingStarted] = useState(false);
+
   const [titleAnimationComplete, setTitleAnimationComplete] = useState(false);
   const [yearVisible, setYearVisible] = useState(false);
   const [yearMorphed, setYearMorphed] = useState(false);
+
+  // ==================== MOMENT SECTION STATE ====================
+  const [scrollTextVisible, setScrollTextVisible] = useState(false);
+  const scrollTextRef = useRef(null);
 
   const eventDate = useMemo(() => new Date("2026-02-14T09:00:00"), []);
   const [timeLeft, setTimeLeft] = useState({
@@ -46,6 +118,19 @@ const Home = () => {
     minutes: 0,
     seconds: 0,
   });
+
+  // ==================== TYPEWRITER TEXTS ====================
+  const aboutText1 =
+    "Velammal Engineering College is a hub of knowledge, innovation, and excellence. It inspires students to explore technology beyond textbooks. With quality education and skilled mentorship, it builds future leaders.";
+
+  const aboutText2 =
+    "ELECTROWIZ is the flagship technical symposium organized by the Department of Electronics and Communication Engineering at Velammal Engineering College.";
+
+  const { displayedText: typedText1, isComplete: typing1Complete } =
+    useTypewriter(aboutText1, 3000, aboutTypingStarted);
+
+  const { displayedText: typedText2, isComplete: typing2Complete } = 
+    useTypewriter(aboutText2, 2500, typing1Complete);
 
   // ==================== DATA ====================
   const navItems = [
@@ -71,277 +156,159 @@ const Home = () => {
     { char: "Z", accent: false },
   ];
 
-  const techEvents = [
+  // ==================== ALL EVENTS DATA ====================
+  const allEvents = [
     {
       id: 1,
-      title: "CIRCUIT QUEST",
+      title: "SPARKX",
       category: "Technical",
-      description:
-        "Design and debug complex circuits under time pressure. Test your electronics knowledge and problem-solving skills.",
-      icon: "⚡",
-      prize: "₹15,000",
+      description: "SPARKIX is a competitive academic forum designed for budding researchers and innovators to present their original ideas and research outcomes before an expert evaluation panel",
+      posterUrl: sparkx,
+      prize: "₹2,000",
       teamSize: "2-3 members",
       duration: "3 hours",
       venue: "Lab Block A",
       registrationLink: "https://forms.google.com/your-circuit-quest-form",
       rulesFile: "/rules/circuit-quest-rules.docx",
       coordinators: [
-        { name: "Rajesh Kumar", phone: "+91 98765 43210" },
-        { name: "Priya Sharma", phone: "+91 98765 43211" },
+        { name: "Srinivasan V", phone: "+91 93618 89276 " },
+        { name: "Madhumithra M", phone: "+91 93618 89276" },
       ],
-      rules: [
-        "Each team must have 2-3 members from the same institution",
-        "Participants must bring their own calculators and stationery",
-        "Use of mobile phones is strictly prohibited during the event",
-        "The decision of judges will be final and binding",
-        "Teams must report 30 minutes before the event starts",
-        "Any form of malpractice will lead to immediate disqualification",
-      ],
+      rules: ["Click the button --> Download Rules"],
     },
     {
       id: 2,
-      title: "CODE STORM",
+      title: "ElectraXpo",
       category: "Technical",
-      description:
-        "Competitive programming challenge with algorithmic puzzles. Solve complex problems in limited time.",
-      icon: "💻",
-      prize: "₹20,000",
+      description: "ElectraXpo offers a platform for students to showcase innovative solutions and working models that address real-world engineering challenges",
+      posterUrl: elec,
+      prize: "₹2,000",
       teamSize: "1-2 members",
       duration: "4 hours",
       venue: "Computer Lab",
       registrationLink: "https://forms.google.com/your-code-storm-form",
       rulesFile: "/rules/code-storm-rules.docx",
       coordinators: [
-        { name: "Arun Prakash", phone: "+91 98765 43212" },
-        { name: "Divya Nair", phone: "+91 98765 43213" },
+        { name: "Naveen Prakash", phone: "+91 96002 89904" },
+        { name: "Rini Rayan", phone: "+91 63824 87338" },
+        { name: "Eswararaju Sneha", phone: "+91 80960 06118" },
       ],
-      rules: [
-        "Individual or team of 2 members allowed",
-        "Languages allowed: C, C++, Java, Python",
-        "Internet access will not be provided",
-        "Pre-written code templates are not allowed",
-        "Scoring based on accuracy and time complexity",
-        "Ties will be broken by submission time",
-      ],
+      rules: ["Click the button --> Download Rules"],
     },
     {
       id: 3,
-      title: "ROBO WARS",
+      title: "THINK A THON",
       category: "Technical",
-      description:
-        "Build and battle robots in an ultimate showdown. Showcase your robotics engineering skills.",
-      icon: "🤖",
-      prize: "₹25,000",
+      description: "Think fast. Answer smart prove you're the sharpest mind in the room.",
+      posterUrl: think,
+      prize: "₹2,000",
       teamSize: "3-5 members",
       duration: "Full day",
       venue: "Main Arena",
       registrationLink: "https://forms.google.com/your-robo-wars-form",
       rulesFile: "/rules/robo-wars-rules.docx",
       coordinators: [
-        { name: "Karthik Reddy", phone: "+91 98765 43214" },
-        { name: "Sneha Patel", phone: "+91 98765 43215" },
+        { name: "KAVIYARASAN S", phone: "+91 84894 91386" },
+        { name: "VENDAMANI K", phone: "+91 93849 95398" },
       ],
-      rules: [
-        "Robot weight must not exceed 15kg",
-        "Maximum dimensions: 50cm x 50cm x 50cm",
-        "Wireless control within 2.4GHz frequency only",
-        "No flammable or explosive weapons allowed",
-        "Battery voltage should not exceed 24V",
-        "Teams must submit robot specifications before the event",
-      ],
+      rules: ["Click the button --> Download Rules"],
     },
     {
       id: 4,
-      title: "HACKATHON",
+      title: "ERROR 404",
       category: "Technical",
-      description:
-        "24-hour coding marathon to build innovative solutions. Transform your ideas into reality.",
-      icon: "🚀",
-      prize: "₹50,000",
+      description: "Error 404 is a competitive technical event that tests participants' logical reasoning and coding skills.",
+      posterUrl: error,
+      prize: "₹2,000",
       teamSize: "3-4 members",
       duration: "24 hours",
       venue: "Innovation Hub",
       registrationLink: "https://forms.google.com/your-hackathon-form",
       rulesFile: "/rules/hackathon-rules.docx",
       coordinators: [
-        { name: "Vikram Singh", phone: "+91 98765 43216" },
-        { name: "Anjali Menon", phone: "+91 98765 43217" },
+        { name: "Harish.S ", phone: "+91 63790 04185" },
+        { name: "Sushmitha", phone: "+91 74183 36138" },
       ],
-      rules: [
-        "Teams of 3-4 members required",
-        "Problem statements will be revealed at the start",
-        "All code must be written during the hackathon",
-        "Use of open-source libraries is allowed",
-        "Judging based on innovation, feasibility, and presentation",
-        "Working prototype must be demonstrated",
-      ],
+      rules: ["Click the button --> Download Rules"],
     },
-    {
-      id: 5,
-      title: "PAPER PRESENTATION",
-      category: "Technical",
-      description:
-        "Present your research and innovative ideas. Share knowledge on cutting-edge technologies.",
-      icon: "📄",
-      prize: "₹12,000",
-      teamSize: "1-2 members",
-      duration: "2 hours",
-      venue: "Conference Hall",
-      registrationLink: "https://forms.google.com/your-paper-form",
-      rulesFile: "/rules/paper-presentation-rules.docx",
-      coordinators: [
-        { name: "Suresh Babu", phone: "+91 98765 43218" },
-        { name: "Lakshmi Iyer", phone: "+91 98765 43219" },
-      ],
-      rules: [
-        "Abstract must be submitted before the deadline",
-        "Presentation time: 8 minutes + 2 minutes Q&A",
-        "Topics must be related to electronics or technology",
-        "Plagiarism will result in disqualification",
-        "PowerPoint presentations only (max 15 slides)",
-        "Papers must follow IEEE format",
-      ],
-    },
-    {
-      id: 6,
-      title: "IOT CHALLENGE",
-      category: "Technical",
-      description:
-        "Build smart IoT solutions for real-world problems. Connect devices and create intelligent systems.",
-      icon: "🌐",
-      prize: "₹18,000",
-      teamSize: "2-3 members",
-      duration: "5 hours",
-      venue: "IoT Lab",
-      registrationLink: "https://forms.google.com/your-iot-form",
-      rulesFile: "/rules/iot-challenge-rules.docx",
-      coordinators: [
-        { name: "Ramesh Kumar", phone: "+91 98765 43220" },
-        { name: "Kavya Reddy", phone: "+91 98765 43221" },
-      ],
-      rules: [
-        "Basic IoT kit will be provided",
-        "Additional components can be brought by teams",
-        "Cloud platforms like AWS IoT, Azure allowed",
-        "Solution must address the given problem statement",
-        "Documentation of the project is mandatory",
-        "Live demonstration required for evaluation",
-      ],
-    },
-  ];
-
-  const nonTechEvents = [
     {
       id: 7,
-      title: "TECH QUIZ",
+      title: "SOUND SPHERE",
       category: "Non-Technical",
-      description:
-        "Test your knowledge across technology domains. Challenge your mind with exciting questions.",
-      icon: "🧠",
-      prize: "₹10,000",
+      description: "Sound Scape is a creative event that challenges participants to identify, analyze, and interpret audio-based clues",
+      posterUrl: sound,
+      prize: "₹2,000",
       teamSize: "2 members",
       duration: "2 hours",
       venue: "Seminar Hall",
       registrationLink: "https://forms.google.com/your-quiz-form",
       rulesFile: "/rules/tech-quiz-rules.docx",
       coordinators: [
-        { name: "Sanjay Gupta", phone: "+91 98765 43222" },
-        { name: "Meera Krishnan", phone: "+91 98765 43223" },
+        { name: "JEEVATH M", phone: "+91 63833 00579" },
+        { name: "ANJALI B", phone: "+91 63834 65759" },
       ],
-      rules: [
-        "Teams of exactly 2 members",
-        "Three rounds: Prelims, Semi-finals, Finals",
-        "Questions cover tech, science, and current affairs",
-        "No electronic devices allowed",
-        "Negative marking in finals only",
-        "Time limit for each question will be displayed",
-      ],
+      rules: ["Click the button --> Download Rules"],
     },
     {
       id: 8,
-      title: "TREASURE HUNT",
+      title: "CLUE CONNECT",
       category: "Non-Technical",
-      description:
-        "Solve clues and puzzles to find the hidden treasure. Adventure awaits across the campus!",
-      icon: "🗺️",
-      prize: "₹8,000",
+      description: "Clue Connect is an exciting non-technical event that tests listening skills, visual reasoning, and movie knowledge.",
+      posterUrl: clue,
+      prize: "₹2,000",
       teamSize: "4-5 members",
       duration: "3 hours",
       venue: "Entire Campus",
       registrationLink: "https://forms.google.com/your-treasure-form",
       rulesFile: "/rules/treasure-hunt-rules.docx",
       coordinators: [
-        { name: "Arjun Verma", phone: "+91 98765 43224" },
-        { name: "Pooja Shah", phone: "+91 98765 43225" },
+        { name: "Barath ", phone: "+91 98402 75886" },
+        { name: "Akshitha", phone: "+91 63740 16868" },
       ],
-      rules: [
-        "Teams of 4-5 members required",
-        "All team members must stay together",
-        "Clues must not be shared with other teams",
-        "Running inside buildings is not allowed",
-        "First team to find treasure wins",
-        "Damaging college property leads to disqualification",
-      ],
+      rules: ["Click the button --> Download Rules"],
     },
     {
       id: 9,
-      title: "PHOTOGRAPHY",
+      title: "MIND MAZE",
       category: "Non-Technical",
-      description:
-        "Capture moments with your creative lens. Show your perspective through photography.",
-      icon: "📸",
-      prize: "₹6,000",
+      description: "Mind Maze is an engaging non-technical event that challenges logical thinking, observation, and problem-solving skills.",
+      posterUrl: mind,
+      prize: "₹2,000",
       teamSize: "Individual",
       duration: "4 hours",
       venue: "Campus Wide",
       registrationLink: "https://forms.google.com/your-photo-form",
       rulesFile: "/rules/photography-rules.docx",
       coordinators: [
-        { name: "Rohan Mehta", phone: "+91 98765 43226" },
-        { name: "Isha Desai", phone: "+91 98765 43227" },
+        { name: "Dhiyanesh", phone: "+91 94442 54917" },
+        { name: "Swedha P S", phone: "+91 63827 32250" },
       ],
-      rules: [
-        "Individual participation only",
-        "Theme will be announced on spot",
-        "DSLR, mirrorless, or smartphone allowed",
-        "Basic editing allowed (no heavy manipulation)",
-        "Submit 3 best photographs for judging",
-        "Watermarks are not allowed on submissions",
-      ],
+      rules: ["Click the button --> Download Rules"],
     },
     {
       id: 10,
-      title: "DEBATE",
+      title: "DREAM XI",
       category: "Non-Technical",
-      description:
-        "Voice your opinions on contemporary topics. Showcase your oratory and argumentation skills.",
-      icon: "🎤",
-      prize: "₹7,000",
+      description: "DREAM11 is a IPL-themed team event designed to test participants' IPL knowledge,decision-making, and strategic team-building skills.",
+      posterUrl: dream,
+      prize: "₹2,000",
       teamSize: "2 members",
       duration: "3 hours",
       venue: "Auditorium",
       registrationLink: "https://forms.google.com/your-debate-form",
       rulesFile: "/rules/debate-rules.docx",
       coordinators: [
-        { name: "Nikhil Joshi", phone: "+91 98765 43228" },
-        { name: "Swati Rao", phone: "+91 98765 43229" },
+        { name: "Anshul S A", phone: "+91 63792 80210" },
+        { name: "Santhosh S", phone: "+91 90258 56034" },
       ],
-      rules: [
-        "Teams of 2 (one for, one against)",
-        "Topics will be given 30 minutes before",
-        "Speaking time: 3 minutes per person",
-        "Rebuttal time: 1 minute each",
-        "English or Tamil language allowed",
-        "Maintain decorum throughout the debate",
-      ],
+      rules: ["Click the button --> Download Rules"],
     },
     {
       id: 11,
-      title: "GAMING ARENA",
+      title: "PIXEL PERFECT",
       category: "Non-Technical",
-      description:
-        "Compete in popular esports titles. Show your gaming prowess and claim victory!",
-      icon: "🎮",
+      description: "Pixel Perfect is a creative event that tests participants' visual accuracy and attention to detail.",
+      posterUrl: pixel,
       prize: "₹15,000",
       teamSize: "1-5 members",
       duration: "Full day",
@@ -349,43 +316,46 @@ const Home = () => {
       registrationLink: "https://forms.google.com/your-gaming-form",
       rulesFile: "/rules/gaming-rules.docx",
       coordinators: [
-        { name: "Aditya Kapoor", phone: "+91 98765 43230" },
+        { name: "Logesh G", phone: "+91 90250 09593" },
         { name: "Tanya Pillai", phone: "+91 98765 43231" },
       ],
-      rules: [
-        "Games: Valorant, BGMI, FIFA 24",
-        "Bring your own peripherals (optional)",
-        "Team size varies by game",
-        "Fair play policy strictly enforced",
-        "Matches streamed live on big screens",
-        "Prize pool split across all games",
-      ],
+      rules: ["Click the button --> Download Rules"],
     },
     {
       id: 12,
-      title: "MEME MAKING",
+      title: "GAMEVERSE",
       category: "Non-Technical",
-      description:
-        "Create the funniest memes on given topics. Let your creativity and humor shine!",
-      icon: "😂",
-      prize: "₹5,000",
-      teamSize: "Individual",
+      description: "GameVerse is a fun-filled gaming event that brings together competition, skill, and entertainment.",
+      posterUrl: game,
+      prize: "₹2,000",
+      teamSize: "1-4 members",
       duration: "2 hours",
       venue: "Digital Lab",
       registrationLink: "https://forms.google.com/your-meme-form",
       rulesFile: "/rules/meme-making-rules.docx",
       coordinators: [
-        { name: "Rahul Bansal", phone: "+91 98765 43232" },
+        { name: "Prasanth M", phone: "+91 90924 79171" },
         { name: "Shreya Jain", phone: "+91 98765 43233" },
       ],
-      rules: [
-        "Individual participation only",
-        "Topics will be given on spot",
-        "Any editing software can be used",
-        "Memes must be original and not copied",
-        "No offensive or inappropriate content",
-        "Submit minimum 5 memes for judging",
+      rules: ["Click the button --> Download Rules"],
+    },
+    {
+      id: 13,
+      title: "AI & ML WORKSHOP",
+      category: "Workshop",
+      description: "Hands-on workshop on Artificial Intelligence and Machine Learning. Learn to build intelligent systems with industry experts.",
+      posterUrl: ai,
+      prize: "Certificate & Goodies",
+      teamSize: "Individual",
+      duration: "6 hours",
+      venue: "Workshop Hall A",
+      registrationLink: "https://forms.google.com/your-ai-workshop-form",
+      rulesFile: "/rules/ai-workshop-rules.docx",
+      coordinators: [
+        { name: "Dr. Anand Kumar", phone: "+91 98765 43234" },
+        { name: "Prof. Neha Singh", phone: "+91 98765 43235" },
       ],
+      rules: ["Click the button --> Download"],
     },
   ];
 
@@ -394,41 +364,20 @@ const Home = () => {
       day: "Day 1",
       date: "March 15, 2026",
       events: [
-        {
-          time: "09:00 AM",
-          title: "Inauguration Ceremony",
-          venue: "Main Auditorium",
-        },
+        { time: "09:00 AM", title: "Inauguration Ceremony", venue: "Main Auditorium" },
         { time: "10:30 AM", title: "Keynote Speech", venue: "Main Auditorium" },
-        {
-          time: "12:00 PM",
-          title: "Circuit Quest - Round 1",
-          venue: "Lab Block A",
-        },
+        { time: "12:00 PM", title: "Circuit Quest - Round 1", venue: "Lab Block A" },
         { time: "02:00 PM", title: "Code Storm Begins", venue: "Computer Lab" },
         { time: "03:00 PM", title: "Robo Wars - Prelims", venue: "Main Arena" },
         { time: "04:00 PM", title: "Tech Quiz Prelims", venue: "Seminar Hall" },
-        {
-          time: "05:00 PM",
-          title: "Paper Presentations",
-          venue: "Conference Hall",
-        },
-        {
-          time: "06:00 PM",
-          title: "Cultural Evening",
-          venue: "Open Air Theatre",
-        },
+        { time: "05:00 PM", title: "Paper Presentations", venue: "Conference Hall" },
+        { time: "06:00 PM", title: "Cultural Evening", venue: "Open Air Theatre" },
       ],
     },
   ];
 
   const sponsors = [
-    {
-      tier: "Title Sponsor",
-      name: "TechCorp Industries",
-      logo: "🏢",
-      image: null,
-    },
+    { tier: "Title Sponsor", name: "TechCorp Industries", logo: "🏢", image: null },
     { tier: "Gold Sponsor", name: "InnovateTech", logo: "💎", image: null },
     { tier: "Gold Sponsor", name: "FutureSystems", logo: "🔮", image: null },
     { tier: "Silver Sponsor", name: "CodeLabs", logo: "⚙️", image: null },
@@ -440,29 +389,89 @@ const Home = () => {
 
   const scrollSponsors = [...sponsors, ...sponsors, ...sponsors];
 
+  // ==================== MOMENT SECTION OBSERVER ====================
+  useEffect(() => {
+    const scrollTextElement = scrollTextRef.current;
+    if (!scrollTextElement) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setScrollTextVisible(true);
+          } else {
+            setScrollTextVisible(false);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-50px 0px'
+      }
+    );
+
+    observer.observe(scrollTextElement);
+
+    return () => observer.disconnect();
+  }, []);
+
   // ==================== SCROLL ANIMATION EFFECT ====================
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
+      threshold: [0, 0.1, 0.2, 0.3],
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setVisibleSections((prev) => new Set([...prev, entry.target.dataset.section]));
+          const sectionId = entry.target.dataset.section;
+          if (sectionId) {
+            setVisibleSections((prev) => {
+              const newSet = new Set(prev);
+              newSet.add(sectionId);
+              return newSet;
+            });
+
+            if (sectionId === "about") {
+              setTimeout(() => setAboutTypingStarted(true), 500);
+            }
+          }
         }
       });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Observe all sections with fade-in animation
-    const sections = document.querySelectorAll("[data-section]");
-    sections.forEach((section) => observer.observe(section));
+    const timeoutId = setTimeout(() => {
+      const sections = document.querySelectorAll("[data-section]");
+      sections.forEach((section) => {
+        observer.observe(section);
+
+        const rect = section.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (isInView) {
+          const sectionId = section.dataset.section;
+          if (sectionId) {
+            setVisibleSections((prev) => {
+              const newSet = new Set(prev);
+              newSet.add(sectionId);
+              return newSet;
+            });
+
+            if (sectionId === "about") {
+              setTimeout(() => setAboutTypingStarted(true), 500);
+            }
+          }
+        }
+      });
+    }, 100);
 
     return () => {
+      clearTimeout(timeoutId);
+      const sections = document.querySelectorAll("[data-section]");
       sections.forEach((section) => observer.unobserve(section));
+      observer.disconnect();
     };
   }, []);
 
@@ -548,24 +557,6 @@ const Home = () => {
   }, [isModalOpen, isVideoModalOpen]);
 
   // ==================== HANDLERS ====================
-  const handleScrollProgress = useCallback((ref, setProgress) => {
-    if (ref.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = ref.current;
-      const progress = (scrollLeft / (scrollWidth - clientWidth)) * 100;
-      setProgress(Math.min(progress, 100));
-    }
-  }, []);
-
-  const scrollEvents = (ref, direction) => {
-    if (ref.current) {
-      const scrollAmount = 370;
-      ref.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
-
   const scrollToSection = (sectionId) => {
     if (sectionId === "coordinators") {
       navigate("/coordinators");
@@ -633,9 +624,7 @@ const Home = () => {
   const handleRulesDownload = (rulesFile, eventTitle) => {
     const link = document.createElement("a");
     link.href = rulesFile;
-    link.download = `${eventTitle
-      .replace(/\s+/g, "-")
-      .toLowerCase()}-rules.docx`;
+    link.download = `${eventTitle.replace(/\s+/g, "-").toLowerCase()}-rules.docx`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -643,6 +632,20 @@ const Home = () => {
 
   const handleEventRegistration = (registrationLink) => {
     window.open(registrationLink, "_blank", "noopener,noreferrer");
+  };
+
+  const getDisplayedEvents = () => {
+    switch (activeEventTab) {
+      case "tech":
+        return allEvents.filter((event) => event.category === "Technical");
+      case "nontech":
+        return allEvents.filter((event) => event.category === "Non-Technical");
+      case "workshop":
+        return allEvents.filter((event) => event.category === "Workshop");
+      case "all":
+      default:
+        return allEvents;
+    }
   };
 
   // ==================== RENDER ====================
@@ -710,27 +713,32 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* ==================== COLLEGE BANNER ==================== */}
-      
-      <br></br>
-      <br></br>
-      <div
-        className={`college-banner ${
-          isScrolled ? "college-banner-scrolled" : ""
-        }`}
-      >
-        
-        <div className="college-banner-shimmer"></div>
-        <div className="college-banner-content">
-          <span className="college-dot"></span>
-          <span className="college-name">Velammal Engineering College</span>
-          <span className="college-dot"></span>
-        </div>
-      </div>
-
       {/* ==================== HERO SECTION ==================== */}
       <section id="home" className="hero-section">
         <div className="hero-bg">
+          <br />
+          <br />
+
+          <section className="college-banner-clean">
+            <div className="college-banner-inner">
+              <div className="college-banner-logo">
+                <img src={veclogo} alt="Velammal Engineering College" />
+              </div>
+              <div className="college-banner-text">
+                <h1>Velammal Engineering College</h1>
+                <p>An Autonomous Institution</p>
+              </div>
+            </div>
+          </section>
+
+          <video
+            className="hero-video"
+            src={bgVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
           <div className="hero-grid"></div>
           <div className="hero-gradient"></div>
           <div className="hero-particles">
@@ -749,6 +757,9 @@ const Home = () => {
         </div>
 
         <div className="hero-content">
+          <br />
+          <br />
+
           <div className="hero-badge">
             <span className="badge-dot"></span>
             <span className="badge-text">ECE Department Presents</span>
@@ -818,7 +829,6 @@ const Home = () => {
             </div>
           </h1>
 
-        
           <div className="countdown-container">
             <h3 className="countdown-label">Event Starts In</h3>
             <div className="countdown-grid">
@@ -902,34 +912,29 @@ const Home = () => {
               <span className="stat-label">Participants</span>
             </div>
           </div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-           <div
-          className="scroll-indicator"
-          onClick={() => scrollToSection("about")}
-        >
-          <span className="scroll-text">Scroll Down</span>
-          <div className="scroll-arrow">
-            <span></span>
-            <span></span>
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div
+            className="scroll-indicator"
+            onClick={() => scrollToSection("about")}
+          >
+            <span className="scroll-text">Scroll Down</span>
+            <div className="scroll-arrow">
+              <span></span>
+              <span></span>
+            </div>
           </div>
         </div>
-        </div>
-
-       
       </section>
 
-      {/* ==================== ABOUT SECTION WITH FADE-IN ==================== */}
-      <section 
-        id="about" 
-        className="about-section"
-        data-section="about"
-      >
+      {/* ==================== ABOUT SECTION ==================== */}
+      <section id="about" className="about-section" data-section="about">
         <div className="section-container">
-          <div 
+          <div
             className={`section-header fade-in-up ${
               visibleSections.has("about") ? "visible" : ""
             }`}
@@ -940,28 +945,30 @@ const Home = () => {
             <div className="section-line"></div>
             <br />
             <br />
-            <span className="section-tag">About Us</span>
+            <span className="section-tag">About VEC</span>
           </div>
 
           <div className="about-grid">
-            <div 
+            <div
               className={`about-content fade-in-left ${
                 visibleSections.has("about") ? "visible" : ""
               }`}
               style={{ transitionDelay: "0.1s" }}
             >
-              <p className="about-text">
-                ELECTROWIZ is the flagship technical symposium organized by the
-                Department of Electronics and Communication Engineering at
-                Velammal Engineering College. Now in its 11th edition, we bring
-                together the brightest minds from across the nation to compete,
-                learn, and innovate.
-              </p>
-              <p className="about-text">
-                Experience two days of intense competition, hands-on workshops,
-                inspiring talks from industry leaders, and networking
-                opportunities that could shape your future in technology.
-              </p>
+              <div className="typewriter-container">
+                <p className="about-text typewriter-text">
+                  <span className="typewriter-content">{typedText1}</span>
+                  {aboutTypingStarted && !typing1Complete && (
+                    <span className="typing-cursor"></span>
+                  )}
+                </p>
+                <p className="about-text typewriter-text">
+                  <span className="typewriter-content">{typedText2}</span>
+                  {typing1Complete && !typing2Complete && (
+                    <span className="typing-cursor"></span>
+                  )}
+                </p>
+              </div>
 
               <div className="about-features">
                 {[
@@ -986,7 +993,7 @@ const Home = () => {
                     className={`feature-item fade-in-up ${
                       visibleSections.has("about") ? "visible" : ""
                     }`}
-                    style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
+                    style={{ transitionDelay: `${0.8 + index * 0.2}s` }}
                   >
                     <div className="feature-icon">{feature.icon}</div>
                     <div className="feature-content">
@@ -998,7 +1005,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div 
+            <div
               className={`about-visual fade-in-right ${
                 visibleSections.has("about") ? "visible" : ""
               }`}
@@ -1008,15 +1015,15 @@ const Home = () => {
                 <div className="card-glow"></div>
                 <div className="card-content">
                   <div className="card-icon">
-                    <img src={logo} alt="ELECTROWIZ" />
+                    <img src={veclogo} alt="ELECTROWIZ" />
                   </div>
                   <div className="card-info">
                     <span className="info-label">Established</span>
-                    <span className="info-value">2015</span>
+                    <span className="info-value">1995</span>
                   </div>
                   <div className="card-info">
                     <span className="info-label">Edition</span>
-                    <span className="info-value">11th</span>
+                    <span className="info-value">5th</span>
                   </div>
                   <div className="card-info">
                     <span className="info-label">Theme</span>
@@ -1030,31 +1037,60 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ==================== EVENTS SECTION WITH FADE-IN ==================== */}
-      <section 
-        id="events" 
-        className="events-section"
-        data-section="events"
-      >
+ {/* ==================== SAVE THE DATE SECTION ==================== */}
+<section className="save-date-section" data-section="savedate">
+  <div className="save-date-container">
+    <h2 className="save-date-top-text">SAVE THE DATE</h2>
+    
+    <div className="save-date-video-wrapper">
+      <video
+        className="save-date-video"
+        src={saveTheDateVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/images/save-date-poster.jpg" // Add a poster image
+        onLoadedData={(e) => e.target.play()}
+      />
+      {/* Fallback loading state */}
+      <div className="video-loading-overlay">
+        <div className="loading-spinner"></div>
+      </div>
+    </div>
+    
+    <h1 className="save-date-bottom-text">FEB 14!</h1>
+  </div>
+</section>
+
+      {/* ==================== EVENTS SECTION ==================== */}
+      <section id="events" className="events-section" data-section="events">
         <div className="section-container">
-          <div 
+          <div
             className={`section-header fade-in-up ${
               visibleSections.has("events") ? "visible" : ""
             }`}
           >
-            <span className="section-tag">Competitions</span>
+            <span className="section-tag">Competitions & Workshops</span>
             <h2 className="section-title">
               Featured <span className="highlight">Events</span>
             </h2>
             <div className="section-line"></div>
           </div>
 
-          <div 
+          <div
             className={`events-tabs fade-in-up ${
               visibleSections.has("events") ? "visible" : ""
             }`}
             style={{ transitionDelay: "0.2s" }}
           >
+            <button
+              className={`event-tab ${activeEventTab === "all" ? "active" : ""}`}
+              onClick={() => setActiveEventTab("all")}
+            >
+              <span>All Events</span>
+            </button>
             <button
               className={`event-tab tech-tab ${
                 activeEventTab === "tech" ? "active" : ""
@@ -1072,313 +1108,91 @@ const Home = () => {
               <span>Non-Technical</span>
             </button>
             <button
-              className={`event-tab ${
-                activeEventTab === "all" ? "active" : ""
+              className={`event-tab workshop-tab ${
+                activeEventTab === "workshop" ? "active" : ""
               }`}
-              onClick={() => setActiveEventTab("Workshop")}
+              onClick={() => setActiveEventTab("workshop")}
             >
-              <span>Workshop</span>
+              <span>Workshops</span>
             </button>
           </div>
-        </div>
 
-        {/* Technical Events */}
-        {(activeEventTab === "all" || activeEventTab === "tech") && (
-          <div className="events-category-section">
-            <div className="section-container">
-              <div 
-                className={`category-label fade-in-left ${
-                  visibleSections.has("events") ? "visible" : ""
-                }`}
-                style={{ transitionDelay: "0.3s" }}
-              >
-                <span className="category-indicator tech"></span>
-                <span className="category-title tech">Technical Events</span>
-              </div>
-            </div>
-
-            <div className="scroll-nav">
-              <button
-                className="scroll-nav-btn"
-                onClick={() => scrollEvents(techScrollRef, "left")}
-                aria-label="Scroll left"
-              >
-                ←
-              </button>
-              <div className="scroll-progress-container">
-                <div
-                  className="scroll-progress-bar"
-                  style={{ width: `${techScrollProgress}%` }}
-                ></div>
-              </div>
-              <button
-                className="scroll-nav-btn"
-                onClick={() => scrollEvents(techScrollRef, "right")}
-                aria-label="Scroll right"
-              >
-                →
-              </button>
-            </div>
-
-            <div className="events-scroll-wrapper">
+          <div className="events-clean-grid">
+            {getDisplayedEvents().map((event, index) => (
               <div
-                className="events-scroll-container"
-                ref={techScrollRef}
-                onScroll={() =>
-                  handleScrollProgress(techScrollRef, setTechScrollProgress)
-                }
-              >
-                {techEvents.map((event, index) => (
-                  <div
-                    key={event.id}
-                    className={`event-card tech-event fade-in-scale ${
-                      visibleSections.has("events") ? "visible" : ""
-                    }`}
-                    style={{ 
-                      animationDelay: `${index * 0.1}s`,
-                      transitionDelay: `${0.4 + index * 0.1}s`
-                    }}
-                  >
-                    <div className="event-card-bg"></div>
-                    <div className="event-card-content">
-                      <div className="event-icon">{event.icon}</div>
-                      <span className="event-category">{event.category}</span>
-                      <h3 className="event-title">{event.title}</h3>
-                      <p className="event-description">{event.description}</p>
-                      <div className="event-footer">
-                        <div className="event-prize">
-                          <span className="prize-label">Prize Pool</span>
-                          <span className="prize-value">{event.prize}</span>
-                        </div>
-                        <button
-                          className="event-btn"
-                          onClick={() => openEventModal(event)}
-                        >
-                          Learn More
-                          <span className="btn-arrow">→</span>
-                        </button>
-                      </div>
-                    </div>
-                    <div className="event-card-glow"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Non-Technical Events */}
-        {(activeEventTab === "all" || activeEventTab === "nontech") && (
-          <div className="events-category-section">
-            <div className="section-container">
-              <div 
-                className={`category-label fade-in-left ${
-                  visibleSections.has("events") ? "visible" : ""
-                }`}
-                style={{ transitionDelay: "0.3s" }}
-              >
-                <span className="category-indicator nontech"></span>
-                <span className="category-title nontech">
-                  Non-Technical Events
-                </span>
-              </div>
-            </div>
-
-            <div className="scroll-nav">
-              <button
-                className="scroll-nav-btn"
-                onClick={() => scrollEvents(nonTechScrollRef, "left")}
-                aria-label="Scroll left"
-              >
-                ←
-              </button>
-              <div className="scroll-progress-container">
-                <div
-                  className="scroll-progress-bar"
-                  style={{ width: `${nonTechScrollProgress}%` }}
-                ></div>
-              </div>
-              <button
-                className="scroll-nav-btn"
-                onClick={() => scrollEvents(nonTechScrollRef, "right")}
-                aria-label="Scroll right"
-              >
-                →
-              </button>
-            </div>
-
-            <div className="events-scroll-wrapper">
-              <div
-                className="events-scroll-container"
-                ref={nonTechScrollRef}
-                onScroll={() =>
-                  handleScrollProgress(
-                    nonTechScrollRef,
-                    setNonTechScrollProgress
-                  )
-                }
-              >
-                {nonTechEvents.map((event, index) => (
-                  <div
-                    key={event.id}
-                    className={`event-card nontech-event fade-in-scale ${
-                      visibleSections.has("events") ? "visible" : ""
-                    }`}
-                    style={{ 
-                      animationDelay: `${index * 0.1}s`,
-                      transitionDelay: `${0.4 + index * 0.1}s`
-                    }}
-                  >
-                    <div className="event-card-bg"></div>
-                    <div className="event-card-content">
-                      <div className="event-icon">{event.icon}</div>
-                      <span className="event-category">{event.category}</span>
-                      <h3 className="event-title">{event.title}</h3>
-                      <p className="event-description">{event.description}</p>
-                      <div className="event-footer">
-                        <div className="event-prize">
-                          <span className="prize-label">Prize Pool</span>
-                          <span className="prize-value">{event.prize}</span>
-                        </div>
-                        <button
-                          className="event-btn"
-                          onClick={() => openEventModal(event)}
-                        >
-                          Learn More
-                          <span className="btn-arrow">→</span>
-                        </button>
-                      </div>
-                    </div>
-                    <div className="event-card-glow"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div className="section-container">
-          <div 
-            className={`events-cta fade-in-up ${
-              visibleSections.has("events") ? "visible" : ""
-            }`}
-            style={{ transitionDelay: "0.5s" }}
-          >
-            <button
-              className="view-all-btn"
-              onClick={() => setActiveEventTab("all")}
-            >
-              <span>View All Events</span>
-              <span className="btn-icon">→</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== SCHEDULE SECTION WITH FADE-IN ==================== */}
-      <section 
-        id="schedule" 
-        className="schedule-section"
-        data-section="schedule"
-      >
-        <div className="section-container">
-          <div 
-            className={`section-header fade-in-up ${
-              visibleSections.has("schedule") ? "visible" : ""
-            }`}
-          >
-            <span className="section-tag">Timeline</span>
-            <h2 className="section-title">
-              Event <span className="highlight">Schedule</span>
-            </h2>
-            <div className="section-line"></div>
-          </div>
-
-          <div className="schedule-tabs">
-            {schedule.map((day, index) => (
-              <div 
-                key={index} 
-                className={`schedule-day fade-in-up ${
-                  visibleSections.has("schedule") ? "visible" : ""
-                }`}
+                key={event.id}
+                className={`event-clean-card ${
+                  event.category === "Technical"
+                    ? "tech-card"
+                    : event.category === "Workshop"
+                    ? "workshop-card"
+                    : "nontech-card"
+                } fade-in-up ${visibleSections.has("events") ? "visible" : ""}`}
                 style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
               >
-                <div className="day-header">
-                  <h3 className="day-title">{day.day}</h3>
-                  <span className="day-date">{day.date}</span>
+                <div className="event-index-badge">
+                  {String(index + 1).padStart(2, "0")}
                 </div>
-                <div className="timeline">
-                  {day.events.map((event, eventIndex) => (
-                    <div 
-                      key={eventIndex} 
-                      className={`timeline-item fade-in-left ${
-                        visibleSections.has("schedule") ? "visible" : ""
+
+                <div className="event-card-poster">
+                  <img src={event.posterUrl} alt={event.title} />
+                  <div className="poster-hover-overlay">
+                    <span>View Details</span>
+                  </div>
+                </div>
+
+                <div className="event-card-content">
+                  <div className="event-card-header">
+                    <span
+                      className={`event-type-badge ${
+                        event.category === "Technical"
+                          ? "tech"
+                          : event.category === "Workshop"
+                          ? "workshop"
+                          : "nontech"
                       }`}
-                      style={{ transitionDelay: `${0.3 + eventIndex * 0.05}s` }}
                     >
-                      <div className="timeline-marker">
-                        <div className="marker-dot"></div>
-                        <div className="marker-line"></div>
-                      </div>
-                      <div className="timeline-content">
-                        <span className="timeline-time">{event.time}</span>
-                        <h4 className="timeline-title">{event.title}</h4>
-                        <span className="timeline-venue">
-                          <span className="venue-icon">📍</span>
-                          {event.venue}
-                        </span>
-                      </div>
+                      {event.category}
+                    </span>
+                    <h3 className="event-card-title">{event.title}</h3>
+                  </div>
+
+                  <p className="event-card-description">{event.description}</p>
+
+                  <div className="event-card-meta">
+                    <div className="meta-row">
+                      <span className="meta-icon">👥</span>
+                      <span>{event.teamSize}</span>
                     </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+                    <div className="meta-row">
+                      <span className="meta-icon">⏱️</span>
+                      <span>{event.duration}</span>
+                    </div>
+                    <div className="meta-row">
+                      <span className="meta-icon">📍</span>
+                      <span>{event.venue}</span>
+                    </div>
+                    <div className="meta-row">
+                      <span className="meta-icon">🏆</span>
+                      <span>{event.prize}</span>
+                    </div>
+                  </div>
 
-      {/* ==================== GALLERY SECTION WITH FADE-IN ==================== */}
-      <section 
-        id="gallery" 
-        className="gallery-section"
-        data-section="gallery"
-      >
-        <div className="section-container">
-          <div 
-            className={`section-header fade-in-up ${
-              visibleSections.has("gallery") ? "visible" : ""
-            }`}
-          >
-            <span className="section-tag">Memories</span>
-            <h2 className="section-title">
-              Event <span className="highlight">Gallery</span>
-            </h2>
-            <div className="section-line"></div>
-          </div>
-
-          <div className="gallery-collage">
-            {[
-              { img: "img1.jpg", text: "Robo Wars 2025", class: "gallery-large" },
-              { img: "img2.jpg", text: "Hackathon", class: "gallery-small" },
-              { img: "img3.jpg", text: "Tech Quiz", class: "gallery-small" },
-              { img: "img4.jpg", text: "Code Storm", class: "gallery-medium" },
-              { img: "img5.jpg", text: "Inauguration", class: "gallery-small" },
-              { img: "img6.jpg", text: "Prize Distribution", class: "gallery-large" },
-              { img: "img7.jpg", text: "Workshop", class: "gallery-small" },
-              { img: "img8.jpg", text: "Gaming Arena", class: "gallery-medium" },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className={`gallery-item ${item.class} fade-in-scale ${
-                  visibleSections.has("gallery") ? "visible" : ""
-                }`}
-                style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
-              >
-                <div className="gallery-image">
-                  <img src={`/gallery/${item.img}`} alt={`Electrowiz Event ${index + 1}`} />
-                  <div className="gallery-overlay">
-                    <span className="gallery-icon">🔍</span>
-                    <span className="gallery-text">{item.text}</span>
+                  <div className="event-card-actions">
+                    <button
+                      className="event-action-btn learn-more-btn"
+                      onClick={() => openEventModal(event)}
+                    >
+                      Learn More →
+                    </button>
+                    <button
+                      className="event-action-btn register-btn"
+                      onClick={() =>
+                        handleEventRegistration(event.registrationLink)
+                      }
+                    >
+                      Register
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1387,79 +1201,168 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ==================== SPONSORS SECTION WITH FADE-IN ==================== */}
+      {/* ==================== MAKE A MOMENT SECTION ==================== */}
       <section 
-        id="sponsors" 
-        className="sponsors-section"
-        data-section="sponsors"
+        className={`moment-section ${scrollTextVisible ? 'in-view' : ''}`}
+        ref={scrollTextRef}
       >
-        <div className="section-container">
-          <div 
-            className={`section-header fade-in-up ${
-              visibleSections.has("sponsors") ? "visible" : ""
-            }`}
-          >
-            <span className="section-tag">Partners</span>
-            <h2 className="section-title">
-              Our <span className="highlight">Sponsors</span>
-            </h2>
-            <div className="section-line"></div>
-          </div>
-        </div>
-
-        <div className="sponsors-scroll-wrapper">
-          <div className="sponsors-scroll-track">
-            {scrollSponsors.map((sponsor, index) => (
-              <div key={index} className="sponsor-scroll-item">
-                {sponsor.image ? (
-                  <img src={sponsor.image} alt={sponsor.name} />
-                ) : (
-                  <span className="sponsor-scroll-logo">{sponsor.logo}</span>
-                )}
-              </div>
+        <div className="moment-bg">
+          <div className="moment-grid-overlay"></div>
+          <div className="moment-glow moment-glow-1"></div>
+          <div className="moment-glow moment-glow-2"></div>
+          <div className="moment-particles">
+            {[...Array(15)].map((_, i) => (
+              <div 
+                key={i} 
+                className="moment-particle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${4 + Math.random() * 3}s`
+                }}
+              />
             ))}
           </div>
         </div>
 
-        <div className="section-container">
-          <div className="sponsors-grid">
-            {sponsors.slice(0, 6).map((sponsor, index) => (
-              <div
-                key={index}
-                className={`sponsor-card ${
-                  sponsor.tier === "Title Sponsor" ? "title-sponsor" : ""
-                } fade-in-scale ${
-                  visibleSections.has("sponsors") ? "visible" : ""
-                }`}
-                style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
-              >
-                <div className="sponsor-tier">{sponsor.tier}</div>
-                <div className="sponsor-logo">{sponsor.logo}</div>
-                <div className="sponsor-name">{sponsor.name}</div>
-              </div>
-            ))}
+        <div className="moment-content">
+          <div className="moment-lines">
+            <div className="moment-line-wrapper">
+              <h2 className="moment-line moment-line-1">
+                <span className="moment-text">CREATE A</span>
+              </h2>
+            </div>
+            
+            <div className="moment-line-wrapper">
+              <h2 className="moment-line moment-line-2">
+                <span className="moment-text">MOMENT</span>
+              </h2>
+            </div>
+            
+            <div className="moment-line-wrapper">
+              <h2 className="moment-line moment-line-3">
+                <span className="moment-text">WITH US</span>
+              </h2>
+            </div>
           </div>
 
-          <div 
-            className={`sponsor-cta fade-in-up ${
-              visibleSections.has("sponsors") ? "visible" : ""
-            }`}
-            style={{ transitionDelay: "0.8s" }}
-          >
-            <p>Interested in sponsoring ELECTROWIZ 2026?</p>
-            <button className="sponsor-btn">Become a Sponsor</button>
+          <div className="moment-cta-wrapper">
+            <p className="moment-subtitle">Join 500+ participants in the biggest tech fest</p>
+            <button 
+              className="moment-cta-btn"
+              onClick={handleRegisterClick}
+            >
+              <span className="moment-btn-bg"></span>
+              <span className="moment-btn-text">Register Now</span>
+              <span className="moment-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </button>
           </div>
+        </div>
+
+        <div className="moment-decoration">
+          <div className="moment-circle moment-circle-1"></div>
+          <div className="moment-circle moment-circle-2"></div>
+          <div className="moment-circle moment-circle-3"></div>
         </div>
       </section>
 
-      {/* ==================== CONTACT SECTION WITH FADE-IN ==================== */}
-      <section 
-        id="contact" 
-        className="contact-section"
-        data-section="contact"
-      >
+     {/* ==================== SPONSORS SECTION ==================== */}
+<section
+  id="sponsors"
+  className="sponsors-section"
+  data-section="sponsors"
+>
+  {/* ---------- TITLE ---------- */}
+  <div className="section-container">
+    <div
+      className={`section-header fade-in-up ${
+        visibleSections.has("sponsors") ? "visible" : ""
+      }`}
+    >
+      <span className="section-tag">Partners</span>
+      <h2 className="section-title">
+        Our <span className="highlight">Sponsors</span>
+      </h2>
+      <div className="section-line"></div>
+    </div>
+  </div>
+
+  {/* ---------- SCROLLING SPONSORS ---------- */}
+  <div className="sponsors-scroll-wrapper">
+    <div className="sponsors-scroll-track">
+      {scrollSponsors.map((sponsor, index) => (
+        <div key={index} className="sponsor-scroll-item">
+          {sponsor.image ? (
+            <img src={sponsor.image} alt={sponsor.name} />
+          ) : (
+            <span className="sponsor-scroll-logo">
+              {sponsor.logo}
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+{/* ==================== FAQ SECTION ==================== */}
+<section id="faq" className="faq-section" data-section="faq">
+  <div className="section-container">
+    <div
+      className={`section-header fade-in-up ${
+        visibleSections.has("faq") ? "visible" : ""
+      }`}
+    >
+      <span className="section-tag">Need Help?</span>
+      <h2 className="section-title">
+        Frequently Asked <span className="highlight">Questions</span>
+      </h2>
+      <div className="section-line"></div>
+    </div>
+
+    <div className="faq-list">
+      {[
+        {
+          q: "Who can participate?",
+          a: "Students from all colleges can participate in Electrowiz'26.",
+        },
+        {
+          q: "Is there any registration fee?",
+          a: "Registration details will be announced soon.",
+        },
+        {
+          q: "How do I register?",
+          a: "You can register through the Register button available on the website.",
+        },
+        {
+          q: "Is the workshop open to all branches?",
+          a: "Yes, the Generative AI workshop is open to students from all branches.",
+        },
+      ].map((faq, index) => (
+        <div
+          key={index}
+          className={`faq-item fade-in-up ${
+            visibleSections.has("faq") ? "visible" : ""
+          }`}
+          style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
+        >
+          <h4>{faq.q}</h4>
+          <p>{faq.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+      {/* ==================== CONTACT SECTION ==================== */}
+      <section id="contact" className="contact-section" data-section="contact">
         <div className="section-container">
-          <div 
+          <div
             className={`section-header fade-in-up ${
               visibleSections.has("contact") ? "visible" : ""
             }`}
@@ -1472,7 +1375,7 @@ const Home = () => {
           </div>
 
           <div className="contact-grid">
-            <div 
+            <div
               className={`contact-info fade-in-left ${
                 visibleSections.has("contact") ? "visible" : ""
               }`}
@@ -1499,8 +1402,8 @@ const Home = () => {
                   lines: ["+91 98765 43210", "+91 98765 43211"],
                 },
               ].map((info, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className={`info-card fade-in-up ${
                     visibleSections.has("contact") ? "visible" : ""
                   }`}
@@ -1516,28 +1419,44 @@ const Home = () => {
                 </div>
               ))}
 
-              <div 
+              <div
                 className={`social-links fade-in-up ${
                   visibleSections.has("contact") ? "visible" : ""
                 }`}
                 style={{ transitionDelay: "0.6s" }}
               >
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="fa-brands fa-instagram"></i>
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="fa-brands fa-x-twitter"></i>
                 </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="fa-brands fa-youtube"></i>
                 </a>
               </div>
             </div>
 
-            <div 
+            <div
               className={`fade-in-right ${
                 visibleSections.has("contact") ? "visible" : ""
               }`}
@@ -1549,50 +1468,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ==================== FAQ SECTION WITH FADE-IN ==================== */}
-      <div 
-        className="section-container faq-section"
-        data-section="faq"
-      >
-        <h2 
-          className={`section-title animated-title fade-in-up ${
-            visibleSections.has("faq") ? "visible" : ""
-          }`}
-        >
-          Frequently Asked Questions
-        </h2>
-        <br />
-        <br />
-        {[
-          {
-            q: "Who can participate?",
-            a: "Students from all colleges can participate in Electrowiz'26.",
-          },
-          {
-            q: "Is there any registration fee?",
-            a: "Registration details will be announced soon.",
-          },
-          {
-            q: "How do I register?",
-            a: "You can register through the Register button available on the website.",
-          },
-          {
-            q: "Is the workshop open to all branches?",
-            a: "Yes, the Generative AI workshop is open to students from all branches.",
-          },
-        ].map((faq, index) => (
-          <div
-            key={index}
-            className={`faq-item fade-in-up ${
-              visibleSections.has("faq") ? "visible" : ""
-            }`}
-            style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
-          >
-            <h4>{faq.q}</h4>
-            <p>{faq.a}</p>
-          </div>
-        ))}
-      </div>
+    {/* ==================== FAQ SECTION ==================== */}
+
 
       {/* ==================== FOOTER ==================== */}
       <footer className="footer">
@@ -1615,21 +1492,26 @@ const Home = () => {
             <div className="footer-links">
               <h4>Quick Links</h4>
               <ul>
-                {["home", "about", "events", "schedule", "coordinators", "contact"].map(
-                  (link) => (
-                    <li key={link}>
-                      <a
-                        href={`#${link}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          scrollToSection(link);
-                        }}
-                      >
-                        {link.charAt(0).toUpperCase() + link.slice(1)}
-                      </a>
-                    </li>
-                  )
-                )}
+                {[
+                  "home",
+                  "about",
+                  "events",
+                  "schedule",
+                  "coordinators",
+                  "contact",
+                ].map((link) => (
+                  <li key={link}>
+                    <a
+                      href={`#${link}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(link);
+                      }}
+                    >
+                      {link.charAt(0).toUpperCase() + link.slice(1)}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -1673,13 +1555,33 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="footer-bottom">
-            <p className="copyright">
-              © 2026 ELECTROWIZ - Velammal Engineering College. All rights
-              reserved.
-            </p>
-            <p className="credits">Made with ⚡ by ECE Department</p>
-          </div>
+         <div className="footer-bottom">
+  <p className="copyright">
+    © 2026 ELECTROWIZ - Velammal Engineering College. All rights reserved.
+  </p>
+
+  <p className="credits">
+    Made by{" "}
+    <a
+      href="https://your-portfolio-link.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="footer-link"
+    >
+      Yasvanth Bala G
+    </a>
+    {" "} . {" "}
+    <a
+      href="https://ravi-portfolio-link.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="footer-link"
+    >
+      Ravi Kishore S
+    </a>
+  </p>
+</div>
+
         </div>
       </footer>
 
@@ -1705,142 +1607,156 @@ const Home = () => {
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            <div
-              className={`modal-header ${
-                selectedEvent.category === "Technical"
-                  ? "tech-header"
-                  : "nontech-header"
-              }`}
-            >
-              <button
-                className="modal-close"
-                onClick={closeEventModal}
-                aria-label="Close modal"
-              >
-                ✕
-              </button>
-              <span className="modal-event-icon">{selectedEvent.icon}</span>
-              <span
-                className={`modal-event-category ${
-                  selectedEvent.category === "Technical" ? "tech" : "nontech"
+            <div className="modal-content-wrapper">
+              <div
+                className={`modal-header ${
+                  selectedEvent.category === "Technical"
+                    ? "tech-header"
+                    : "nontech-header"
                 }`}
               >
-                {selectedEvent.category}
-              </span>
-              <h2 className="modal-event-title">{selectedEvent.title}</h2>
-              <p className="modal-event-prize">
-                Prize Pool: {selectedEvent.prize}
-              </p>
-            </div>
-
-            <div className="modal-body">
-              <div className="rules-section">
-                <h3 className="rules-title">
-                  <span className="rules-title-icon">📋</span>
-                  About This Event
-                </h3>
-                <p
-                  style={{
-                    color: "var(--text-secondary)",
-                    lineHeight: "1.8",
-                    marginBottom: "1rem",
-                  }}
+                <button
+                  className="modal-close"
+                  onClick={closeEventModal}
+                  aria-label="Close modal"
                 >
-                  {selectedEvent.description}
+                  ✕
+                </button>
+
+                <div className="modal-poster-container">
+                  <img
+                    src={selectedEvent.posterUrl}
+                    alt={selectedEvent.title}
+                    className="modal-poster-image"
+                  />
+                </div>
+
+                <span
+                  className={`modal-event-category ${
+                    selectedEvent.category === "Technical" ? "tech" : "nontech"
+                  }`}
+                >
+                  {selectedEvent.category}
+                </span>
+                <h2 className="modal-event-title">{selectedEvent.title}</h2>
+                <p className="modal-event-prize">
+                  Prize Pool: {selectedEvent.prize}
                 </p>
               </div>
 
-              <div className="event-details-grid">
-                <div className="detail-item">
-                  <span className="detail-icon">👥</span>
-                  <span className="detail-label">Team Size</span>
-                  <span className="detail-value">{selectedEvent.teamSize}</span>
+              <div className="modal-body">
+                <div className="rules-section">
+                  <h3 className="rules-title">
+                    <span className="rules-title-icon">📋</span>
+                    About This Event
+                  </h3>
+                  <p
+                    style={{
+                      color: "var(--text-secondary)",
+                      lineHeight: "1.8",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    {selectedEvent.description}
+                  </p>
                 </div>
-                <div className="detail-item">
-                  <span className="detail-icon">⏱️</span>
-                  <span className="detail-label">Duration</span>
-                  <span className="detail-value">{selectedEvent.duration}</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-icon">📍</span>
-                  <span className="detail-label">Venue</span>
-                  <span className="detail-value">{selectedEvent.venue}</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-icon">🏆</span>
-                  <span className="detail-label">Prize</span>
-                  <span className="detail-value">{selectedEvent.prize}</span>
-                </div>
-              </div>
 
-              <div className="rules-section">
-                <h3 className="rules-title">
-                  <span className="rules-title-icon">📜</span>
-                  Rules & Regulations
-                </h3>
-                <ul className="rules-list">
-                  {selectedEvent.rules.map((rule, index) => (
-                    <li key={index}>
-                      <span className="rule-number">{index + 1}</span>
-                      <span className="rule-text">{rule}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <div className="event-details-grid">
+                  <div className="detail-item">
+                    <span className="detail-icon">👥</span>
+                    <span className="detail-label">Team Size</span>
+                    <span className="detail-value">
+                      {selectedEvent.teamSize}
+                    </span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-icon">⏱️</span>
+                    <span className="detail-label">Duration</span>
+                    <span className="detail-value">
+                      {selectedEvent.duration}
+                    </span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-icon">📍</span>
+                    <span className="detail-label">Venue</span>
+                    <span className="detail-value">{selectedEvent.venue}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-icon">🏆</span>
+                    <span className="detail-label">Prize</span>
+                    <span className="detail-value">{selectedEvent.prize}</span>
+                  </div>
+                </div>
 
-              <div className="coordinators-section">
-                <h3 className="rules-title">
-                  <span className="rules-title-icon">👥</span>
-                  Event Coordinators
-                </h3>
-                <div className="coordinators-grid">
-                  {selectedEvent.coordinators.map((coordinator, index) => (
-                    <div key={index} className="coordinator-card">
-                      <div className="coordinator-icon">👤</div>
-                      <div className="coordinator-info">
-                        <div className="coordinator-name">
-                          {coordinator.name}
-                        </div>
-                        <div className="coordinator-contact">
-                          <span className="contact-icon">📞</span>
-                          <span>{coordinator.phone}</span>
+                <div className="rules-section">
+                  <h3 className="rules-title">
+                    <span className="rules-title-icon">📜</span>
+                    Rules & Regulations
+                  </h3>
+                  <ul className="rules-list">
+                    {selectedEvent.rules.map((rule, index) => (
+                      <li key={index}>
+                        <span className="rule-number">{index + 1}</span>
+                        <span className="rule-text">{rule}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="coordinators-section">
+                  <h3 className="rules-title">
+                    <span className="rules-title-icon">👥</span>
+                    Event Coordinators
+                  </h3>
+                  <div className="coordinators-grid">
+                    {selectedEvent.coordinators.map((coordinator, index) => (
+                      <div key={index} className="coordinator-card">
+                        <div className="coordinator-icon">👤</div>
+                        <div className="coordinator-info">
+                          <div className="coordinator-name">
+                            {coordinator.name}
+                          </div>
+                          <div className="coordinator-contact">
+                            <span className="contact-icon">📞</span>
+                            <span>{coordinator.phone}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="modal-footer">
-              <button className="modal-back-btn" onClick={closeEventModal}>
-                <span className="back-btn-icon">←</span>
-                <span>Back to Events</span>
-              </button>
-
-              <div className="modal-buttons">
-                <button
-                  className="modal-rules-btn"
-                  onClick={() =>
-                    handleRulesDownload(
-                      selectedEvent.rulesFile,
-                      selectedEvent.title
-                    )
-                  }
-                >
-                  <span className="rules-btn-icon">📥</span>
-                  <span>Download Rules</span>
+              <div className="modal-footer">
+                <button className="modal-back-btn" onClick={closeEventModal}>
+                  <span className="back-btn-icon">←</span>
+                  <span>Back to Events</span>
                 </button>
 
-                <button
-                  className="modal-register-btn"
-                  onClick={() =>
-                    handleEventRegistration(selectedEvent.registrationLink)
-                  }
-                >
-                  <span>Register Now</span>
-                  <span className="register-btn-icon">→</span>
-                </button>
+                <div className="modal-buttons">
+                  <button
+                    className="modal-rules-btn"
+                    onClick={() =>
+                      handleRulesDownload(
+                        selectedEvent.rulesFile,
+                        selectedEvent.title
+                      )
+                    }
+                  >
+                    <span className="rules-btn-icon">📥</span>
+                    <span>Download Rules</span>
+                  </button>
+
+                  <button
+                    className="modal-register-btn"
+                    onClick={() =>
+                      handleEventRegistration(selectedEvent.registrationLink)
+                    }
+                  >
+                    <span>Register Now</span>
+                    <span className="register-btn-icon">→</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

@@ -1,243 +1,229 @@
 // src/components/Hero.jsx
-import React, { useEffect, useState, useMemo, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import "../styles/hero.css";
 import logo from "../assets/images/logo192.png";
+import heroVideo from "../assets/videos/hero-bg.mp4";
 
 const Hero = ({ onEnter }) => {
-  const [stage, setStage] = useState("flickering");
+  const [isComplete, setIsComplete] = useState(false);
+  
+  // Refs
   const heroRef = useRef(null);
+  const videoRef = useRef(null);
+  const overlayRef = useRef(null);
+  const contentRef = useRef(null);
   const logoRef = useRef(null);
-  const textContentRef = useRef(null);
-  const backgroundRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const lineLeftRef = useRef(null);
+  const lineRightRef = useRef(null);
+  const yearRef = useRef(null);
+  const loaderRef = useRef(null);
+  const loaderFillRef = useRef(null);
 
-  const particles = useMemo(
-    () =>
-      [...Array(25)].map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 4}s`,
-        duration: `${4 + Math.random() * 4}s`,
-        size: `${2 + Math.random() * 3}px`,
-      })),
-    []
-  );
-
-  // Pre-set elements for GPU acceleration
   useEffect(() => {
-    if (logoRef.current) {
-      gsap.set(logoRef.current, {
-        force3D: true,
-        z: 0.01,
-        transformStyle: "preserve-3d",
-      });
-    }
-    if (textContentRef.current) {
-      gsap.set(textContentRef.current, {
-        force3D: true,
-        z: 0.01,
-      });
-    }
+    // Initial setup - hide elements
+    gsap.set([logoRef.current, titleRef.current, subtitleRef.current, yearRef.current], {
+      opacity: 0,
+      y: 30,
+    });
+    
+    gsap.set([lineLeftRef.current, lineRightRef.current], {
+      scaleX: 0,
+    });
+    
+    gsap.set(loaderRef.current, {
+      opacity: 0,
+    });
+
+    // Create entrance timeline - FASTER ANIMATIONS
+    const entranceTL = gsap.timeline({
+      delay: 0.3, // Reduced from 0.5
+    });
+
+    // Fade in logo first
+    entranceTL.to(logoRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6, // Reduced from 1
+      ease: "power3.out",
+    });
+
+    // Then title
+    entranceTL.to(titleRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5, // Reduced from 0.8
+      ease: "power3.out",
+    }, "-=0.3");
+
+    // Lines expand
+    entranceTL.to([lineLeftRef.current, lineRightRef.current], {
+      scaleX: 1,
+      duration: 0.5, // Reduced from 0.8
+      ease: "power2.inOut",
+    }, "-=0.3");
+
+    // Subtitle appears
+    entranceTL.to(subtitleRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4, // Reduced from 0.6
+      ease: "power3.out",
+    }, "-=0.2");
+
+    // Year appears
+    entranceTL.to(yearRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4, // Reduced from 0.6
+      ease: "power3.out",
+    }, "-=0.3");
+
+    // Show loader
+    entranceTL.to(loaderRef.current, {
+      opacity: 1,
+      duration: 0.3, // Reduced from 0.4
+    }, "-=0.2");
+
+    // Animate loader fill (adjusted to reach 4 seconds total)
+    entranceTL.to(loaderFillRef.current, {
+      width: "100%",
+      duration: 2, // Reduced from 3 seconds
+      ease: "power1.inOut",
+      onComplete: () => {
+        startExitTransition();
+      },
+    });
+
+    return () => {
+      entranceTL.kill();
+    };
   }, []);
 
-  // Stage progression
-  useEffect(() => {
-    const timers = [
-      setTimeout(() => setStage("stable"), 1000),
-      setTimeout(() => {
-        setStage("exit");
-        startSpinZoomTransition();
-      }, 2000),
-    ];
-
-    return () => timers.forEach(clearTimeout);
-  }, [onEnter]);
-
-  // OPTIMIZED GSAP Spin + Zoom Transition
-  const startSpinZoomTransition = () => {
-    // Pre-set will-change for performance
-    if (logoRef.current) {
-      logoRef.current.style.willChange = "transform, opacity";
-    }
-    if (textContentRef.current) {
-      textContentRef.current.style.willChange = "transform, opacity";
-    }
-    if (backgroundRef.current) {
-      backgroundRef.current.style.willChange = "opacity";
-    }
-
-    const tl = gsap.timeline({
+  const startExitTransition = () => {
+    const exitTL = gsap.timeline({
       onComplete: () => {
-        setStage("complete");
-        // Clean up will-change
-        if (logoRef.current) {
-          logoRef.current.style.willChange = "auto";
-        }
-        if (textContentRef.current) {
-          textContentRef.current.style.willChange = "auto";
-        }
-        if (backgroundRef.current) {
-          backgroundRef.current.style.willChange = "auto";
-        }
+        setIsComplete(true);
         if (onEnter) onEnter();
       },
     });
 
-    // Step 1: Quick brighten logo (0.05s)
-    tl.to(logoRef.current, {
-      opacity: 1,
+    // FASTER EXIT ANIMATIONS
+    // Fade out loader first
+    exitTL.to(loaderRef.current, {
+      opacity: 0,
+      duration: 0.2, // Reduced from 0.3
+      ease: "power2.in",
+    });
+
+    // Elegant exit - content rises and blurs away
+    exitTL.to(contentRef.current, {
+      y: -60,
+      opacity: 0,
+      filter: "blur(20px)",
+      duration: 0.6, // Reduced from 1
+      ease: "power2.inOut",
+    }, "-=0.1");
+
+    // Overlay fades to white/transparent
+    exitTL.to(overlayRef.current, {
+      opacity: 0,
+      duration: 0.5, // Reduced from 0.8
+      ease: "power2.inOut",
+    }, "-=0.5");
+
+    // Video fades and slightly scales
+    exitTL.to(videoRef.current, {
       scale: 1.1,
-      duration: 0.05,
-      ease: "power1.out",
-      force3D: true,
-    });
+      opacity: 0,
+      duration: 0.6, // Reduced from 1
+      ease: "power2.inOut",
+    }, "-=0.6");
 
-    // Step 2: Fast fade out text content (0.2s)
-    tl.to(
-      textContentRef.current,
-      {
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.2,
-        ease: "power1.in",
-        force3D: true,
-      },
-      "-=0.05"
-    );
-
-    // Step 3: Quick fade background (0.5s)
-    tl.to(
-      backgroundRef.current,
-      {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power1.in",
-      },
-      "<"
-    );
-
-    // Step 4: ULTRA SMOOTH Logo zoom (0.6s)
-    tl.to(
-      logoRef.current,
-      {
-        scale: 12,
-        duration: 0.9,
-        ease: "power2.inOut",
-        force3D: true,
-        transformOrigin: "center center",
-        rotation: 0.01, // Tiny rotation to force GPU acceleration
-      },
-      "+=0.05"
-    );
-
-    // Step 5: Quick fade wrapper during zoom
-    tl.to(
-      heroRef.current,
-      {
-        opacity: 0,
-        duration: 0.2,
-        ease: "power1.out",
-      },
-      "-=0.3"
-    );
+    // Final hero wrapper fade
+    exitTL.to(heroRef.current, {
+      opacity: 0,
+      duration: 0.3, // Reduced from 0.4
+      ease: "power2.out",
+    }, "-=0.3");
   };
 
-  // Helper function to split text into letters with word spacing
-  const renderTextWithFlicker = (text, baseClass) => {
-    return text.split("").map((char, index) => {
-      if (char === " ") {
-        return (
-          <span key={index} className="letter-space">
-            {" "}
-          </span>
-        );
-      }
-      return (
-        <span key={index} className={`tagline-letter ${baseClass}-${index}`}>
-          {char}
-        </span>
-      );
-    });
-  };
-
-  if (stage === "complete") return null;
+  if (isComplete) return null;
 
   return (
-    <div ref={heroRef} className={`hero-wrapper stage-${stage}`}>
-      {/* Background - will fade out */}
-      <div ref={backgroundRef} className="hero-background-container">
-        <div className="grid-overlay">
-          <div className="grid-fade"></div>
+    <div ref={heroRef} className="hero">
+      {/* Video Background */}
+      <div className="hero__video-container">
+        <video
+          ref={videoRef}
+          className="hero__video"
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
+      </div>
+
+      {/* Dark Overlay */}
+      <div ref={overlayRef} className="hero__overlay" />
+
+      {/* Ambient Light Effects */}
+      <div className="hero__ambient">
+        <div className="hero__glow hero__glow--1" />
+        <div className="hero__glow hero__glow--2" />
+      </div>
+
+      {/* Main Content */}
+      <div ref={contentRef} className="hero__content">
+        {/* Logo */}
+        <div ref={logoRef} className="hero__logo">
+          <img src={logo} alt="Logo" className="hero__logo-img" />
+          <div className="hero__logo-ring" />
         </div>
 
-        <div className="ambient-orbs">
-          <div className="orb orb-1"></div>
-          <div className="orb orb-2"></div>
-          <div className="orb orb-3"></div>
+        {/* Title */}
+        <h1 ref={titleRef} className="hero__title">
+          ELECTROWIZ
+        </h1>
+
+        {/* Decorative Lines */}
+        <div className="hero__lines">
+          <span ref={lineLeftRef} className="hero__line hero__line--left" />
+          <span className="hero__line-dot" />
+          <span ref={lineRightRef} className="hero__line hero__line--right" />
         </div>
 
-        <div className="particle-field">
-          {particles.map((p) => (
-            <div
-              key={p.id}
-              className="particle"
-              style={{
-                left: p.left,
-                top: p.top,
-                animationDelay: p.delay,
-                animationDuration: p.duration,
-                width: p.size,
-                height: p.size,
-              }}
-            />
-          ))}
+        {/* Subtitle */}
+        <p ref={subtitleRef} className="hero__subtitle">
+          Electronics & Communication Engineering
+        </p>
+
+        {/* Year */}
+        <div ref={yearRef} className="hero__year">
+          <span className="hero__year-label">Department Symposium</span>
+          <span className="hero__year-value">2026</span>
         </div>
 
-        <div className="corner-decoration top-left"></div>
-        <div className="corner-decoration top-right"></div>
-        <div className="corner-decoration bottom-left"></div>
-        <div className="corner-decoration bottom-right"></div>
-
-        <div className="hero-progress">
-          <div className="progress-track">
-            <div className="progress-fill"></div>
+        {/* Loader */}
+        <div ref={loaderRef} className="hero__loader">
+          <div className="hero__loader-track">
+            <div ref={loaderFillRef} className="hero__loader-fill" />
           </div>
+          <span className="hero__loader-text">Loading Experience</span>
         </div>
       </div>
 
-      {/* Center Logo - Will spin and zoom */}
-      <div className="logo-center-container">
-        <div ref={logoRef} className="logo-spinner">
-          <img src={logo} alt="" className="logo-spin-image" />
-        </div>
-      </div>
-
-      {/* Text Content - Will fade out first */}
-      <div ref={textContentRef} className="text-content-container">
-        <div className="brand-container">
-          <h1 className="brand-name">
-            <span className="letter letter-e">E</span>
-            <span className="letter letter-l">L</span>
-            <span className="letter letter-e2">E</span>
-            <span className="letter letter-c">C</span>
-            <span className="letter letter-t">T</span>
-            <span className="letter letter-r">R</span>
-            <span className="letter letter-o">O</span>
-            <span className="letter letter-w">W</span>
-            <span className="letter letter-i">I</span>
-            <span className="letter letter-z">Z</span>
-          </h1>
-          <div className="brand-underline"></div>
-        </div>
-
-        <div className="tagline">
-          <p className="tagline-text">
-            {renderTextWithFlicker("ECE DEPARTMENT SYMPOSIUM 2026", "tl")}
-          </p>
-        </div>
-      </div>
+      {/* Corner Frames */}
+      <div className="hero__frame hero__frame--tl" />
+      <div className="hero__frame hero__frame--tr" />
+      <div className="hero__frame hero__frame--bl" />
+      <div className="hero__frame hero__frame--br" />
     </div>
   );
 };
+
 export default Hero;
