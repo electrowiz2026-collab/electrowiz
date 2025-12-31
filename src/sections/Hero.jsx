@@ -37,16 +37,16 @@ const Hero = ({ onEnter }) => {
       opacity: 0,
     });
 
-    // Create entrance timeline - FASTER ANIMATIONS
+    // Create entrance timeline - 4.5 SECONDS TOTAL
     const entranceTL = gsap.timeline({
-      delay: 0.3, // Reduced from 0.5
+      delay: 0.3, // Initial delay
     });
 
     // Fade in logo first
     entranceTL.to(logoRef.current, {
       opacity: 1,
       y: 0,
-      duration: 0.6, // Reduced from 1
+      duration: 0.6,
       ease: "power3.out",
     });
 
@@ -54,14 +54,14 @@ const Hero = ({ onEnter }) => {
     entranceTL.to(titleRef.current, {
       opacity: 1,
       y: 0,
-      duration: 0.5, // Reduced from 0.8
+      duration: 0.5,
       ease: "power3.out",
     }, "-=0.3");
 
     // Lines expand
     entranceTL.to([lineLeftRef.current, lineRightRef.current], {
       scaleX: 1,
-      duration: 0.5, // Reduced from 0.8
+      duration: 0.5,
       ease: "power2.inOut",
     }, "-=0.3");
 
@@ -69,7 +69,7 @@ const Hero = ({ onEnter }) => {
     entranceTL.to(subtitleRef.current, {
       opacity: 1,
       y: 0,
-      duration: 0.4, // Reduced from 0.6
+      duration: 0.4,
       ease: "power3.out",
     }, "-=0.2");
 
@@ -77,20 +77,20 @@ const Hero = ({ onEnter }) => {
     entranceTL.to(yearRef.current, {
       opacity: 1,
       y: 0,
-      duration: 0.4, // Reduced from 0.6
+      duration: 0.4,
       ease: "power3.out",
     }, "-=0.3");
 
     // Show loader
     entranceTL.to(loaderRef.current, {
       opacity: 1,
-      duration: 0.3, // Reduced from 0.4
+      duration: 0.3,
     }, "-=0.2");
 
-    // Animate loader fill (adjusted to reach 4 seconds total)
+    // Animate loader fill - ADJUSTED FOR 4.5 SECONDS TOTAL
     entranceTL.to(loaderFillRef.current, {
       width: "100%",
-      duration: 2, // Reduced from 3 seconds
+      duration: 2.3, // Adjusted to reach exactly 4.5 seconds total
       ease: "power1.inOut",
       onComplete: () => {
         startExitTransition();
@@ -114,7 +114,7 @@ const Hero = ({ onEnter }) => {
     // Fade out loader first
     exitTL.to(loaderRef.current, {
       opacity: 0,
-      duration: 0.2, // Reduced from 0.3
+      duration: 0.2,
       ease: "power2.in",
     });
 
@@ -123,14 +123,14 @@ const Hero = ({ onEnter }) => {
       y: -60,
       opacity: 0,
       filter: "blur(20px)",
-      duration: 0.6, // Reduced from 1
+      duration: 0.6,
       ease: "power2.inOut",
     }, "-=0.1");
 
     // Overlay fades to white/transparent
     exitTL.to(overlayRef.current, {
       opacity: 0,
-      duration: 0.5, // Reduced from 0.8
+      duration: 0.5,
       ease: "power2.inOut",
     }, "-=0.5");
 
@@ -138,14 +138,14 @@ const Hero = ({ onEnter }) => {
     exitTL.to(videoRef.current, {
       scale: 1.1,
       opacity: 0,
-      duration: 0.6, // Reduced from 1
+      duration: 0.6,
       ease: "power2.inOut",
     }, "-=0.6");
 
     // Final hero wrapper fade
     exitTL.to(heroRef.current, {
       opacity: 0,
-      duration: 0.3, // Reduced from 0.4
+      duration: 0.3,
       ease: "power2.out",
     }, "-=0.3");
   };
