@@ -1254,6 +1254,10 @@ body {
   text-shadow: 0 0 30px var(--primary-glow);
 }
 
+.highlight {
+  white-space: nowrap;
+}
+
 .section-line {
   width: 80px;
   height: 3px;
@@ -2181,6 +2185,7 @@ body {
   gap: 0.2rem;
 }
 
+
 .prize-label {
   font-family: var(--font-body);
   font-size: 0.7rem;
@@ -2404,6 +2409,7 @@ body {
   width: 100%;
   max-width: 650px;
   max-height: 90vh;
+  overflow-y: auto; 
   background: linear-gradient(
     180deg,
     var(--bg-elevated) 0%,
@@ -2416,6 +2422,9 @@ body {
   transition: transform 0.5s var(--ease-out-expo);
   display: flex;
   flex-direction: column;
+}
+.modal-container {
+  background: rgba(255, 0, 0, 0.1);
 }
 
 .modal-overlay.open .modal-container {
@@ -2573,9 +2582,7 @@ body {
 /* Modal Body */
 .modal-body {
   padding: 2rem;
-  overflow-y: auto;
-  flex: 1;
-  max-height: 450px;
+  position: relative;
 }
 
 .modal-body::-webkit-scrollbar {
@@ -3526,9 +3533,10 @@ body {
   margin-top: 4rem;
   margin-bottom: 4rem;
   text-align: left;
-  max-width: 900px;
+  max-width: 1500px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
 }
 
 .faq-section .section-title {
@@ -3814,11 +3822,13 @@ body {
   .modal-container {
     max-height: 92vh;
     margin: 10px;
+    overflow-y: auto;
     max-width: 95%;
   }
 
   .modal-header {
     padding: 2rem 1.5rem 1.5rem;
+    position: relative;
   }
 
   .modal-body {
@@ -3869,7 +3879,7 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .event-card {
     width: 260px;
     min-height: 400px;
@@ -4051,6 +4061,7 @@ body {
   }
 
   .modal-container {
+    overflow-y: auto;
     max-width: 98%;
   }
 
@@ -4081,6 +4092,7 @@ body {
   }
 
   .modal-container {
+    overflow-y: auto;
     transform: scale(1) translateY(0);
   }
 }
@@ -4112,6 +4124,7 @@ body {
 
 .modal-container,
 .video-modal-container {
+  overflow-y: auto;
   will-change: transform, opacity;
 }
 
@@ -6482,5 +6495,74 @@ body {
     to {
       transform: translateY(50px);
     }
+  }
+}
+/* FAQ mobile overflow fix */
+@media (max-width: 768px) {
+  .faq-item h4 {
+    white-space: normal;     /* allow wrapping */
+    word-break: break-word; /* break long words safely */
+    line-height: 1.4;
+    text-align: left;
+  }
+}
+@media (max-width: 768px) {
+  .faq-item p {
+    word-break: break-word;
+    line-height: 1.5;
+  }
+}
+.highlight {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .highlight {
+    white-space: normal;   /* allow line break */
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .spin-char {
+    font-size: 2rem;        /* reduce size */
+    letter-spacing: 0.05em;
+  }
+}
+
+@media (max-width: 480px) {
+  .spin-char {
+    font-size: 1.8rem;
+    letter-spacing: 0.04em;
+  }
+}
+/* Mobile fix: center Electrowiz 26 properly */
+@media (max-width: 768px) {
+  .title-main-row {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .title-year-container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
+    transform: translateX(0) !important;
+  }
+}
+@media (max-width: 768px) {
+  .title-year-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+/* Mobile only: shift Electrowiz 26 slightly left */
+@media (max-width: 768px) {
+  .title-main-row {
+    transform: translateX(-16px);
   }
 }

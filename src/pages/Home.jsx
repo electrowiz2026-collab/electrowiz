@@ -168,7 +168,7 @@ const Home = () => {
       teamSize: "2-3 members",
       duration: "3 hours",
       venue: "Lab Block A",
-      registrationLink: "https://forms.google.com/your-circuit-quest-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/circuit-quest-rules.docx",
       coordinators: [
         { name: "Srinivasan V", phone: "+91 93618 89276 " },
@@ -1318,7 +1318,7 @@ const Home = () => {
     >
       <span className="section-tag">Need Help?</span>
       <h2 className="section-title">
-        Frequently Asked <span className="highlight">Questions</span>
+         <span className="highlight">Frequently Asked Questions</span>
       </h2>
       <div className="section-line"></div>
     </div>
