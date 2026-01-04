@@ -186,7 +186,7 @@ const Home = () => {
       teamSize: "1-2 members",
       duration: "4 hours",
       venue: "Computer Lab",
-      registrationLink: "https://forms.google.com/your-code-storm-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/code-storm-rules.docx",
       coordinators: [
         { name: "Naveen Prakash", phone: "+91 96002 89904" },
@@ -205,7 +205,7 @@ const Home = () => {
       teamSize: "3-5 members",
       duration: "Full day",
       venue: "Main Arena",
-      registrationLink: "https://forms.google.com/your-robo-wars-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/robo-wars-rules.docx",
       coordinators: [
         { name: "KAVIYARASAN S", phone: "+91 84894 91386" },
@@ -223,7 +223,7 @@ const Home = () => {
       teamSize: "3-4 members",
       duration: "24 hours",
       venue: "Innovation Hub",
-      registrationLink: "https://forms.google.com/your-hackathon-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/hackathon-rules.docx",
       coordinators: [
         { name: "Harish.S ", phone: "+91 63790 04185" },
@@ -241,7 +241,7 @@ const Home = () => {
       teamSize: "2 members",
       duration: "2 hours",
       venue: "Seminar Hall",
-      registrationLink: "https://forms.google.com/your-quiz-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/tech-quiz-rules.docx",
       coordinators: [
         { name: "JEEVATH M", phone: "+91 63833 00579" },
@@ -259,7 +259,7 @@ const Home = () => {
       teamSize: "4-5 members",
       duration: "3 hours",
       venue: "Entire Campus",
-      registrationLink: "https://forms.google.com/your-treasure-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/treasure-hunt-rules.docx",
       coordinators: [
         { name: "Barath ", phone: "+91 98402 75886" },
@@ -277,7 +277,7 @@ const Home = () => {
       teamSize: "Individual",
       duration: "4 hours",
       venue: "Campus Wide",
-      registrationLink: "https://forms.google.com/your-photo-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/photography-rules.docx",
       coordinators: [
         { name: "Dhiyanesh", phone: "+91 94442 54917" },
@@ -295,7 +295,7 @@ const Home = () => {
       teamSize: "2 members",
       duration: "3 hours",
       venue: "Auditorium",
-      registrationLink: "https://forms.google.com/your-debate-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/debate-rules.docx",
       coordinators: [
         { name: "Anshul S A", phone: "+91 63792 80210" },
@@ -313,7 +313,7 @@ const Home = () => {
       teamSize: "1-5 members",
       duration: "Full day",
       venue: "Gaming Zone",
-      registrationLink: "https://forms.google.com/your-gaming-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/gaming-rules.docx",
       coordinators: [
         { name: "Logesh G", phone: "+91 90250 09593" },
@@ -331,7 +331,7 @@ const Home = () => {
       teamSize: "1-4 members",
       duration: "2 hours",
       venue: "Digital Lab",
-      registrationLink: "https://forms.google.com/your-meme-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/meme-making-rules.docx",
       coordinators: [
         { name: "Prasanth M", phone: "+91 90924 79171" },
@@ -349,7 +349,7 @@ const Home = () => {
       teamSize: "Individual",
       duration: "6 hours",
       venue: "Workshop Hall A",
-      registrationLink: "https://forms.google.com/your-ai-workshop-form",
+      registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rules/ai-workshop-rules.docx",
       coordinators: [
         { name: "Dr. Anand Kumar", phone: "+91 98765 43234" },
@@ -601,7 +601,7 @@ const Home = () => {
   };
 
   const openVideoModal = () => {
-    setVideoUrl("https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1");
+    setVideoUrl("https://www.instagram.com/reel/DTAklHPkn3c/?igsh=YnV1eGtlNXoxZjZn");
     setIsVideoModalOpen(true);
   };
 
@@ -1563,7 +1563,7 @@ const Home = () => {
   <p className="credits">
     Made by{" "}
     <a
-      href="https://your-portfolio-link.com"
+      href="https://yasvanthbala.netlify.app"
       target="_blank"
       rel="noopener noreferrer"
       className="footer-link"
