@@ -81,11 +81,34 @@ const useTypewriter = (text, totalDuration = 2000, startTyping = false) => {
   }, [text, totalDuration, startTyping]);
 
   return { displayedText, isComplete };
+  
 };
 
 // ==================== MAIN COMPONENT ====================
 const Home = () => {
   const navigate = useNavigate();
+  const videoRef = useRef(null);
+
+useEffect(() => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    },
+    { threshold: 0.6 }
+  );
+
+  observer.observe(video);
+
+  return () => observer.disconnect();
+}, []);
+
 
   // ==================== STATE ====================
   const [isScrolled, setIsScrolled] = useState(false);
@@ -138,7 +161,7 @@ const Home = () => {
     { id: "about", label: "About", icon: "◈", isPage: false },
     { id: "events", label: "Events", icon: "◉", isPage: false },
     { id: "schedule", label: "Schedule", icon: "▤", isPage: false },
-    { id: "sponsors", label: "Sponsors", icon: "★", isPage: false },
+    
     { id: "coordinators", label: "Coordinators", icon: "👥", isPage: true },
     { id: "contact", label: "Contact", icon: "✉", isPage: false },
   ];
@@ -169,7 +192,7 @@ const Home = () => {
       duration: "3 hours",
       venue: "Lab Block A",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/circuit-quest-rules.docx",
+      rulesFile: "/rulz/sparkix.pdf",
       coordinators: [
         { name: "Srinivasan V", phone: "+91 93618 89276 " },
         { name: "Madhumithra M", phone: "+91 93618 89276" },
@@ -187,7 +210,7 @@ const Home = () => {
       duration: "4 hours",
       venue: "Computer Lab",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/code-storm-rules.docx",
+      rulesFile: "/rulz/ELECTRAXPO.pdf",
       coordinators: [
         { name: "Naveen Prakash", phone: "+91 96002 89904" },
         { name: "Rini Rayan", phone: "+91 63824 87338" },
@@ -206,7 +229,7 @@ const Home = () => {
       duration: "Full day",
       venue: "Main Arena",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/robo-wars-rules.docx",
+      rulesFile: "/rulz/think-a-thon-rules.pdf",
       coordinators: [
         { name: "KAVIYARASAN S", phone: "+91 84894 91386" },
         { name: "VENDAMANI K", phone: "+91 93849 95398" },
@@ -224,7 +247,7 @@ const Home = () => {
       duration: "24 hours",
       venue: "Innovation Hub",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/hackathon-rules.docx",
+      rulesFile: "/rulz.pdf",
       coordinators: [
         { name: "Harish.S ", phone: "+91 63790 04185" },
         { name: "Sushmitha", phone: "+91 74183 36138" },
@@ -242,7 +265,7 @@ const Home = () => {
       duration: "2 hours",
       venue: "Seminar Hall",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/tech-quiz-rules.docx",
+      rulesFile: "/rulz/soundrule.pdf",
       coordinators: [
         { name: "JEEVATH M", phone: "+91 63833 00579" },
         { name: "ANJALI B", phone: "+91 63834 65759" },
@@ -260,7 +283,8 @@ const Home = () => {
       duration: "3 hours",
       venue: "Entire Campus",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/treasure-hunt-rules.docx",
+            rulesFile: "/rulz/CLUE CONNECT.pdf",
+
       coordinators: [
         { name: "Barath ", phone: "+91 98402 75886" },
         { name: "Akshitha", phone: "+91 63740 16868" },
@@ -278,7 +302,7 @@ const Home = () => {
       duration: "4 hours",
       venue: "Campus Wide",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/photography-rules.docx",
+      rulesFile: "/rulz/Mind Maze .pdf",
       coordinators: [
         { name: "Dhiyanesh", phone: "+91 94442 54917" },
         { name: "Swedha P S", phone: "+91 63827 32250" },
@@ -296,7 +320,7 @@ const Home = () => {
       duration: "3 hours",
       venue: "Auditorium",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/debate-rules.docx",
+            rulesFile: "/rulz/dream 11.pdf",
       coordinators: [
         { name: "Anshul S A", phone: "+91 63792 80210" },
         { name: "Santhosh S", phone: "+91 90258 56034" },
@@ -314,7 +338,8 @@ const Home = () => {
       duration: "Full day",
       venue: "Gaming Zone",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/gaming-rules.docx",
+            rulesFile: "/rulz/pixelperfect.pdf",
+
       coordinators: [
         { name: "Logesh G", phone: "+91 90250 09593" },
         { name: "Tanya Pillai", phone: "+91 98765 43231" },
@@ -350,7 +375,7 @@ const Home = () => {
       duration: "6 hours",
       venue: "Workshop Hall A",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/ai-workshop-rules.docx",
+            rulesFile: "/rulz/Generative AI(Workshop).pdf",
       coordinators: [
         { name: "Dr. Anand Kumar", phone: "+91 98765 43234" },
         { name: "Prof. Neha Singh", phone: "+91 98765 43235" },
@@ -376,18 +401,9 @@ const Home = () => {
     },
   ];
 
-  const sponsors = [
-    { tier: "Title Sponsor", name: "TechCorp Industries", logo: "🏢", image: null },
-    { tier: "Gold Sponsor", name: "InnovateTech", logo: "💎", image: null },
-    { tier: "Gold Sponsor", name: "FutureSystems", logo: "🔮", image: null },
-    { tier: "Silver Sponsor", name: "CodeLabs", logo: "⚙️", image: null },
-    { tier: "Silver Sponsor", name: "RoboTech", logo: "🤖", image: null },
-    { tier: "Silver Sponsor", name: "CircuitPro", logo: "⚡", image: null },
-    { tier: "Bronze Sponsor", name: "DataDrive", logo: "💾", image: null },
-    { tier: "Bronze Sponsor", name: "CloudNine", logo: "☁️", image: null },
-  ];
+  
 
-  const scrollSponsors = [...sponsors, ...sponsors, ...sponsors];
+  
 
   // ==================== MOMENT SECTION OBSERVER ====================
   useEffect(() => {
@@ -624,7 +640,8 @@ const Home = () => {
   const handleRulesDownload = (rulesFile, eventTitle) => {
     const link = document.createElement("a");
     link.href = rulesFile;
-    link.download = `${eventTitle.replace(/\s+/g, "-").toLowerCase()}-rules.docx`;
+    link.download = `${eventTitle.replace(/\s+/g, "-").toLowerCase()}-rules.pdf`;  // ← Changed .docx to .pdf
+  
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -1036,34 +1053,29 @@ const Home = () => {
           </div>
         </div>
       </section>
+      
 
- {/* ==================== SAVE THE DATE SECTION ==================== */}
-<section className="save-date-section" data-section="savedate">
+ <section className="save-date-section" data-section="savedate">
   <div className="save-date-container">
     <h2 className="save-date-top-text">SAVE THE DATE</h2>
-    
+
     <div className="save-date-video-wrapper">
       <video
+        ref={videoRef}
         className="save-date-video"
         src={saveTheDateVideo}
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
-        poster="/images/save-date-poster.jpg" // Add a poster image
-        onLoadedData={(e) => e.target.play()}
+        preload="auto"
+        poster="/images/save-date-poster.jpg"
       />
-      {/* Fallback loading state */}
-      <div className="video-loading-overlay">
-        <div className="loading-spinner"></div>
-      </div>
     </div>
-    
+
     <h1 className="save-date-bottom-text">FEB 14!</h1>
   </div>
 </section>
-
       {/* ==================== EVENTS SECTION ==================== */}
       <section id="events" className="events-section" data-section="events">
         <div className="section-container">
@@ -1200,6 +1212,26 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* ==================== ANNOUNCEMENT BANNER ==================== */}
+<section className="announcement-section">
+  <div className="announcement-track">
+    <div className="announcement-content">
+      <span>🚀 REGISTRATION IS LIVE NOW</span>
+      <span>⚡ ELECTROWIZ 2026</span>
+      <span>🎟️ LIMITED SLOTS AVAILABLE</span>
+      <span>📅 FEBRUARY 14</span>
+      <span>🔥 REGISTER TODAY</span>
+
+      {/* duplicate for seamless loop */}
+      <span>🚀 REGISTRATION IS LIVE NOW</span>
+      <span>⚡ ELECTROWIZ 2026</span>
+      <span>🎟️ LIMITED SLOTS AVAILABLE</span>
+      <span>📅 FEBRUARY 14</span>
+      <span>🔥 REGISTER TODAY</span>
+    </div>
+  </div>
+</section>
+
 
       {/* ==================== MAKE A MOMENT SECTION ==================== */}
       <section 
@@ -1229,7 +1261,7 @@ const Home = () => {
           <div className="moment-lines">
             <div className="moment-line-wrapper">
               <h2 className="moment-line moment-line-1">
-                <span className="moment-text">CREATE A</span>
+                <span className="moment-text">JOIN THE</span>
               </h2>
             </div>
             
@@ -1270,44 +1302,7 @@ const Home = () => {
         </div>
       </section>
 
-     {/* ==================== SPONSORS SECTION ==================== */}
-<section
-  id="sponsors"
-  className="sponsors-section"
-  data-section="sponsors"
->
-  {/* ---------- TITLE ---------- */}
-  <div className="section-container">
-    <div
-      className={`section-header fade-in-up ${
-        visibleSections.has("sponsors") ? "visible" : ""
-      }`}
-    >
-      <span className="section-tag">Partners</span>
-      <h2 className="section-title">
-        Our <span className="highlight">Sponsors</span>
-      </h2>
-      <div className="section-line"></div>
-    </div>
-  </div>
 
-  {/* ---------- SCROLLING SPONSORS ---------- */}
-  <div className="sponsors-scroll-wrapper">
-    <div className="sponsors-scroll-track">
-      {scrollSponsors.map((sponsor, index) => (
-        <div key={index} className="sponsor-scroll-item">
-          {sponsor.image ? (
-            <img src={sponsor.image} alt={sponsor.name} />
-          ) : (
-            <span className="sponsor-scroll-logo">
-              {sponsor.logo}
-            </span>
-          )}
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
 {/* ==================== FAQ SECTION ==================== */}
 <section id="faq" className="faq-section" data-section="faq">
   <div className="section-container">
@@ -1399,7 +1394,7 @@ const Home = () => {
                 {
                   icon: "📱",
                   title: "Phone",
-                  lines: ["+91 98765 43210", "+91 98765 43211"],
+                  lines: ["+91 80158 84879 ", "+91 90250 09593"],
                 },
               ].map((info, index) => (
                 <div
@@ -1426,26 +1421,14 @@ const Home = () => {
                 style={{ transitionDelay: "0.6s" }}
               >
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/electrowiz.26?utm_source=qr&igsh=MW5kbWN2YzNjZ2Jjdg%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <i className="fa-brands fa-instagram"></i>
                 </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="fa-brands fa-linkedin"></i>
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="fa-brands fa-x-twitter"></i>
-                </a>
+               
+                
                 <a
                   href="https://youtube.com"
                   target="_blank"
@@ -1545,12 +1528,7 @@ const Home = () => {
                 <li>
                   <a href="#events">Workshops</a>
                 </li>
-                <li>
-                  <a href="#events">Hackathon</a>
-                </li>
-                <li>
-                  <a href="#events">Guest Lectures</a>
-                </li>
+                
               </ul>
             </div>
           </div>
