@@ -1572,7 +1572,7 @@ const Home = () => {
               </a>{" "}
               .{" "}
               <a
-                href="https://ravi-portfolio-link.com"
+                href="https://ravikishore17.netlify.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-link"
