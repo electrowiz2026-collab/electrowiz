@@ -3,12 +3,7 @@
    With Smooth Typewriter, Save The Date & Moment Animation
    ============================================ */
 
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
 import logo from "../assets/images/logo192.png";
@@ -60,7 +55,7 @@ const useTypewriter = (text, totalDuration = 2000, startTyping = false) => {
       const elapsed = timestamp - startTimeRef.current;
       const progress = Math.min(elapsed / totalDuration, 1);
       const charIndex = Math.floor(progress * text.length);
-      
+
       setDisplayedText(text.slice(0, charIndex + 1));
 
       if (progress < 1) {
@@ -81,7 +76,6 @@ const useTypewriter = (text, totalDuration = 2000, startTyping = false) => {
   }, [text, totalDuration, startTyping]);
 
   return { displayedText, isComplete };
-  
 };
 
 // ==================== MAIN COMPONENT ====================
@@ -89,26 +83,25 @@ const Home = () => {
   const navigate = useNavigate();
   const videoRef = useRef(null);
 
-useEffect(() => {
-  const video = videoRef.current;
-  if (!video) return;
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    },
-    { threshold: 0.6 }
-  );
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.6 }
+    );
 
-  observer.observe(video);
+    observer.observe(video);
 
-  return () => observer.disconnect();
-}, []);
-
+    return () => observer.disconnect();
+  }, []);
 
   // ==================== STATE ====================
   const [isScrolled, setIsScrolled] = useState(false);
@@ -152,7 +145,7 @@ useEffect(() => {
   const { displayedText: typedText1, isComplete: typing1Complete } =
     useTypewriter(aboutText1, 3000, aboutTypingStarted);
 
-  const { displayedText: typedText2, isComplete: typing2Complete } = 
+  const { displayedText: typedText2, isComplete: typing2Complete } =
     useTypewriter(aboutText2, 2500, typing1Complete);
 
   // ==================== DATA ====================
@@ -161,7 +154,7 @@ useEffect(() => {
     { id: "about", label: "About", icon: "◈", isPage: false },
     { id: "events", label: "Events", icon: "◉", isPage: false },
     { id: "schedule", label: "Schedule", icon: "▤", isPage: false },
-    
+
     { id: "coordinators", label: "Coordinators", icon: "👥", isPage: true },
     { id: "contact", label: "Contact", icon: "✉", isPage: false },
   ];
@@ -185,7 +178,8 @@ useEffect(() => {
       id: 1,
       title: "SPARKX",
       category: "Technical",
-      description: "SPARKIX is a competitive academic forum designed for budding researchers and innovators to present their original ideas and research outcomes before an expert evaluation panel",
+      description:
+        "SPARKIX is a competitive academic forum designed for budding researchers and innovators to present their original ideas and research outcomes before an expert evaluation panel",
       posterUrl: sparkx,
       prize: "₹2,000",
       teamSize: "2-3 members",
@@ -203,7 +197,8 @@ useEffect(() => {
       id: 2,
       title: "ElectraXpo",
       category: "Technical",
-      description: "ElectraXpo offers a platform for students to showcase innovative solutions and working models that address real-world engineering challenges",
+      description:
+        "ElectraXpo offers a platform for students to showcase innovative solutions and working models that address real-world engineering challenges",
       posterUrl: elec,
       prize: "₹2,000",
       teamSize: "1-2 members",
@@ -222,7 +217,8 @@ useEffect(() => {
       id: 3,
       title: "THINK A THON",
       category: "Technical",
-      description: "Think fast. Answer smart prove you're the sharpest mind in the room.",
+      description:
+        "Think fast. Answer smart prove you're the sharpest mind in the room.",
       posterUrl: think,
       prize: "₹2,000",
       teamSize: "3-5 members",
@@ -240,7 +236,8 @@ useEffect(() => {
       id: 4,
       title: "ERROR 404",
       category: "Technical",
-      description: "Error 404 is a competitive technical event that tests participants' logical reasoning and coding skills.",
+      description:
+        "Error 404 is a competitive technical event that tests participants' logical reasoning and coding skills.",
       posterUrl: error,
       prize: "₹2,000",
       teamSize: "3-4 members",
@@ -258,7 +255,8 @@ useEffect(() => {
       id: 7,
       title: "SOUND SPHERE",
       category: "Non-Technical",
-      description: "Sound Scape is a creative event that challenges participants to identify, analyze, and interpret audio-based clues",
+      description:
+        "Sound Scape is a creative event that challenges participants to identify, analyze, and interpret audio-based clues",
       posterUrl: sound,
       prize: "₹2,000",
       teamSize: "2 members",
@@ -276,14 +274,15 @@ useEffect(() => {
       id: 8,
       title: "CLUE CONNECT",
       category: "Non-Technical",
-      description: "Clue Connect is an exciting non-technical event that tests listening skills, visual reasoning, and movie knowledge.",
+      description:
+        "Clue Connect is an exciting non-technical event that tests listening skills, visual reasoning, and movie knowledge.",
       posterUrl: clue,
       prize: "₹2,000",
       teamSize: "4-5 members",
       duration: "3 hours",
       venue: "Entire Campus",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-            rulesFile: "/rulz/CLUE CONNECT.pdf",
+      rulesFile: "/rulz/CLUE CONNECT.pdf",
 
       coordinators: [
         { name: "Barath ", phone: "+91 98402 75886" },
@@ -295,7 +294,8 @@ useEffect(() => {
       id: 9,
       title: "MIND MAZE",
       category: "Non-Technical",
-      description: "Mind Maze is an engaging non-technical event that challenges logical thinking, observation, and problem-solving skills.",
+      description:
+        "Mind Maze is an engaging non-technical event that challenges logical thinking, observation, and problem-solving skills.",
       posterUrl: mind,
       prize: "₹2,000",
       teamSize: "Individual",
@@ -313,14 +313,15 @@ useEffect(() => {
       id: 10,
       title: "DREAM XI",
       category: "Non-Technical",
-      description: "DREAM11 is a IPL-themed team event designed to test participants' IPL knowledge,decision-making, and strategic team-building skills.",
+      description:
+        "DREAM11 is a IPL-themed team event designed to test participants' IPL knowledge,decision-making, and strategic team-building skills.",
       posterUrl: dream,
       prize: "₹2,000",
       teamSize: "2 members",
       duration: "3 hours",
       venue: "Auditorium",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-            rulesFile: "/rulz/dream 11.pdf",
+      rulesFile: "/rulz/dream 11.pdf",
       coordinators: [
         { name: "Anshul S A", phone: "+91 63792 80210" },
         { name: "Santhosh S", phone: "+91 90258 56034" },
@@ -331,14 +332,15 @@ useEffect(() => {
       id: 11,
       title: "PIXEL PERFECT",
       category: "Non-Technical",
-      description: "Pixel Perfect is a creative event that tests participants' visual accuracy and attention to detail.",
+      description:
+        "Pixel Perfect is a creative event that tests participants' visual accuracy and attention to detail.",
       posterUrl: pixel,
       prize: "₹15,000",
       teamSize: "1-5 members",
       duration: "Full day",
       venue: "Gaming Zone",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-            rulesFile: "/rulz/pixelperfect.pdf",
+      rulesFile: "/rulz/pixelperfect.pdf",
 
       coordinators: [
         { name: "Logesh G", phone: "+91 90250 09593" },
@@ -350,7 +352,8 @@ useEffect(() => {
       id: 12,
       title: "GAMEVERSE",
       category: "Non-Technical",
-      description: "GameVerse is a fun-filled gaming event that brings together competition, skill, and entertainment.",
+      description:
+        "GameVerse is a fun-filled gaming event that brings together competition, skill, and entertainment.",
       posterUrl: game,
       prize: "₹2,000",
       teamSize: "1-4 members",
@@ -368,14 +371,15 @@ useEffect(() => {
       id: 13,
       title: "AI & ML WORKSHOP",
       category: "Workshop",
-      description: "Hands-on workshop on Artificial Intelligence and Machine Learning. Learn to build intelligent systems with industry experts.",
+      description:
+        "Hands-on workshop on Artificial Intelligence and Machine Learning. Learn to build intelligent systems with industry experts.",
       posterUrl: ai,
       prize: "Certificate & Goodies",
       teamSize: "Individual",
       duration: "6 hours",
       venue: "Workshop Hall A",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-            rulesFile: "/rulz/Generative AI(Workshop).pdf",
+      rulesFile: "/rulz/Generative AI(Workshop).pdf",
       coordinators: [
         { name: "Dr. Anand Kumar", phone: "+91 98765 43234" },
         { name: "Prof. Neha Singh", phone: "+91 98765 43235" },
@@ -389,21 +393,33 @@ useEffect(() => {
       day: "Day 1",
       date: "March 15, 2026",
       events: [
-        { time: "09:00 AM", title: "Inauguration Ceremony", venue: "Main Auditorium" },
+        {
+          time: "09:00 AM",
+          title: "Inauguration Ceremony",
+          venue: "Main Auditorium",
+        },
         { time: "10:30 AM", title: "Keynote Speech", venue: "Main Auditorium" },
-        { time: "12:00 PM", title: "Circuit Quest - Round 1", venue: "Lab Block A" },
+        {
+          time: "12:00 PM",
+          title: "Circuit Quest - Round 1",
+          venue: "Lab Block A",
+        },
         { time: "02:00 PM", title: "Code Storm Begins", venue: "Computer Lab" },
         { time: "03:00 PM", title: "Robo Wars - Prelims", venue: "Main Arena" },
         { time: "04:00 PM", title: "Tech Quiz Prelims", venue: "Seminar Hall" },
-        { time: "05:00 PM", title: "Paper Presentations", venue: "Conference Hall" },
-        { time: "06:00 PM", title: "Cultural Evening", venue: "Open Air Theatre" },
+        {
+          time: "05:00 PM",
+          title: "Paper Presentations",
+          venue: "Conference Hall",
+        },
+        {
+          time: "06:00 PM",
+          title: "Cultural Evening",
+          venue: "Open Air Theatre",
+        },
       ],
     },
   ];
-
-  
-
-  
 
   // ==================== MOMENT SECTION OBSERVER ====================
   useEffect(() => {
@@ -422,7 +438,7 @@ useEffect(() => {
       },
       {
         threshold: 0.2,
-        rootMargin: '-50px 0px'
+        rootMargin: "-50px 0px",
       }
     );
 
@@ -457,7 +473,10 @@ useEffect(() => {
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
 
     const timeoutId = setTimeout(() => {
       const sections = document.querySelectorAll("[data-section]");
@@ -617,7 +636,9 @@ useEffect(() => {
   };
 
   const openVideoModal = () => {
-    setVideoUrl("https://www.instagram.com/reel/DTAklHPkn3c/?igsh=YnV1eGtlNXoxZjZn");
+    setVideoUrl(
+      "https://www.instagram.com/reel/DTAklHPkn3c/?igsh=YnV1eGtlNXoxZjZn"
+    );
     setIsVideoModalOpen(true);
   };
 
@@ -640,8 +661,10 @@ useEffect(() => {
   const handleRulesDownload = (rulesFile, eventTitle) => {
     const link = document.createElement("a");
     link.href = rulesFile;
-    link.download = `${eventTitle.replace(/\s+/g, "-").toLowerCase()}-rules.pdf`;  // ← Changed .docx to .pdf
-  
+    link.download = `${eventTitle
+      .replace(/\s+/g, "-")
+      .toLowerCase()}-rules.pdf`; // ← Changed .docx to .pdf
+
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -1053,29 +1076,28 @@ useEffect(() => {
           </div>
         </div>
       </section>
-      
 
- <section className="save-date-section" data-section="savedate">
-  <div className="save-date-container">
-    <h2 className="save-date-top-text">SAVE THE DATE</h2>
+      <section className="save-date-section" data-section="savedate">
+        <div className="save-date-container">
+          <h2 className="save-date-top-text">SAVE THE DATE</h2>
 
-    <div className="save-date-video-wrapper">
-      <video
-        ref={videoRef}
-        className="save-date-video"
-        src={saveTheDateVideo}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        poster="/images/save-date-poster.jpg"
-      />
-    </div>
+          <div className="save-date-video-wrapper">
+            <video
+              ref={videoRef}
+              className="save-date-video"
+              src={saveTheDateVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster="/images/save-date-poster.jpg"
+            />
+          </div>
 
-    <h1 className="save-date-bottom-text">FEB 14!</h1>
-  </div>
-</section>
+          <h1 className="save-date-bottom-text">FEB 14!</h1>
+        </div>
+      </section>
       {/* ==================== EVENTS SECTION ==================== */}
       <section id="events" className="events-section" data-section="events">
         <div className="section-container">
@@ -1098,7 +1120,9 @@ useEffect(() => {
             style={{ transitionDelay: "0.2s" }}
           >
             <button
-              className={`event-tab ${activeEventTab === "all" ? "active" : ""}`}
+              className={`event-tab ${
+                activeEventTab === "all" ? "active" : ""
+              }`}
               onClick={() => setActiveEventTab("all")}
             >
               <span>All Events</span>
@@ -1213,29 +1237,28 @@ useEffect(() => {
         </div>
       </section>
       {/* ==================== ANNOUNCEMENT BANNER ==================== */}
-<section className="announcement-section">
-  <div className="announcement-track">
-    <div className="announcement-content">
-      <span>🚀 REGISTRATION IS LIVE NOW</span>
-      <span>⚡ ELECTROWIZ 2026</span>
-      <span>🎟️ LIMITED SLOTS AVAILABLE</span>
-      <span>📅 FEBRUARY 14</span>
-      <span>🔥 REGISTER TODAY</span>
+      <section className="announcement-section">
+        <div className="announcement-track">
+          <div className="announcement-content">
+            <span>🚀 REGISTRATION IS LIVE NOW</span>
+            <span>⚡ ELECTROWIZ 2026</span>
+            <span>🎟️ LIMITED SLOTS AVAILABLE</span>
+            <span>📅 FEBRUARY 14</span>
+            <span>🔥 REGISTER TODAY</span>
 
-      {/* duplicate for seamless loop */}
-      <span>🚀 REGISTRATION IS LIVE NOW</span>
-      <span>⚡ ELECTROWIZ 2026</span>
-      <span>🎟️ LIMITED SLOTS AVAILABLE</span>
-      <span>📅 FEBRUARY 14</span>
-      <span>🔥 REGISTER TODAY</span>
-    </div>
-  </div>
-</section>
-
+            {/* duplicate for seamless loop */}
+            <span>🚀 REGISTRATION IS LIVE NOW</span>
+            <span>⚡ ELECTROWIZ 2026</span>
+            <span>🎟️ LIMITED SLOTS AVAILABLE</span>
+            <span>📅 FEBRUARY 14</span>
+            <span>🔥 REGISTER TODAY</span>
+          </div>
+        </div>
+      </section>
 
       {/* ==================== MAKE A MOMENT SECTION ==================== */}
-      <section 
-        className={`moment-section ${scrollTextVisible ? 'in-view' : ''}`}
+      <section
+        className={`moment-section ${scrollTextVisible ? "in-view" : ""}`}
         ref={scrollTextRef}
       >
         <div className="moment-bg">
@@ -1244,13 +1267,13 @@ useEffect(() => {
           <div className="moment-glow moment-glow-2"></div>
           <div className="moment-particles">
             {[...Array(15)].map((_, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="moment-particle"
                 style={{
                   left: `${Math.random() * 100}%`,
                   animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${4 + Math.random() * 3}s`
+                  animationDuration: `${4 + Math.random() * 3}s`,
                 }}
               />
             ))}
@@ -1264,13 +1287,13 @@ useEffect(() => {
                 <span className="moment-text">JOIN THE</span>
               </h2>
             </div>
-            
+
             <div className="moment-line-wrapper">
               <h2 className="moment-line moment-line-2">
                 <span className="moment-text">MOMENT</span>
               </h2>
             </div>
-            
+
             <div className="moment-line-wrapper">
               <h2 className="moment-line moment-line-3">
                 <span className="moment-text">WITH US</span>
@@ -1279,16 +1302,20 @@ useEffect(() => {
           </div>
 
           <div className="moment-cta-wrapper">
-            <p className="moment-subtitle">Join 500+ participants in the biggest tech fest</p>
-            <button 
-              className="moment-cta-btn"
-              onClick={handleRegisterClick}
-            >
+            <p className="moment-subtitle">
+              Join 500+ participants in the biggest tech fest
+            </p>
+            <button className="moment-cta-btn" onClick={handleRegisterClick}>
               <span className="moment-btn-bg"></span>
               <span className="moment-btn-text">Register Now</span>
               <span className="moment-btn-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </span>
             </button>
@@ -1302,57 +1329,54 @@ useEffect(() => {
         </div>
       </section>
 
+      {/* ==================== FAQ SECTION ==================== */}
+      <section id="faq" className="faq-section" data-section="faq">
+        <div className="section-container">
+          <div
+            className={`section-header fade-in-up ${
+              visibleSections.has("faq") ? "visible" : ""
+            }`}
+          >
+            <span className="section-tag">Need Help?</span>
+            <h2 className="section-title">
+              <span className="highlight">Frequently Asked Questions</span>
+            </h2>
+            <div className="section-line"></div>
+          </div>
 
-{/* ==================== FAQ SECTION ==================== */}
-<section id="faq" className="faq-section" data-section="faq">
-  <div className="section-container">
-    <div
-      className={`section-header fade-in-up ${
-        visibleSections.has("faq") ? "visible" : ""
-      }`}
-    >
-      <span className="section-tag">Need Help?</span>
-      <h2 className="section-title">
-         <span className="highlight">Frequently Asked Questions</span>
-      </h2>
-      <div className="section-line"></div>
-    </div>
-
-    <div className="faq-list">
-      {[
-        {
-          q: "Who can participate?",
-          a: "Students from all colleges can participate in Electrowiz'26.",
-        },
-        {
-          q: "Is there any registration fee?",
-          a: "Registration details will be announced soon.",
-        },
-        {
-          q: "How do I register?",
-          a: "You can register through the Register button available on the website.",
-        },
-        {
-          q: "Is the workshop open to all branches?",
-          a: "Yes, the Generative AI workshop is open to students from all branches.",
-        },
-      ].map((faq, index) => (
-        <div
-          key={index}
-          className={`faq-item fade-in-up ${
-            visibleSections.has("faq") ? "visible" : ""
-          }`}
-          style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
-        >
-          <h4>{faq.q}</h4>
-          <p>{faq.a}</p>
+          <div className="faq-list">
+            {[
+              {
+                q: "Who can participate?",
+                a: "Students from all colleges can participate in Electrowiz'26.",
+              },
+              {
+                q: "Is there any registration fee?",
+                a: "Registration details will be announced soon.",
+              },
+              {
+                q: "How do I register?",
+                a: "You can register through the Register button available on the website.",
+              },
+              {
+                q: "Is the workshop open to all branches?",
+                a: "Yes, the Generative AI workshop is open to students from all branches.",
+              },
+            ].map((faq, index) => (
+              <div
+                key={index}
+                className={`faq-item fade-in-up ${
+                  visibleSections.has("faq") ? "visible" : ""
+                }`}
+                style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
+              >
+                <h4>{faq.q}</h4>
+                <p>{faq.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-
+      </section>
 
       {/* ==================== CONTACT SECTION ==================== */}
       <section id="contact" className="contact-section" data-section="contact">
@@ -1427,8 +1451,7 @@ useEffect(() => {
                 >
                   <i className="fa-brands fa-instagram"></i>
                 </a>
-               
-                
+
                 <a
                   href="https://youtube.com"
                   target="_blank"
@@ -1451,8 +1474,7 @@ useEffect(() => {
         </div>
       </section>
 
-    {/* ==================== FAQ SECTION ==================== */}
-
+      {/* ==================== FAQ SECTION ==================== */}
 
       {/* ==================== FOOTER ==================== */}
       <footer className="footer">
@@ -1528,38 +1550,37 @@ useEffect(() => {
                 <li>
                   <a href="#events">Workshops</a>
                 </li>
-                
               </ul>
             </div>
           </div>
 
-         <div className="footer-bottom">
-  <p className="copyright">
-    © 2026 ELECTROWIZ - Velammal Engineering College. All rights reserved.
-  </p>
+          <div className="footer-bottom">
+            <p className="copyright">
+              © 2026 ELECTROWIZ - Velammal Engineering College. All rights
+              reserved.
+            </p>
 
-  <p className="credits">
-    Made by{" "}
-    <a
-      href="https://yasvanthbala.netlify.app"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="footer-link"
-    >
-      Yasvanth Bala G
-    </a>
-    {" "} . {" "}
-    <a
-      href="https://ravi-portfolio-link.com"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="footer-link"
-    >
-      Ravi Kishore S
-    </a>
-  </p>
-</div>
-
+            <p className="credits">
+              Made by{" "}
+              <a
+                href="https://yasvanthbala.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link"
+              >
+                Yasvanth Bala G
+              </a>{" "}
+              .{" "}
+              <a
+                href="https://ravi-portfolio-link.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link"
+              >
+                Ravi Kishore S
+              </a>
+            </p>
+          </div>
         </div>
       </footer>
 
