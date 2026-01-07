@@ -1,32 +1,53 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- ================= BASIC ================= -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Electrowiz'26 - Velammal Engineering College</title>
+    <meta name="description" content="Official Electrowiz'26 Symposium Website. Tech & Non-Tech events. Join us on Feb 14!" />
+
+    <!-- ================= FAVICON ================= -->
+    <link rel="icon" type="image/png" href="/logol.png" />
+
+    <!-- ================= OPEN GRAPH (WhatsApp, LinkedIn, Facebook) ================= -->
+    <meta property="og:title" content="Electrowiz'26" />
+    <meta property="og:description" content="Official Symposium Website – Tech | Innovation | Events" />
+    <meta property="og:image" content="https://www.electrowiz26.info/logo.png" />
+    <meta property="og:url" content="https://www.electrowiz26.info" />
+    <meta property="og:type" content="website" />
+
+    <!-- ================= TWITTER PREVIEW ================= -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Electrowiz'26" />
+    <meta name="twitter:description" content="Official Symposium Website – Feb 14" />
+    <meta name="twitter:image" content="https://www.electrowiz26.info/logo.png" />
+
+    <!-- ================= ICONS ================= -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Electrowiz'26</title>
+
+    <!-- ================= FONTS ================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   </head>
+
   <body>
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
+
     <script>
       window.addEventListener("load", () => {
-        document.querySelector(".hero-wrapper").classList.add("hidden");
+        const hero = document.querySelector(".hero-wrapper");
+        if (hero) hero.classList.add("hidden");
       });
     </script>
   </body>
