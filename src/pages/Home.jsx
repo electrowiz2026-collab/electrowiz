@@ -360,7 +360,7 @@ const Home = () => {
       duration: "2 hours",
       venue: "Digital Lab",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rules/meme-making-rules.docx",
+      rulesFile: "/rulz/ff.pdf",
       coordinators: [
         { name: "Prasanth M", phone: "+91 90924 79171" },
         { name: "Shreya Jain", phone: "+91 98765 43233" },
