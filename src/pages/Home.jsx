@@ -244,7 +244,7 @@ const Home = () => {
       duration: "3 hours",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rulz.pdf",
+      rulesFile: "/rulz/error.pdf",
       coordinators: [
         { name: "Harish.S ", phone: "+91 63790 04185" },
         { name: "Sushmitha", phone: "+91 74183 36138" },
@@ -381,8 +381,8 @@ const Home = () => {
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/Generative AI(Workshop).pdf",
       coordinators: [
-        { name: "Dr. Anand Kumar", phone: "+91 98765 43234" },
-        { name: "Prof. Neha Singh", phone: "+91 98765 43235" },
+        { name: "Varshini", phone: "+91 94880 56400" },
+        { name: "Kaviya ", phone: "+91 84382 35267" },
       ],
       rules: ["Click the button --> Download"],
     },
