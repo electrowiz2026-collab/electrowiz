@@ -256,7 +256,7 @@ const Home = () => {
       title: "SOUND SPHERE",
       category: "Non-Technical",
       description:
-        "Sound Scape is a creative event that challenges participants to identify, analyze, and interpret audio-based clues",
+        "Sound Sphere is a creative event that challenges participants to identify, analyze, and interpret audio-based clues",
       posterUrl: sound,
       prize: "₹2,000",
       teamSize: "2-4 members",
@@ -1351,15 +1351,15 @@ const Home = () => {
               },
               {
                 q: "Is there any registration fee?",
-                a: "Registration details will be announced soon.",
+                a: "Registration fee ₹150(Individual) + Additional ₹150(WORKSHOP IF ATTENDED))",
               },
               {
                 q: "How do I register?",
-                a: "You can register through the Register button available on the website.",
+                a: "You can register through the Gform available on the website.",
               },
               {
                 q: "Is the workshop open to all branches?",
-                a: "Yes, the Generative AI workshop is open to students from all branches.",
+                a: "Yes, the workshop is open to students from all branches.",
               },
             ].map((faq, index) => (
               <div
