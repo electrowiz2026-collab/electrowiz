@@ -189,7 +189,7 @@ const Home = () => {
       rulesFile: "/rulz/sparkix.pdf",
       coordinators: [
         { name: "Srinivasan V", phone: "+91 93618 89276 " },
-        { name: "Madhumithra M", phone: "+91 93618 89276" },
+        { name: "Madhumithra M", phone: "+91 73059 48188" },
       ],
       rules: ["Click the button --> Download Rules"],
     },
@@ -369,7 +369,7 @@ const Home = () => {
     },
     {
       id: 13,
-      title: "AI & ML WORKSHOP",
+      title: "INTRODUCTION TO NLP AND AGENTIC AI",
       category: "Workshop",
       description:
         "Hands-on workshop on Artificial Intelligence and Machine Learning. Learn to build intelligent systems with industry experts.",
