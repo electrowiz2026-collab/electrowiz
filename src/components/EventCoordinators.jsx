@@ -78,17 +78,18 @@ const EventCoordinators = () => {
 
   // ==================== OVERALL STUDENT COORDINATORS ====================
   const overallCoordinators = [
-    {
-      name: "Anusha T",
-      image: anushaT,
-      responsibility: "Souvenir and Momento",
-      phone: "+91 63810 80551",
-    },
+    
     {
       name: "Anusha B",
       image: anushaB,
       responsibility: "Poster and Reception and Guest Call",
       phone: "+91 80158 84879",
+    },
+    {
+      name: "Anusha T",
+      image: anushaT,
+      responsibility: "Souvenir and Momento",
+      phone: "+91 63810 80551",
     },
     {
       name: "Yasvanth Bala G",
@@ -152,7 +153,7 @@ const EventCoordinators = () => {
           name: "Srinivasan V",
           role: "Lead Coordinator",
           phone: "+91 93618 89276",
-          email: "srinivasan@velammal.edu.in",
+          
         },
         {
           name: "Madhumithra M",
@@ -314,9 +315,9 @@ const EventCoordinators = () => {
           email: "logesh@velammal.edu.in",
         },
         {
-          name: "Tanya Pillai",
+          name: "Santhosh S",
           role: "Co-Coordinator",
-          phone: "+91 98765 43231",
+          phone: "+91 90258 56034",
           email: "tanya@velammal.edu.in",
         },
       ],
@@ -333,9 +334,9 @@ const EventCoordinators = () => {
           email: "prasanth@velammal.edu.in",
         },
         {
-          name: "Shreya Jain",
+          name: "Kaviarasan N",
           role: "Co-Coordinator",
-          phone: "+91 98765 43233",
+          phone: "91 90258 56034",
           email: "shreya@velammal.edu.in",
         },
       ],
@@ -347,15 +348,15 @@ const EventCoordinators = () => {
       category: "Workshop",
       coordinators: [
         {
-          name: "Dr. Anand Kumar",
-          role: "Faculty Lead",
+          name: "Varshini",
+          role: "Coordinator",
           phone: "+91 98765 43234",
           email: "anand.kumar@velammal.edu.in",
         },
         {
-          name: "Prof. Neha Singh",
-          role: "Faculty Co-Lead",
-          phone: "+91 98765 43235",
+          name: "Kaviya",
+          role: "Coordinator",
+          phone: "+91 84382 35267",
           email: "neha.singh@velammal.edu.in",
         },
       ],
@@ -643,10 +644,7 @@ const EventCoordinators = () => {
                             <span className="link-icon">📞</span>
                             <span>{coordinator.phone}</span>
                           </span>
-                          <span className="contact-text email-text">
-                            <span className="link-icon">📧</span>
-                            <span>{coordinator.email}</span>
-                          </span>
+                          
                         </div>
                       </div>
                     </div>

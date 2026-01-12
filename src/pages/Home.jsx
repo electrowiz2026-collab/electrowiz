@@ -335,7 +335,7 @@ const Home = () => {
       description:
         "Pixel Perfect is a creative event that tests participants' visual accuracy and attention to detail.",
       posterUrl: pixel,
-      prize: "₹15,000",
+      prize: "₹2,000",
       teamSize: "2-4 members",
       duration: "3 hrs",
       venue: "TBA",
@@ -344,7 +344,7 @@ const Home = () => {
 
       coordinators: [
         { name: "Logesh G", phone: "+91 90250 09593" },
-        { name: "Tanya Pillai", phone: "+91 98765 43231" },
+        { name: "Santhosh S", phone: "+91 90258 56034" },
       ],
       rules: ["Click the button --> Download Rules"],
     },
@@ -363,7 +363,7 @@ const Home = () => {
       rulesFile: "/rulz/ff.pdf",
       coordinators: [
         { name: "Prasanth M", phone: "+91 90924 79171" },
-        { name: "Shreya Jain", phone: "+91 98765 43233" },
+        { name: "Kaviarasan N", phone: "+91 84894 91386" },
       ],
       rules: ["Click the button --> Download Rules"],
     },
