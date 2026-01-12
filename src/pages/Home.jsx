@@ -636,9 +636,8 @@ const Home = () => {
   };
 
   const openVideoModal = () => {
-    setVideoUrl(
-      "https://www.instagram.com/reel/DTAklHPkn3c/?igsh=YnV1eGtlNXoxZjZn"
-    );
+    setVideoUrl("https://www.youtube.com/embed/OfuKNPIyk8Q?autoplay=1&rel=0");
+
     setIsVideoModalOpen(true);
   };
 
@@ -1453,7 +1452,7 @@ const Home = () => {
                 </a>
 
                 <a
-                  href="https://youtube.com"
+                  href="https://www.youtube.com/watch?v=OfuKNPIyk8Q"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
