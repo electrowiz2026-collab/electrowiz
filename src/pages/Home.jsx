@@ -23,7 +23,7 @@ import pixel from "../assets/images/pixel.png";
 import sound from "../assets/images/Sound.png";
 import game from "../assets/images/ff.png";
 import ai from "../assets/images/ai.png";
-
+import CyberpunkXStrips from './CyberpunkXStrips';
 // ==================== SMOOTH TYPEWRITER HOOK ====================
 const useTypewriter = (text, totalDuration = 2000, startTyping = false) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -1332,6 +1332,9 @@ const Home = () => {
   delay={7000}
   onRegister={() => scrollToSection('events')} 
 />
+ <div>
+      <CyberpunkXStrips />
+    </div>
 
       {/* ==================== FAQ SECTION ==================== */}
       <section id="faq" className="faq-section" data-section="faq">
