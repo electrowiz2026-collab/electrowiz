@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import CyberpunkPopup from '../pages/CyberpunkPopup';
 import "../styles/home.css";
 import logo from "../assets/images/logo192.png";
 import veclogo from "../assets/images/veclogo.png";
@@ -1327,6 +1328,10 @@ const Home = () => {
           <div className="moment-circle moment-circle-3"></div>
         </div>
       </section>
+      <CyberpunkPopup 
+  delay={7000}
+  onRegister={() => scrollToSection('events')} 
+/>
 
       {/* ==================== FAQ SECTION ==================== */}
       <section id="faq" className="faq-section" data-section="faq">
