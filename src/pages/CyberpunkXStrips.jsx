@@ -1,7 +1,7 @@
 // CyberpunkXStrips.jsx
 import React from 'react';
-import './CyberpunkXStrips.css';
-import cyberpunkGirl from './assets/cyberpunk-girl.png';
+import '../styles/CyberpunkXStrips.css';
+import cyberpunkGirl from '../assets/images/cgirl.png';
 
 const CyberpunkXStrips = () => {
   
