@@ -1332,9 +1332,6 @@ const Home = () => {
   delay={7000}
   onRegister={() => scrollToSection('events')} 
 />
- <div>
-      <CyberpunkXStrips />
-    </div>
 
       {/* ==================== FAQ SECTION ==================== */}
       <section id="faq" className="faq-section" data-section="faq">
@@ -1359,7 +1356,7 @@ const Home = () => {
               },
               {
                 q: "Is there any registration fee?",
-                a: "Registration fee ₹150(Individual) + Additional ₹150(WORKSHOP IF ATTENDED))",
+                a: "Registration fee ₹150(Individual) + Additional ₹100(WORKSHOP IF ATTENDED))",
               },
               {
                 q: "How do I register?",
