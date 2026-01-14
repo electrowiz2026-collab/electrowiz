@@ -78,6 +78,12 @@ const EventCoordinators = () => {
 
   // ==================== OVERALL STUDENT COORDINATORS ====================
   const overallCoordinators = [
+    {
+      name: "Dev Rithik M G",
+      image: logesh,
+      responsibility: "Budget and Food Committee",
+      phone: "+91 93616 63314",
+    },
     
     {
       name: "Anusha B",
