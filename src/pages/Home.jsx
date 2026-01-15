@@ -264,7 +264,7 @@ const Home = () => {
       duration: "2 hours",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rulz/soundrule.pdf",
+      rulesFile: "/rulz/sound__rule.pdf",
       coordinators: [
         { name: "JEEVATH M", phone: "+91 63833 00579" },
         { name: "ANJALI B", phone: "+91 63834 65759" },
@@ -303,7 +303,7 @@ const Home = () => {
       duration: "4 hours",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rulz/Mind Maze .pdf",
+      rulesFile: "/rulz/Mind Maze.pdf",
       coordinators: [
         { name: "Dhiyanesh", phone: "+91 94442 54917" },
         { name: "Swedha P S", phone: "+91 63827 32250" },
