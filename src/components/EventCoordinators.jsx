@@ -156,17 +156,18 @@ const EventCoordinators = () => {
       category: "Technical",
       coordinators: [
         {
+          name: "Madhumithra M",
+          role: "Co-Coordinator",
+          phone: "+91 73059 48188",
+          email: "madhumithra@velammal.edu.in",
+        },
+        {
           name: "Srinivasan V",
           role: "Lead Coordinator",
           phone: "+91 93618 89276",
           
         },
-        {
-          name: "Madhumithra M",
-          role: "Co-Coordinator",
-          phone: "+91 93618 89277",
-          email: "madhumithra@velammal.edu.in",
-        },
+        
       ],
     },
     {

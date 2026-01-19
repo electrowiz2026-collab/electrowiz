@@ -189,8 +189,9 @@ const Home = () => {
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/sparkix.pdf",
       coordinators: [
+         { name: "Madhumithra M", phone: "+91 73059 48188" },
         { name: "Srinivasan V", phone: "+91 93618 89276 " },
-        { name: "Madhumithra M", phone: "+91 73059 48188" },
+       
       ],
       rules: ["Click the button --> Download Rules"],
     },
