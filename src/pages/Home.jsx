@@ -193,7 +193,7 @@ const Home = () => {
         { name: "Srinivasan V", phone: "+91 93618 89276 " },
        
       ],
-      rules: ["Click the button --> Download Rules"],
+     rules: ["Click Download Rules below"],
     },
     {
       id: 2,
@@ -213,7 +213,7 @@ const Home = () => {
         { name: "Rini Rayan", phone: "+91 63824 87338" },
         { name: "Eswararaju Sneha", phone: "+91 80960 06118" },
       ],
-      rules: ["Click the button --> Download Rules"],
+       rules: ["Click Download Rules below"],
     },
     {
       id: 3,
@@ -232,7 +232,7 @@ const Home = () => {
         { name: "KAVIYARASAN S", phone: "+91 84894 91386" },
         { name: "VENDAMANI K", phone: "+91 93849 95398" },
       ],
-      rules: ["Click the button --> Download Rules"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 4,
@@ -242,7 +242,7 @@ const Home = () => {
         "Error 404 is a competitive technical event that tests participants' logical reasoning and coding skills.",
       posterUrl: error,
       prize: "₹2,000",
-      teamSize: "3-4 members",
+      teamSize: "Individual",
       duration: "3 hours",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
@@ -251,7 +251,7 @@ const Home = () => {
         { name: "Harish.S ", phone: "+91 63790 04185" },
         { name: "Sushmitha", phone: "+91 74183 36138" },
       ],
-      rules: ["Click the button --> Download Rules"],
+     rules: ["Click Download Rules below"],
     },
     {
       id: 7,
@@ -270,7 +270,7 @@ const Home = () => {
         { name: "JEEVATH M", phone: "+91 63833 00579" },
         { name: "ANJALI B", phone: "+91 63834 65759" },
       ],
-      rules: ["Click the button --> Download Rules"],
+       rules: ["Click Download Rules below"],
     },
     {
       id: 8,
@@ -290,7 +290,7 @@ const Home = () => {
         { name: "Barath ", phone: "+91 98402 75886" },
         { name: "Akshitha", phone: "+91 63740 16868" },
       ],
-      rules: ["Click the button --> Download Rules"],
+   rules: ["Click Download Rules below"],
     },
     {
       id: 9,
@@ -309,7 +309,7 @@ const Home = () => {
         { name: "Dhiyanesh", phone: "+91 94442 54917" },
         { name: "Swedha P S", phone: "+91 63827 32250" },
       ],
-      rules: ["Click the button --> Download Rules"],
+       rules: ["Click Download Rules below"],
     },
     {
       id: 10,
@@ -328,7 +328,7 @@ const Home = () => {
         { name: "Anshul S A", phone: "+91 63792 80210" },
         { name: "Santhosh S", phone: "+91 90258 56034" },
       ],
-      rules: ["Click the button --> Download Rules"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 11,
@@ -348,7 +348,7 @@ const Home = () => {
         { name: "Logesh G", phone: "+91 90250 09593" },
         { name: "Santhosh S", phone: "+91 90258 56034" },
       ],
-      rules: ["Click the button --> Download Rules"],
+      rules: ["Click the button --> Download Rules below"],
     },
     {
       id: 12,
@@ -367,7 +367,7 @@ const Home = () => {
         { name: "Prasanth M", phone: "+91 90924 79171" },
         { name: "Kaviarasan N", phone: "+91 84894 91386" },
       ],
-      rules: ["Click the button --> Download Rules"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 13,
@@ -386,7 +386,7 @@ const Home = () => {
         { name: "Varshini", phone: "+91 94880 56400" },
         { name: "Kaviya ", phone: "+91 84382 35267" },
       ],
-      rules: ["Click the button --> Download"],
+      rules: ["Click the button --> Download Rules below"],
     },
   ];
 
