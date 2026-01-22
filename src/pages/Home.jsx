@@ -242,7 +242,7 @@ const Home = () => {
         "Error 404 is a competitive technical event that tests participants' logical reasoning and coding skills.",
       posterUrl: error,
       prize: "₹2,000",
-      teamSize: "Individual",
+      teamSize: "2 members",
       duration: "3 hours",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
@@ -371,7 +371,7 @@ const Home = () => {
     },
     {
       id: 13,
-      title: "INTRODUCTION TO NLP AND AGENTIC AI",
+      title: "Exploring Agentic Behaviour through Language Models and NLP",
       category: "Workshop",
       description:
         "Hands-on workshop on Artificial Intelligence and Machine Learning. Learn to build intelligent systems with industry experts.",
@@ -659,18 +659,51 @@ const Home = () => {
     }
   };
 
-  const handleRulesDownload = (rulesFile, eventTitle) => {
-    const link = document.createElement("a");
-    link.href = rulesFile;
-    link.download = `${eventTitle
-      .replace(/\s+/g, "-")
-      .toLowerCase()}-rules.pdf`; // ← Changed .docx to .pdf
+  const handleRulesDownload = async (rulesFile, eventTitle) => {
+  // Add a visual indicator
+  const downloadingToast = document.createElement('div');
+  downloadingToast.className = 'download-toast';
+  downloadingToast.textContent = '📥 Downloading...';
+  downloadingToast.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #00f5ff, #ff00ff);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+  `;
+  document.body.appendChild(downloadingToast);
 
+  try {
+    const response = await fetch(rulesFile);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${eventTitle.replace(/\s+/g, "-").toLowerCase()}-rules.pdf`;
     document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
-  };
-
+    
+    // Update toast
+    downloadingToast.textContent = '✅ Download Started!';
+    
+    setTimeout(() => {
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(link);
+      document.body.removeChild(downloadingToast);
+    }, 2000);
+    
+  } catch (error) {
+    downloadingToast.textContent = '❌ Download Failed';
+    setTimeout(() => document.body.removeChild(downloadingToast), 2000);
+    window.open(rulesFile, "_blank");
+  }
+};
   const handleEventRegistration = (registrationLink) => {
     window.open(registrationLink, "_blank", "noopener,noreferrer");
   };
