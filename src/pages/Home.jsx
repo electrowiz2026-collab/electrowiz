@@ -1436,7 +1436,7 @@ const Home = () => {
     <div className="sponsors-grid">
       {/* Sponsor 1 */}
       <a
-        href="https://www.velammal.edu.in"
+        href="https://velammal.edu.in"
         target="_blank"
         rel="noopener noreferrer"
         className={`sponsor-card fade-in-up ${
