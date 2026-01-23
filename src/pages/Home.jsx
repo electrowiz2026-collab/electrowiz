@@ -23,6 +23,8 @@ import pixel from "../assets/images/pixel.png";
 import sound from "../assets/images/Sound.png";
 import game from "../assets/images/ff.png";
 import ai from "../assets/images/ai.png";
+import sponsor1 from "../assets/images/vecc.png";
+import sponsor2 from "../assets/images/square.jpeg";
 import CyberpunkXStrips from './CyberpunkXStrips';
 // ==================== SMOOTH TYPEWRITER HOOK ====================
 const useTypewriter = (text, totalDuration = 2000, startTyping = false) => {
@@ -1367,6 +1369,7 @@ const Home = () => {
   onRegister={() => scrollToSection('events')} 
 />
 
+
       {/* ==================== FAQ SECTION ==================== */}
       <section id="faq" className="faq-section" data-section="faq">
         <div className="section-container">
@@ -1415,7 +1418,72 @@ const Home = () => {
           </div>
         </div>
       </section>
+     {/* ==================== SPONSORS SECTION ==================== */}
+<section id="sponsors" className="sponsors-section" data-section="sponsors">
+  <div className="section-container">
+    <div
+      className={`section-header fade-in-up ${
+        visibleSections.has("sponsors") ? "visible" : ""
+      }`}
+    >
+      <span className="section-tag">Our Partners</span>
+      <h2 className="section-title">
+        <span className="highlight">Sponsors</span>
+      </h2>
+      <div className="section-line"></div>
+    </div>
 
+    <div className="sponsors-grid">
+      {/* Sponsor 1 */}
+      <a
+        href="https://www.velammal.edu.in"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`sponsor-card fade-in-up ${
+          visibleSections.has("sponsors") ? "visible" : ""
+        }`}
+        style={{ transitionDelay: "0.2s" }}
+      >
+        <div className="sponsor-card-inner">
+          <div className="sponsor-glow"></div>
+          <div className="sponsor-image-wrapper">
+            <img
+              src={sponsor1}
+              alt="Sponsor 1"
+              className="sponsor-image"
+            />
+          </div>
+          
+        </div>
+       
+      </a>
+
+      {/* Sponsor 2 */}
+      <a
+        href="https://www.squarebrothers.in"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`sponsor-card fade-in-up ${
+          visibleSections.has("sponsors") ? "visible" : ""
+        }`}
+        style={{ transitionDelay: "0.4s" }}
+      >
+        <div className="sponsor-card-inner">
+          <div className="sponsor-glow"></div>
+          <div className="sponsor-image-wrapper">
+            <img
+              src={sponsor2}
+              alt="Sponsor 2"
+              className="sponsor-image"
+            />
+          </div>
+          
+        </div>
+       
+      </a>
+    </div>
+  </div>
+</section>
       {/* ==================== CONTACT SECTION ==================== */}
       <section id="contact" className="contact-section" data-section="contact">
         <div className="section-container">
