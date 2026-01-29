@@ -26,6 +26,8 @@ import ai from "../assets/images/ai.png";
 import sponsor1 from "../assets/images/vecc.png";
 import sponsor2 from "../assets/images/square.jpeg";
 import CyberpunkXStrips from './CyberpunkXStrips';
+import guestAnandhakrishnan from "../assets/images/guest.jpeg";
+import wiproLogo from "../assets/images/jj.png"; // Optional: Add Wipro logo
 // ==================== SMOOTH TYPEWRITER HOOK ====================
 const useTypewriter = (text, totalDuration = 2000, startTyping = false) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -1291,7 +1293,112 @@ const Home = () => {
           </div>
         </div>
       </section>
+{/* ==================== CHIEF GUEST SECTION ==================== */}
+<section id="guests" className="guests-section" data-section="guests">
+  <div className="section-container">
+    <div
+      className={`section-header fade-in-up ${
+        visibleSections.has("guests") ? "visible" : ""
+      }`}
+    >
+      <span className="section-tag">Honoring Our Distinguished Guest</span>
+      <h2 className="section-title">
+        Chief <span className="highlight">Guest</span>
+      </h2>
+      <div className="section-line"></div>
+    </div>
 
+    <div
+      className={`chief-guest-card fade-in-up ${
+        visibleSections.has("guests") ? "visible" : ""
+      }`}
+      style={{ transitionDelay: "0.2s" }}
+    >
+      {/* Left: Image Section */}
+      <div className="guest-image-section">
+        <div className="guest-image-wrapper">
+          <img
+            src={guestAnandhakrishnan}
+            alt="Anandhakrishnan Devaraj"
+            className="guest-photo"
+          />
+          <div className="image-accent"></div>
+        </div>
+      </div>
+
+      {/* Right: Details Section */}
+      <div className="guest-details-section">
+        <div className="guest-role-badge">
+          <span className="role-icon">★</span>
+          <span>Chief Guest</span>
+        </div>
+
+        <h3 className="guest-full-name">Anandhakrishnan Devaraj</h3>
+
+        <div className="guest-designation">
+          <h4 className="designation-title">National Head – NGA Engineering Hiring</h4>
+          <p className="designation-subtitle">Global Campus Hiring Team</p>
+        </div>
+
+        <div className="guest-organization">
+  <div className="org-logo">
+    <img 
+      src={wiproLogo} 
+      alt="Wipro Logo" 
+      className="wipro-logo"
+    />
+  </div>
+
+  <div className="org-details">
+    <span className="org-name">Wipro Limited</span>
+    <span className="org-type">Fortune 500 Global IT Company</span>
+  </div>
+</div>
+
+
+        <div className="guest-expertise">
+          <div className="expertise-item">
+            <span className="expertise-icon">🎯</span>
+            <div className="expertise-content">
+              <span className="expertise-label">Expertise</span>
+              <span className="expertise-value">Talent Acquisition & Campus Hiring</span>
+            </div>
+          </div>
+         
+        </div>
+
+        <div className="guest-actions">
+          <a
+            href="https://www.linkedin.com/in/anandhakrishnandevaraj?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="linkedin-connect-btn"
+          >
+            <svg className="linkedin-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            <span>Connect on LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* Quote Section */}
+    <div
+      className={`guest-quote-section fade-in-up ${
+        visibleSections.has("guests") ? "visible" : ""
+      }`}
+      style={{ transitionDelay: "0.4s" }}
+    >
+      <div className="quote-marks">"</div>
+      <blockquote className="guest-quote">
+        We are honored to have Mr. Anandhakrishnan Devaraj grace ELECTROWIZ'26 as our 
+        Chief Guest, inspiring the next generation of engineers and innovators.
+      </blockquote>
+      <div className="quote-author">— ELECTROWIZ Organizing Committee</div>
+    </div>
+  </div>
+</section>
       {/* ==================== MAKE A MOMENT SECTION ==================== */}
       <section
         className={`moment-section ${scrollTextVisible ? "in-view" : ""}`}

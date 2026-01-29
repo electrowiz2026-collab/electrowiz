@@ -7191,3 +7191,512 @@ body {
     padding: 20px;
   }
 }
+/* ==================== PROFESSIONAL GUEST SECTION ==================== */
+.guests-section {
+  padding: 100px 0;
+  background: linear-gradient(180deg, 
+    #0a0a1a 0%, 
+    #0d0d24 50%,
+    #0a0a1a 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.guests-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(0, 160, 220, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(0, 118, 168, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ===== Chief Guest Card ===== */
+.chief-guest-card {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 60px;
+  max-width: 1000px;
+  margin: 60px auto 0;
+  padding: 50px;
+  background: linear-gradient(145deg, 
+    rgba(20, 20, 45, 0.9) 0%, 
+    rgba(15, 15, 35, 0.95) 100%
+  );
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.chief-guest-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    #00a0dc 20%,
+    #0076a8 50%,
+    #00a0dc 80%,
+    transparent 100%
+  );
+}
+
+/* ===== Image Section ===== */
+.guest-image-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.guest-image-wrapper {
+  position: relative;
+  width: 280px;
+  height: 340px;
+}
+
+.guest-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 16px;
+  filter: grayscale(10%);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.chief-guest-card:hover .guest-photo {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+.image-accent {
+  position: absolute;
+  bottom: -12px;
+  right: -12px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(0, 160, 220, 0.3);
+  border-radius: 16px;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+
+.chief-guest-card:hover .image-accent {
+  bottom: -16px;
+  right: -16px;
+  border-color: rgba(0, 160, 220, 0.5);
+}
+
+/* ===== Details Section ===== */
+.guest-details-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.guest-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, rgba(0, 160, 220, 0.15) 0%, rgba(0, 118, 168, 0.15) 100%);
+  border: 1px solid rgba(0, 160, 220, 0.3);
+  border-radius: 25px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.role-icon {
+  color: #00a0dc;
+  font-size: 14px;
+}
+
+.guest-role-badge span:last-child {
+  font-size: 13px;
+  font-weight: 600;
+  color: #00a0dc;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.guest-full-name {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.guest-designation {
+  margin-bottom: 24px;
+}
+
+.designation-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #00a0dc;
+  margin-bottom: 4px;
+}
+
+.designation-subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+/* ===== Organization ===== */
+.guest-organization {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 24px;
+}
+
+.org-logo {
+  flex-shrink: 0;
+}
+
+.wipro-svg {
+  width: 100px;
+  height: 36px;
+}
+
+.org-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 20px;
+  border-left: 2px solid rgba(0, 160, 220, 0.3);
+}
+
+.org-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.org-type {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== Bio ===== */
+.guest-bio {
+  margin-bottom: 28px;
+}
+
+.guest-bio p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== Expertise ===== */
+.guest-expertise {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.expertise-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  padding: 16px;
+  background: rgba(0, 160, 220, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 160, 220, 0.1);
+  transition: all 0.3s ease;
+}
+
+.expertise-item:hover {
+  background: rgba(0, 160, 220, 0.08);
+  border-color: rgba(0, 160, 220, 0.2);
+  transform: translateY(-2px);
+}
+
+.expertise-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.expertise-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.expertise-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.expertise-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===== LinkedIn Button ===== */
+.guest-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.linkedin-connect-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: #0077b5;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.linkedin-connect-btn:hover {
+  background: #005f8f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 119, 181, 0.35);
+}
+
+.linkedin-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== Quote Section ===== */
+.guest-quote-section {
+  max-width: 800px;
+  margin: 60px auto 0;
+  text-align: center;
+  position: relative;
+  padding: 40px;
+}
+
+.quote-marks {
+  font-size: 120px;
+  font-family: Georgia, serif;
+  color: rgba(0, 160, 220, 0.15);
+  line-height: 0;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  user-select: none;
+}
+
+.guest-quote {
+  font-size: 20px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.quote-author {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 160, 220, 0.8);
+  letter-spacing: 0.5px;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+  .chief-guest-card {
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+    padding: 40px;
+  }
+
+  .guest-image-wrapper {
+    width: 240px;
+    height: 300px;
+  }
+
+  .guest-full-name {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .guests-section {
+    padding: 60px 0;
+  }
+
+  .chief-guest-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px 24px;
+    margin: 40px 16px 0;
+    text-align: center;
+  }
+
+  .guest-image-section {
+    justify-content: center;
+  }
+
+  .guest-image-wrapper {
+    width: 220px;
+    height: 280px;
+  }
+
+  .image-accent {
+    display: none;
+  }
+
+  .guest-role-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .guest-full-name {
+    font-size: 26px;
+  }
+
+  .designation-title {
+    font-size: 16px;
+  }
+
+  .guest-organization {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .org-details {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(0, 160, 220, 0.2);
+    padding-top: 16px;
+  }
+
+  .guest-expertise {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .expertise-item {
+    justify-content: center;
+    text-align: left;
+  }
+
+  .guest-actions {
+    justify-content: center;
+  }
+
+  .guest-quote-section {
+    padding: 30px 20px;
+    margin-top: 40px;
+  }
+
+  .quote-marks {
+    font-size: 80px;
+    top: 10px;
+  }
+
+  .guest-quote {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chief-guest-card {
+    padding: 24px 16px;
+  }
+
+  .guest-image-wrapper {
+    width: 180px;
+    height: 230px;
+  }
+
+  .guest-full-name {
+    font-size: 22px;
+  }
+
+  .designation-title {
+    font-size: 14px;
+  }
+
+  .designation-subtitle {
+    font-size: 13px;
+  }
+
+  .guest-bio p {
+    font-size: 14px;
+  }
+
+  .expertise-item {
+    padding: 12px;
+  }
+
+  .expertise-value {
+    font-size: 13px;
+  }
+
+  .linkedin-connect-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .guest-quote {
+    font-size: 15px;
+  }
+}
+
+/* ===== Dark Professional Theme Alternative ===== */
+.chief-guest-card.dark-theme {
+  background: linear-gradient(145deg, 
+    rgba(10, 10, 25, 0.98) 0%, 
+    rgba(5, 5, 15, 0.99) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Subtle Animation ===== */
+@keyframes subtlePulse {
+  0%, 100% {
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 25px 60px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 0 40px rgba(0, 160, 220, 0.05);
+  }
+}
+
+.chief-guest-card {
+  animation: subtlePulse 6s ease-in-out infinite;
+}
