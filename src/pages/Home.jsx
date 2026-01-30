@@ -231,7 +231,7 @@ const Home = () => {
       duration: "2 hours",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rulz/think-a-thon-rules.pdf",
+      rulesFile: "/rulz/think.pdf",
       coordinators: [
         { name: "KAVIYARASAN S", phone: "+91 84894 91386" },
         { name: "VENDAMANI K", phone: "+91 93849 95398" },
@@ -366,7 +366,7 @@ const Home = () => {
       duration: "2 hours",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rulz/ff.pdf",
+      rulesFile: "/rulz/FREEFIRE.pdf",
       coordinators: [
         { name: "Prasanth M", phone: "+91 90924 79171" },
         { name: "Kaviarasan N", phone: "+91 84894 91386" },
