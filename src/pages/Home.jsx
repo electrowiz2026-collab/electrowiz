@@ -227,7 +227,7 @@ const Home = () => {
         "Think fast. Answer smart prove you're the sharpest mind in the room.",
       posterUrl: think,
       prize: "₹2,000",
-      teamSize: "3-4 members",
+      teamSize: "1-2 members",
       duration: "2 hours",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
