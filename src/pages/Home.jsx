@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import CyberpunkPopup from '../pages/CyberpunkPopup';
+import CyberpunkPopup from "../pages/CyberpunkPopup";
 import "../styles/home.css";
 import logo from "../assets/images/logo192.png";
 import veclogo from "../assets/images/veclogo.png";
@@ -25,7 +25,7 @@ import game from "../assets/images/ff.png";
 import ai from "../assets/images/ai.png";
 import sponsor1 from "../assets/images/vecc.png";
 import sponsor2 from "../assets/images/square.jpeg";
-import CyberpunkXStrips from './CyberpunkXStrips';
+import CyberpunkXStrips from "./CyberpunkXStrips";
 import guestAnandhakrishnan from "../assets/images/guest.jpeg";
 import wiproLogo from "../assets/images/jj.png"; // Optional: Add Wipro logo
 // ==================== SMOOTH TYPEWRITER HOOK ====================
@@ -100,7 +100,7 @@ const Home = () => {
           video.pause();
         }
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     );
 
     observer.observe(video);
@@ -193,11 +193,10 @@ const Home = () => {
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/sparkix.pdf",
       coordinators: [
-         { name: "Madhumithra M", phone: "+91 73059 48188" },
+        { name: "Madhumithra M", phone: "+91 73059 48188" },
         { name: "Srinivasan V", phone: "+91 93618 89276 " },
-       
       ],
-     rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 2,
@@ -211,13 +210,13 @@ const Home = () => {
       duration: "5-7 mins (per presentation)",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rulz/ELECTRAXPO.pdf",
+      rulesFile: "/rulz/ELECTRAXPO_.pdf",
       coordinators: [
         { name: "Naveen Prakash", phone: "+91 96002 89904" },
         { name: "Rini Rayan", phone: "+91 63824 87338" },
         { name: "Eswararaju Sneha", phone: "+91 80960 06118" },
       ],
-       rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 3,
@@ -255,7 +254,7 @@ const Home = () => {
         { name: "Harish.S ", phone: "+91 63790 04185" },
         { name: "Sushmitha", phone: "+91 74183 36138" },
       ],
-     rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 7,
@@ -274,7 +273,7 @@ const Home = () => {
         { name: "JEEVATH M", phone: "+91 63833 00579" },
         { name: "ANJALI B", phone: "+91 63834 65759" },
       ],
-       rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 8,
@@ -294,7 +293,7 @@ const Home = () => {
         { name: "Barath ", phone: "+91 98402 75886" },
         { name: "Akshitha", phone: "+91 63740 16868" },
       ],
-   rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 9,
@@ -313,7 +312,7 @@ const Home = () => {
         { name: "Dhiyanesh", phone: "+91 94442 54917" },
         { name: "Swedha P S", phone: "+91 63827 32250" },
       ],
-       rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 10,
@@ -445,7 +444,7 @@ const Home = () => {
       {
         threshold: 0.2,
         rootMargin: "-50px 0px",
-      }
+      },
     );
 
     observer.observe(scrollTextElement);
@@ -481,7 +480,7 @@ const Home = () => {
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
 
     const timeoutId = setTimeout(() => {
@@ -662,13 +661,12 @@ const Home = () => {
       closeVideoModal();
     }
   };
-
   const handleRulesDownload = async (rulesFile, eventTitle) => {
-  // Add a visual indicator
-  const downloadingToast = document.createElement('div');
-  downloadingToast.className = 'download-toast';
-  downloadingToast.textContent = '📥 Downloading...';
-  downloadingToast.style.cssText = `
+    // Create toast with "Starting download..." message first
+    const downloadingToast = document.createElement("div");
+    downloadingToast.className = "download-toast";
+    downloadingToast.textContent = "⏳ Starting download..."; // ← Changed: Show this FIRST
+    downloadingToast.style.cssText = `
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -679,39 +677,60 @@ const Home = () => {
     font-weight: 600;
     z-index: 10000;
     animation: fadeIn 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 245, 255, 0.3);
   `;
-  document.body.appendChild(downloadingToast);
+    document.body.appendChild(downloadingToast);
 
-  try {
-    const response = await fetch(rulesFile);
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-    
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `${eventTitle.replace(/\s+/g, "-").toLowerCase()}-rules.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    
-    // Update toast
-    downloadingToast.textContent = '✅ Download Started!';
-    
-    setTimeout(() => {
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(link);
-      document.body.removeChild(downloadingToast);
-    }, 2000);
-    
-  } catch (error) {
-    downloadingToast.textContent = '❌ Download Failed';
-    setTimeout(() => document.body.removeChild(downloadingToast), 2000);
-    window.open(rulesFile, "_blank");
-  }
-};
-  const handleEventRegistration = (registrationLink) => {
-    window.open(registrationLink, "_blank", "noopener,noreferrer");
+    try {
+      const response = await fetch(rulesFile);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch file");
+      }
+
+      // Update toast to show "Downloading..." while fetching blob
+      downloadingToast.textContent = "📥 Downloading..."; // ← Changed: Show this SECOND
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${eventTitle.replace(/\s+/g, "-").toLowerCase()}-rules.pdf`;
+      document.body.appendChild(link);
+      link.click();
+
+      // Update toast to show success
+      downloadingToast.textContent = "✅ Download Complete!"; // ← Changed: Show this LAST
+      downloadingToast.style.background =
+        "linear-gradient(135deg, #00ff88, #00f5ff)";
+
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url);
+        if (document.body.contains(link)) {
+          document.body.removeChild(link);
+        }
+        if (document.body.contains(downloadingToast)) {
+          document.body.removeChild(downloadingToast);
+        }
+      }, 2500);
+    } catch (error) {
+      console.error("Download failed:", error);
+      downloadingToast.textContent =
+        "❌ Download Failed - Opening in new tab...";
+      downloadingToast.style.background =
+        "linear-gradient(135deg, #ff4444, #ff00ff)";
+
+      setTimeout(() => {
+        if (document.body.contains(downloadingToast)) {
+          document.body.removeChild(downloadingToast);
+        }
+      }, 2000);
+
+      // Fallback: open in new tab
+      window.open(rulesFile, "_blank");
+    }
   };
-
   const getDisplayedEvents = () => {
     switch (activeEventTab) {
       case "tech":
@@ -1199,8 +1218,8 @@ const Home = () => {
                   event.category === "Technical"
                     ? "tech-card"
                     : event.category === "Workshop"
-                    ? "workshop-card"
-                    : "nontech-card"
+                      ? "workshop-card"
+                      : "nontech-card"
                 } fade-in-up ${visibleSections.has("events") ? "visible" : ""}`}
                 style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
               >
@@ -1222,8 +1241,8 @@ const Home = () => {
                         event.category === "Technical"
                           ? "tech"
                           : event.category === "Workshop"
-                          ? "workshop"
-                          : "nontech"
+                            ? "workshop"
+                            : "nontech"
                       }`}
                     >
                       {event.category}
@@ -1293,112 +1312,127 @@ const Home = () => {
           </div>
         </div>
       </section>
-{/* ==================== CHIEF GUEST SECTION ==================== */}
-<section id="guests" className="guests-section" data-section="guests">
-  <div className="section-container">
-    <div
-      className={`section-header fade-in-up ${
-        visibleSections.has("guests") ? "visible" : ""
-      }`}
-    >
-      <span className="section-tag">Honoring Our Distinguished Guest</span>
-      <h2 className="section-title">
-        Chief <span className="highlight">Guest</span>
-      </h2>
-      <div className="section-line"></div>
-    </div>
+      {/* ==================== CHIEF GUEST SECTION ==================== */}
+      <section id="guests" className="guests-section" data-section="guests">
+        <div className="section-container">
+          <div
+            className={`section-header fade-in-up ${
+              visibleSections.has("guests") ? "visible" : ""
+            }`}
+          >
+            <span className="section-tag">
+              Honoring Our Distinguished Guest
+            </span>
+            <h2 className="section-title">
+              Chief <span className="highlight">Guest</span>
+            </h2>
+            <div className="section-line"></div>
+          </div>
 
-    <div
-      className={`chief-guest-card fade-in-up ${
-        visibleSections.has("guests") ? "visible" : ""
-      }`}
-      style={{ transitionDelay: "0.2s" }}
-    >
-      {/* Left: Image Section */}
-      <div className="guest-image-section">
-        <div className="guest-image-wrapper">
-          <img
-            src={guestAnandhakrishnan}
-            alt="Anandhakrishnan Devaraj"
-            className="guest-photo"
-          />
-          <div className="image-accent"></div>
-        </div>
-      </div>
+          <div
+            className={`chief-guest-card fade-in-up ${
+              visibleSections.has("guests") ? "visible" : ""
+            }`}
+            style={{ transitionDelay: "0.2s" }}
+          >
+            {/* Left: Image Section */}
+            <div className="guest-image-section">
+              <div className="guest-image-wrapper">
+                <img
+                  src={guestAnandhakrishnan}
+                  alt="Anandhakrishnan Devaraj"
+                  className="guest-photo"
+                />
+                <div className="image-accent"></div>
+              </div>
+            </div>
 
-      {/* Right: Details Section */}
-      <div className="guest-details-section">
-        <div className="guest-role-badge">
-          <span className="role-icon">★</span>
-          <span>Chief Guest</span>
-        </div>
+            {/* Right: Details Section */}
+            <div className="guest-details-section">
+              <div className="guest-role-badge">
+                <span className="role-icon">★</span>
+                <span>Chief Guest</span>
+              </div>
 
-        <h3 className="guest-full-name">Anandhakrishnan Devaraj</h3>
+              <h3 className="guest-full-name">Anandhakrishnan Devaraj</h3>
 
-        <div className="guest-designation">
-          <h4 className="designation-title">National Head – NGA Engineering Hiring</h4>
-          <p className="designation-subtitle">Global Campus Hiring Team</p>
-        </div>
+              <div className="guest-designation">
+                <h4 className="designation-title">
+                  National Head – NGA Engineering Hiring
+                </h4>
+                <p className="designation-subtitle">
+                  Global Campus Hiring Team
+                </p>
+              </div>
 
-        <div className="guest-organization">
-  <div className="org-logo">
-    <img 
-      src={wiproLogo} 
-      alt="Wipro Logo" 
-      className="wipro-logo"
-    />
-  </div>
+              <div className="guest-organization">
+                <div className="org-logo">
+                  <img
+                    src={wiproLogo}
+                    alt="Wipro Logo"
+                    className="wipro-logo"
+                  />
+                </div>
 
-  <div className="org-details">
-    <span className="org-name">Wipro Limited</span>
-    <span className="org-type">Fortune 500 Global IT Company</span>
-  </div>
-</div>
+                <div className="org-details">
+                  <span className="org-name">Wipro Limited</span>
+                  <span className="org-type">
+                    Fortune 500 Global IT Company
+                  </span>
+                </div>
+              </div>
 
+              <div className="guest-expertise">
+                <div className="expertise-item">
+                  <span className="expertise-icon">🎯</span>
+                  <div className="expertise-content">
+                    <span className="expertise-label">Expertise</span>
+                    <span className="expertise-value">
+                      Talent Acquisition & Campus Hiring
+                    </span>
+                  </div>
+                </div>
+              </div>
 
-        <div className="guest-expertise">
-          <div className="expertise-item">
-            <span className="expertise-icon">🎯</span>
-            <div className="expertise-content">
-              <span className="expertise-label">Expertise</span>
-              <span className="expertise-value">Talent Acquisition & Campus Hiring</span>
+              <div className="guest-actions">
+                <a
+                  href="https://www.linkedin.com/in/anandhakrishnandevaraj?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="linkedin-connect-btn"
+                >
+                  <svg
+                    className="linkedin-icon"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  </svg>
+                  <span>Connect on LinkedIn</span>
+                </a>
+              </div>
             </div>
           </div>
-         
-        </div>
 
-        <div className="guest-actions">
-          <a
-            href="https://www.linkedin.com/in/anandhakrishnandevaraj?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="linkedin-connect-btn"
+          {/* Quote Section */}
+          <div
+            className={`guest-quote-section fade-in-up ${
+              visibleSections.has("guests") ? "visible" : ""
+            }`}
+            style={{ transitionDelay: "0.4s" }}
           >
-            <svg className="linkedin-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-            <span>Connect on LinkedIn</span>
-          </a>
+            <div className="quote-marks">"</div>
+            <blockquote className="guest-quote">
+              We are honored to have Mr. Anandhakrishnan Devaraj grace
+              ELECTROWIZ'26 as our Chief Guest, inspiring the next generation of
+              engineers and innovators.
+            </blockquote>
+            <div className="quote-author">
+              — ELECTROWIZ Organizing Committee
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
-    {/* Quote Section */}
-    <div
-      className={`guest-quote-section fade-in-up ${
-        visibleSections.has("guests") ? "visible" : ""
-      }`}
-      style={{ transitionDelay: "0.4s" }}
-    >
-      <div className="quote-marks">"</div>
-      <blockquote className="guest-quote">
-        We are honored to have Mr. Anandhakrishnan Devaraj grace ELECTROWIZ'26 as our 
-        Chief Guest, inspiring the next generation of engineers and innovators.
-      </blockquote>
-      <div className="quote-author">— ELECTROWIZ Organizing Committee</div>
-    </div>
-  </div>
-</section>
+      </section>
       {/* ==================== MAKE A MOMENT SECTION ==================== */}
       <section
         className={`moment-section ${scrollTextVisible ? "in-view" : ""}`}
@@ -1471,11 +1505,10 @@ const Home = () => {
           <div className="moment-circle moment-circle-3"></div>
         </div>
       </section>
-      <CyberpunkPopup 
-  delay={7000}
-  onRegister={() => scrollToSection('events')} 
-/>
-
+      <CyberpunkPopup
+        delay={7000}
+        onRegister={() => scrollToSection("events")}
+      />
 
       {/* ==================== FAQ SECTION ==================== */}
       <section id="faq" className="faq-section" data-section="faq">
@@ -1525,72 +1558,72 @@ const Home = () => {
           </div>
         </div>
       </section>
-     {/* ==================== SPONSORS SECTION ==================== */}
-<section id="sponsors" className="sponsors-section" data-section="sponsors">
-  <div className="section-container">
-    <div
-      className={`section-header fade-in-up ${
-        visibleSections.has("sponsors") ? "visible" : ""
-      }`}
-    >
-      <span className="section-tag">Our Partners</span>
-      <h2 className="section-title">
-        <span className="highlight">Sponsors</span>
-      </h2>
-      <div className="section-line"></div>
-    </div>
-
-    <div className="sponsors-grid">
-      {/* Sponsor 1 */}
-      <a
-        href="https://velammal.edu.in"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`sponsor-card fade-in-up ${
-          visibleSections.has("sponsors") ? "visible" : ""
-        }`}
-        style={{ transitionDelay: "0.2s" }}
+      {/* ==================== SPONSORS SECTION ==================== */}
+      <section
+        id="sponsors"
+        className="sponsors-section"
+        data-section="sponsors"
       >
-        <div className="sponsor-card-inner">
-          <div className="sponsor-glow"></div>
-          <div className="sponsor-image-wrapper">
-            <img
-              src={sponsor1}
-              alt="Sponsor 1"
-              className="sponsor-image"
-            />
+        <div className="section-container">
+          <div
+            className={`section-header fade-in-up ${
+              visibleSections.has("sponsors") ? "visible" : ""
+            }`}
+          >
+            <span className="section-tag">Our Partners</span>
+            <h2 className="section-title">
+              <span className="highlight">Sponsors</span>
+            </h2>
+            <div className="section-line"></div>
           </div>
-          
-        </div>
-       
-      </a>
 
-      {/* Sponsor 2 */}
-      <a
-        href="https://www.squarebrothers.in"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`sponsor-card fade-in-up ${
-          visibleSections.has("sponsors") ? "visible" : ""
-        }`}
-        style={{ transitionDelay: "0.4s" }}
-      >
-        <div className="sponsor-card-inner">
-          <div className="sponsor-glow"></div>
-          <div className="sponsor-image-wrapper">
-            <img
-              src={sponsor2}
-              alt="Sponsor 2"
-              className="sponsor-image"
-            />
+          <div className="sponsors-grid">
+            {/* Sponsor 1 */}
+            <a
+              href="https://velammal.edu.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`sponsor-card fade-in-up ${
+                visibleSections.has("sponsors") ? "visible" : ""
+              }`}
+              style={{ transitionDelay: "0.2s" }}
+            >
+              <div className="sponsor-card-inner">
+                <div className="sponsor-glow"></div>
+                <div className="sponsor-image-wrapper">
+                  <img
+                    src={sponsor1}
+                    alt="Sponsor 1"
+                    className="sponsor-image"
+                  />
+                </div>
+              </div>
+            </a>
+
+            {/* Sponsor 2 */}
+            <a
+              href="https://www.squarebrothers.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`sponsor-card fade-in-up ${
+                visibleSections.has("sponsors") ? "visible" : ""
+              }`}
+              style={{ transitionDelay: "0.4s" }}
+            >
+              <div className="sponsor-card-inner">
+                <div className="sponsor-glow"></div>
+                <div className="sponsor-image-wrapper">
+                  <img
+                    src={sponsor2}
+                    alt="Sponsor 2"
+                    className="sponsor-image"
+                  />
+                </div>
+              </div>
+            </a>
           </div>
-          
         </div>
-       
-      </a>
-    </div>
-  </div>
-</section>
+      </section>
       {/* ==================== CONTACT SECTION ==================== */}
       <section id="contact" className="contact-section" data-section="contact">
         <div className="section-container">
@@ -1951,7 +1984,7 @@ const Home = () => {
                     onClick={() =>
                       handleRulesDownload(
                         selectedEvent.rulesFile,
-                        selectedEvent.title
+                        selectedEvent.title,
                       )
                     }
                   >
