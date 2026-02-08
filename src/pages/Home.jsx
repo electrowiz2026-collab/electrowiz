@@ -211,7 +211,7 @@ const Home = () => {
       duration: "5-7 mins (per presentation)",
       venue: "TBA",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
-      rulesFile: "/rulz/ELECTRAXPO.pdf",
+      rulesFile: "/rulz/ELECTRAXPO_.pdf",
       coordinators: [
         { name: "Naveen Prakash", phone: "+91 96002 89904" },
         { name: "Rini Rayan", phone: "+91 63824 87338" },
@@ -732,8 +732,12 @@ const handleRulesDownload = async (rulesFile, eventTitle) => {
   }
 };
   const handleEventRegistration = (registrationLink) => {
+  if (registrationLink) {
     window.open(registrationLink, "_blank", "noopener,noreferrer");
-  };
+  } else {
+    console.error("Registration link not found");
+  }
+};
 
   const getDisplayedEvents = () => {
     switch (activeEventTab) {
