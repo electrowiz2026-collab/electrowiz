@@ -107,6 +107,7 @@ const Home = () => {
 
     return () => observer.disconnect();
   }, []);
+  
 
   // ==================== STATE ====================
   const [isScrolled, setIsScrolled] = useState(false);
@@ -1027,6 +1028,7 @@ const handleRulesDownload = async (rulesFile, eventTitle) => {
             className="scroll-indicator"
             onClick={() => scrollToSection("about")}
           >
+             <span className="scroll-tex">On-spot Registration Availabe(Cash ony)</span>
             <span className="scroll-text">Scroll Down</span>
             <div className="scroll-arrow">
               <span></span>
@@ -2028,6 +2030,7 @@ const handleRulesDownload = async (rulesFile, eventTitle) => {
           )}
         </div>
       </div>
+      
     </div>
   );
 };

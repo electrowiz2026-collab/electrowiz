@@ -1178,6 +1178,31 @@ body {
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
+.scroll-tex {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.2vw, 1.4rem); /* auto scales for laptop & mobile */
+  font-weight: 900;       /* extra bold */
+  color: red;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  animation: blink 3s infinite; /* slow blink */
+}
+
+/* Slow blink animation */
+@keyframes blink {
+  0%, 70%, 100% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+}
+
 
 .scroll-arrow {
   display: flex;
@@ -7699,4 +7724,68 @@ body {
 
 .chief-guest-card {
   animation: subtlePulse 6s ease-in-out infinite;
+}
+/* ==================== ON-SPOT REGISTRATION - SIMPLE FIXED TEXT ==================== */
+.onspot-fixed-text {
+  position: fixed !important;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999999;
+  
+  /* Text styling - NO BOX */
+  color: #ff0000;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  
+  /* Red glow effect */
+  text-shadow: 
+    0 0 5px #ff0000,
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 30px #ff0000;
+  
+  /* Blinking animation */
+  animation: simple-blink 1s ease-in-out infinite;
+  
+  /* No interaction */
+  pointer-events: none;
+  user-select: none;
+  
+  /* No background or border */
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Simple Blink Animation */
+@keyframes simple-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .onspot-fixed-text {
+    bottom: 80px;
+    right: 15px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .onspot-fixed-text {
+    bottom: 85px;
+    right: 10px;
+    font-size: 11px;
+    max-width: calc(100vw - 20px);
+    text-align: right;
+  }
 }
