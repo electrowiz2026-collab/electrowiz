@@ -179,7 +179,7 @@ const Home = () => {
   ];
 
   // ==================== ALL EVENTS DATA ====================
-  const allEvents = [
+ const allEvents = [
     {
       id: 1,
       title: "SPARKX",
@@ -190,15 +190,14 @@ const Home = () => {
       prize: "₹2,000",
       teamSize: "2-4 members",
       duration: "3 hours",
-      venue: "TBA",
+      venue: "Vivekananda Block (VB) 241, II Floor",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/sparkix.pdf",
       coordinators: [
-         { name: "Madhumithra M", phone: "+91 73059 48188" },
-        { name: "Srinivasan V", phone: "+91 93618 89276 " },
-       
+        { name: "Madhumithra M", phone: "+91 73059 48188" },
+        { name: "Srinivasan V", phone: "+91 93618 89276" },
       ],
-     rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 2,
@@ -210,7 +209,7 @@ const Home = () => {
       prize: "₹2,000",
       teamSize: "2-3 members",
       duration: "5-7 mins (per presentation)",
-      venue: "TBA",
+      venue: "Electronics Lab",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/ELECTRAXPO_.pdf",
       coordinators: [
@@ -218,7 +217,7 @@ const Home = () => {
         { name: "Rini Rayan", phone: "+91 63824 87338" },
         { name: "Eswararaju Sneha", phone: "+91 80960 06118" },
       ],
-       rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 3,
@@ -230,7 +229,7 @@ const Home = () => {
       prize: "₹2,000",
       teamSize: "1-2 members",
       duration: "2 hours",
-      venue: "TBA",
+      venue: "Vivekananda Block (VB) 353, 354, III Floor",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/think.pdf",
       coordinators: [
@@ -249,14 +248,14 @@ const Home = () => {
       prize: "₹2,000",
       teamSize: "2 members",
       duration: "3 hours",
-      venue: "TBA",
+      venue: "Advance Electronics Lab",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/error.pdf",
       coordinators: [
-        { name: "Harish.S ", phone: "+91 63790 04185" },
+        { name: "Harish.S", phone: "+91 63790 04185" },
         { name: "Sushmitha", phone: "+91 74183 36138" },
       ],
-     rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 7,
@@ -268,14 +267,14 @@ const Home = () => {
       prize: "₹2,000",
       teamSize: "2-4 members",
       duration: "2 hours",
-      venue: "TBA",
+      venue: "Vivekananda Block (VB) 234, 235, II Floor",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/sound__rule.pdf",
       coordinators: [
         { name: "JEEVATH M", phone: "+91 63833 00579" },
         { name: "ANJALI B", phone: "+91 63834 65759" },
       ],
-       rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 8,
@@ -287,15 +286,14 @@ const Home = () => {
       prize: "₹2,000",
       teamSize: "2-4 members",
       duration: "3 hours",
-      venue: "TBA",
+      venue: "Vivekananda Block (VB) 239, 240, II Floor",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/CLUE CONNECT.pdf",
-
       coordinators: [
-        { name: "Barath ", phone: "+91 98402 75886" },
+        { name: "Barath", phone: "+91 98402 75886" },
         { name: "Akshitha", phone: "+91 63740 16868" },
       ],
-   rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 9,
@@ -307,26 +305,26 @@ const Home = () => {
       prize: "₹2,000",
       teamSize: "2-4 members",
       duration: "4 hours",
-      venue: "TBA",
+      venue: "Vivekananda Block (VB) 236, 237, II Floor",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/Mind Maze.pdf",
       coordinators: [
         { name: "Dhiyanesh", phone: "+91 94442 54917" },
         { name: "Swedha P S", phone: "+91 63827 32250" },
       ],
-       rules: ["Click Download Rules below"],
+      rules: ["Click Download Rules below"],
     },
     {
       id: 10,
       title: "DREAM XI",
       category: "Non-Technical",
       description:
-        "DREAM11 is a IPL-themed team event designed to test participants' IPL knowledge,decision-making, and strategic team-building skills.",
+        "DREAM11 is a IPL-themed team event designed to test participants' IPL knowledge, decision-making, and strategic team-building skills.",
       posterUrl: dream,
       prize: "₹2,000",
       teamSize: "2-4 members",
       duration: "3 hours",
-      venue: "TBA",
+      venue: "Mechanical Seminar Hall",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/dream 11.pdf",
       coordinators: [
@@ -345,10 +343,9 @@ const Home = () => {
       prize: "₹2,000",
       teamSize: "2-4 members",
       duration: "3 hrs",
-      venue: "TBA",
+      venue: "IC LAB",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/pixelperfect.pdf",
-
       coordinators: [
         { name: "Logesh G", phone: "+91 90250 09593" },
         { name: "Santhosh S", phone: "+91 90258 56034" },
@@ -365,7 +362,7 @@ const Home = () => {
       prize: "₹2,000",
       teamSize: "2-4 members",
       duration: "2 hours",
-      venue: "TBA",
+      venue: "Vivekananda Block (VB) 350, 351, III Floor",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/FREEFIRE.pdf",
       coordinators: [
@@ -384,50 +381,90 @@ const Home = () => {
       prize: "Certificate & Goodies",
       teamSize: "Individual",
       duration: "2-3 hours",
-      venue: "TBA",
+      venue: "Vivekananda Hall",
       registrationLink: "https://forms.gle/tTJELcTobbm8WKuB9",
       rulesFile: "/rulz/Generative AI(Workshop).pdf",
       coordinators: [
         { name: "Varshini", phone: "+91 94880 56400" },
-        { name: "Kaviya ", phone: "+91 84382 35267" },
+        { name: "Kaviya", phone: "+91 84382 35267" },
       ],
       rules: ["Click the button --> Download Rules below"],
     },
   ];
-
-  const schedule = [
+  
+ const schedule = [
     {
       day: "Day 1",
-      date: "March 15, 2026",
+      date: "Feb 14, 2026",
       events: [
         {
-          time: "09:00 AM",
-          title: "Inauguration Ceremony",
-          venue: "Main Auditorium",
-        },
-        { time: "10:30 AM", title: "Keynote Speech", venue: "Main Auditorium" },
-        {
-          time: "12:00 PM",
-          title: "Circuit Quest - Round 1",
-          venue: "Lab Block A",
-        },
-        { time: "02:00 PM", title: "Code Storm Begins", venue: "Computer Lab" },
-        { time: "03:00 PM", title: "Robo Wars - Prelims", venue: "Main Arena" },
-        { time: "04:00 PM", title: "Tech Quiz Prelims", venue: "Seminar Hall" },
-        {
-          time: "05:00 PM",
-          title: "Paper Presentations",
-          venue: "Conference Hall",
+          time: "08:15 AM",
+          title: "Registration",
+          venue: "Vivekananda Hall",
         },
         {
-          time: "06:00 PM",
-          title: "Cultural Evening",
-          venue: "Open Air Theatre",
+          time: "09:30 AM",
+          title: "Invocation",
+          venue: "",
+        },
+        {
+          time: "09:32 AM",
+          title: "Lighting of Kuthuvilakku",
+          venue: "",
+        },
+        {
+          time: "09:35 AM",
+          title: "Welcome Address",
+          venue: "",
+        },
+        {
+          time: "09:45 AM",
+          title: "Felicitation",
+          venue: "",
+        },
+        {
+          time: "09:50 AM",
+          title: "Presidential Address",
+          venue: "",
+        },
+        {
+          time: "09:55 AM",
+          title: "Release of Souvenir & Digimail",
+          venue: "",
+        },
+        {
+          time: "10:00 AM",
+          title: "Inaugural Address",
+          venue: "",
+        },
+        {
+          time: "10:30 AM",
+          title: "Electrowiz'26 Video Presentation",
+          venue: "",
+        },
+        {
+          time: "10:35 AM",
+          title: "Vote of Thanks",
+          venue: "",
+        },
+        {
+          time: "10:45 AM",
+          title: "Commencement of Events",
+          venue: "Respective Venues",
+        },
+        {
+          time: "01:00 PM",
+          title: "Lunch Break",
+          venue: "Canteen / Dining Area",
+        },
+        {
+          time: "02:00 PM",
+          title: "Prize & Certificate Distribution",
+          venue: "Vivekananda Hall",
         },
       ],
     },
   ];
-
   // ==================== MOMENT SECTION OBSERVER ====================
   useEffect(() => {
     const scrollTextElement = scrollTextRef.current;
@@ -1165,6 +1202,112 @@ const handleRulesDownload = async (rulesFile, eventTitle) => {
           <h1 className="save-date-bottom-text">FEB 14!</h1>
         </div>
       </section>
+      {/* ==================== CHIEF GUEST SECTION ==================== */}
+<section id="guests" className="guests-section" data-section="guests">
+  <div className="section-container">
+    <div
+      className={`section-header fade-in-up ${
+        visibleSections.has("guests") ? "visible" : ""
+      }`}
+    >
+      <span className="section-tag">Honoring Our Distinguished Guest</span>
+      <h2 className="section-title">
+        Chief <span className="highlight">Guest</span>
+      </h2>
+      <div className="section-line"></div>
+    </div>
+
+    <div
+      className={`chief-guest-card fade-in-up ${
+        visibleSections.has("guests") ? "visible" : ""
+      }`}
+      style={{ transitionDelay: "0.2s" }}
+    >
+      {/* Left: Image Section */}
+      <div className="guest-image-section">
+        <div className="guest-image-wrapper">
+          <img
+            src={guestAnandhakrishnan}
+            alt="Anandhakrishnan Devaraj"
+            className="guest-photo"
+          />
+          <div className="image-accent"></div>
+        </div>
+      </div>
+
+      {/* Right: Details Section */}
+      <div className="guest-details-section">
+        <div className="guest-role-badge">
+          <span className="role-icon">★</span>
+          <span>Chief Guest</span>
+        </div>
+
+        <h3 className="guest-full-name">Anandhakrishnan Devaraj</h3>
+
+        <div className="guest-designation">
+          <h4 className="designation-title">National Head – NGA Engineering Hiring</h4>
+          <p className="designation-subtitle">Global Campus Hiring Team</p>
+        </div>
+
+        <div className="guest-organization">
+  <div className="org-logo">
+    <img 
+      src={wiproLogo} 
+      alt="Wipro Logo" 
+      className="wipro-logo"
+    />
+  </div>
+
+  <div className="org-details">
+    <span className="org-name">Wipro Limited</span>
+    <span className="org-type">Fortune 500 Global IT Company</span>
+  </div>
+</div>
+
+
+        <div className="guest-expertise">
+          <div className="expertise-item">
+            <span className="expertise-icon">🎯</span>
+            <div className="expertise-content">
+              <span className="expertise-label">Expertise</span>
+              <span className="expertise-value">Talent Acquisition & Campus Hiring</span>
+            </div>
+          </div>
+         
+        </div>
+
+        <div className="guest-actions">
+          <a
+            href="https://www.linkedin.com/in/anandhakrishnandevaraj?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="linkedin-connect-btn"
+          >
+            <svg className="linkedin-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            <span>Connect on LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* Quote Section */}
+    <div
+      className={`guest-quote-section fade-in-up ${
+        visibleSections.has("guests") ? "visible" : ""
+      }`}
+      style={{ transitionDelay: "0.4s" }}
+    >
+      <div className="quote-marks">"</div>
+      <blockquote className="guest-quote">
+        We are honored to have Mr. Anandhakrishnan Devaraj grace ELECTROWIZ'26 as our 
+        Chief Guest, inspiring the next generation of engineers and innovators.
+      </blockquote>
+      <div className="quote-author">— ELECTROWIZ Organizing Committee</div>
+    </div>
+  </div>
+</section>
       {/* ==================== EVENTS SECTION ==================== */}
       <section id="events" className="events-section" data-section="events">
         <div className="section-container">
@@ -1303,6 +1446,65 @@ const handleRulesDownload = async (rulesFile, eventTitle) => {
           </div>
         </div>
       </section>
+      {/* ==================== SCHEDULE SECTION ==================== */}
+<section id="schedule" className="schedule-section" data-section="schedule">
+  <div className="section-container">
+    <div
+      className={`section-header fade-in-up ${
+        visibleSections.has("schedule") ? "visible" : ""
+      }`}
+    >
+      <span className="section-tag">Event Timeline</span>
+      <h2 className="section-title">
+        Event <span className="highlight">Schedule</span>
+      </h2>
+      <div className="section-line"></div>
+    </div>
+
+    <div className="schedule-container">
+      {schedule.map((day, dayIndex) => (
+        <div
+          key={dayIndex}
+          className={`schedule-day fade-in-up ${
+            visibleSections.has("schedule") ? "visible" : ""
+          }`}
+          style={{ transitionDelay: `${0.2 + dayIndex * 0.1}s` }}
+        >
+          <div className="schedule-day-header">
+            <h3 className="schedule-day-title">{day.day}</h3>
+            <span className="schedule-day-date">{day.date}</span>
+          </div>
+
+          <div className="schedule-timeline">
+            {day.events.map((event, eventIndex) => (
+              <div
+                key={eventIndex}
+                className={`schedule-item fade-in-up ${
+                  visibleSections.has("schedule") ? "visible" : ""
+                }`}
+                style={{ transitionDelay: `${0.3 + eventIndex * 0.05}s` }}
+              >
+                <div className="schedule-time">
+                  <span className="time-dot"></span>
+                  <span className="time-text">{event.time}</span>
+                </div>
+                <div className="schedule-content">
+                  <h4 className="schedule-event-title">{event.title}</h4>
+                  {event.venue && (
+                    <p className="schedule-venue">
+                      <span className="venue-icon">📍</span>
+                      {event.venue}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
       {/* ==================== ANNOUNCEMENT BANNER ==================== */}
       <section className="announcement-section">
         <div className="announcement-track">
@@ -1322,112 +1524,7 @@ const handleRulesDownload = async (rulesFile, eventTitle) => {
           </div>
         </div>
       </section>
-{/* ==================== CHIEF GUEST SECTION ==================== */}
-<section id="guests" className="guests-section" data-section="guests">
-  <div className="section-container">
-    <div
-      className={`section-header fade-in-up ${
-        visibleSections.has("guests") ? "visible" : ""
-      }`}
-    >
-      <span className="section-tag">Honoring Our Distinguished Guest</span>
-      <h2 className="section-title">
-        Chief <span className="highlight">Guest</span>
-      </h2>
-      <div className="section-line"></div>
-    </div>
 
-    <div
-      className={`chief-guest-card fade-in-up ${
-        visibleSections.has("guests") ? "visible" : ""
-      }`}
-      style={{ transitionDelay: "0.2s" }}
-    >
-      {/* Left: Image Section */}
-      <div className="guest-image-section">
-        <div className="guest-image-wrapper">
-          <img
-            src={guestAnandhakrishnan}
-            alt="Anandhakrishnan Devaraj"
-            className="guest-photo"
-          />
-          <div className="image-accent"></div>
-        </div>
-      </div>
-
-      {/* Right: Details Section */}
-      <div className="guest-details-section">
-        <div className="guest-role-badge">
-          <span className="role-icon">★</span>
-          <span>Chief Guest</span>
-        </div>
-
-        <h3 className="guest-full-name">Anandhakrishnan Devaraj</h3>
-
-        <div className="guest-designation">
-          <h4 className="designation-title">National Head – NGA Engineering Hiring</h4>
-          <p className="designation-subtitle">Global Campus Hiring Team</p>
-        </div>
-
-        <div className="guest-organization">
-  <div className="org-logo">
-    <img 
-      src={wiproLogo} 
-      alt="Wipro Logo" 
-      className="wipro-logo"
-    />
-  </div>
-
-  <div className="org-details">
-    <span className="org-name">Wipro Limited</span>
-    <span className="org-type">Fortune 500 Global IT Company</span>
-  </div>
-</div>
-
-
-        <div className="guest-expertise">
-          <div className="expertise-item">
-            <span className="expertise-icon">🎯</span>
-            <div className="expertise-content">
-              <span className="expertise-label">Expertise</span>
-              <span className="expertise-value">Talent Acquisition & Campus Hiring</span>
-            </div>
-          </div>
-         
-        </div>
-
-        <div className="guest-actions">
-          <a
-            href="https://www.linkedin.com/in/anandhakrishnandevaraj?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="linkedin-connect-btn"
-          >
-            <svg className="linkedin-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-            <span>Connect on LinkedIn</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    {/* Quote Section */}
-    <div
-      className={`guest-quote-section fade-in-up ${
-        visibleSections.has("guests") ? "visible" : ""
-      }`}
-      style={{ transitionDelay: "0.4s" }}
-    >
-      <div className="quote-marks">"</div>
-      <blockquote className="guest-quote">
-        We are honored to have Mr. Anandhakrishnan Devaraj grace ELECTROWIZ'26 as our 
-        Chief Guest, inspiring the next generation of engineers and innovators.
-      </blockquote>
-      <div className="quote-author">— ELECTROWIZ Organizing Committee</div>
-    </div>
-  </div>
-</section>
       {/* ==================== MAKE A MOMENT SECTION ==================== */}
       <section
         className={`moment-section ${scrollTextVisible ? "in-view" : ""}`}
