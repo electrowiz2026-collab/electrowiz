@@ -8023,3 +8023,350 @@ body {
     height: 8px;
   }
 }
+/* ============================================
+   INVITATION CARD SECTION
+   ============================================ */
+
+.invitation-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.invitation-card-container {
+  max-width: 900px;
+  margin: 3rem auto 0;
+}
+
+.invitation-card-main {
+  background: linear-gradient(135deg, rgba(15, 15, 35, 0.95), rgba(25, 25, 55, 0.95));
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* Card Header */
+.invitation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(168, 85, 247, 0.1));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.invitation-logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+}
+
+.invitation-title-block {
+  text-align: center;
+}
+
+.invitation-title-block h3 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.invitation-title-block p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0;
+}
+
+.invitation-date-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+}
+
+.invitation-date-block .date-day {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+}
+
+.invitation-date-block .date-month {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+}
+
+.invitation-date-block .date-year {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Card Body */
+.invitation-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+@media (max-width: 640px) {
+  .invitation-body {
+    grid-template-columns: 1fr;
+  }
+  
+  .invitation-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+.invitation-block {
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.invitation-block h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dos-block h4 { color: #00ff88; }
+.donts-block h4 { color: #ff4d4d; }
+.agenda-block h4 { color: var(--accent-cyan); }
+.things-block h4 { color: #f59e0b; }
+
+.block-icon {
+  font-size: 1.2rem;
+}
+
+.invitation-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.invitation-block ul li {
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.invitation-block ul li:last-child {
+  border-bottom: none;
+}
+
+.invitation-block ul li:hover {
+  color: var(--text-primary);
+  padding-left: 0.5rem;
+}
+
+.invitation-block ul li strong {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+/* Card Footer */
+.invitation-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.venue-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.venue-icon {
+  font-size: 1.2rem;
+}
+
+/* Download Button */
+.invitation-download-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 245, 255, 0.3);
+}
+
+.invitation-download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 245, 255, 0.4);
+}
+
+.download-icon {
+  font-size: 1.2rem;
+}
+
+.download-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.download-format {
+  padding: 0.2rem 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   WHATSAPP GROUP SECTION
+   ============================================ */
+
+.whatsapp-section {
+  padding: 6rem 0;
+  background: var(--bg-secondary);
+}
+
+.whatsapp-card {
+  max-width: 700px;
+  margin: 3rem auto 0;
+}
+
+.whatsapp-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(15, 15, 35, 0.95));
+  border-radius: 24px;
+  border: 1px solid rgba(37, 211, 102, 0.2);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-icon-box {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-icon-box svg {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.whatsapp-content h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem;
+}
+
+.whatsapp-content p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
+}
+
+.whatsapp-benefits {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.whatsapp-benefits span {
+  padding: 0.5rem 1rem;
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.whatsapp-join-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-join-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-join-btn .btn-arrow {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-join-btn:hover .btn-arrow {
+  transform: translateX(5px);
+}
+
+@media (max-width: 640px) {
+  .whatsapp-card-inner {
+    padding: 2rem 1.5rem;
+  }
+  
+  .whatsapp-content h3 {
+    font-size: 1.4rem;
+  }
+  
+  .whatsapp-benefits {
+    gap: 0.5rem;
+  }
+  
+  .whatsapp-benefits span {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
