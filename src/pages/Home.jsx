@@ -968,22 +968,7 @@ const handleRulesDownload = async (rulesFile, eventTitle) => {
       </div>
     </div>
 
-    <div className="concluded-actions">
-      <button 
-        className="concluded-btn primary-btn"
-        onClick={() => scrollToSection("gallery")}
-      >
-        <span className="btn-icon">📸</span>
-        <span className="btn-text">View Gallery</span>
-      </button>
-      <button 
-        className="concluded-btn secondary-btn"
-        onClick={() => scrollToSection("winners")}
-      >
-        <span className="btn-icon">🏆</span>
-        <span className="btn-text">See Winners</span>
-      </button>
-    </div>
+    
 
     <div className="concluded-teaser">
       <div className="teaser-glow"></div>
