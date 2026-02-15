@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import CyberpunkPopup from '../pages/CyberpunkPopup';
+
 import "../styles/home.css";
 import logo from "../assets/images/logo192.png";
 import veclogo from "../assets/images/veclogo.png";
@@ -25,7 +25,7 @@ import game from "../assets/images/ff.png";
 import ai from "../assets/images/ai.png";
 import sponsor1 from "../assets/images/vecc.png";
 import sponsor2 from "../assets/images/square.jpeg";
-import CyberpunkXStrips from './CyberpunkXStrips';
+
 import guestAnandhakrishnan from "../assets/images/guest.jpeg";
 import wiproLogo from "../assets/images/jj.png"; // Optional: Add Wipro logo
 // ==================== SMOOTH TYPEWRITER HOOK ====================
@@ -905,6 +905,114 @@ const handleRulesDownload = async (rulesFile, eventTitle) => {
           </button>
         </div>
       </nav>
+      {/* ==================== EVENT CONCLUDED SECTION ==================== */}
+<section id="event-concluded" className="event-concluded-section">
+  <div className="concluded-bg">
+    <div className="concluded-particles">
+      {[...Array(25)].map((_, i) => (
+        <div
+          key={i}
+          className="concluded-particle"
+          style={{
+            left: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 5}s`,
+            animationDuration: `${3 + Math.random() * 4}s`,
+          }}
+        />
+      ))}
+    </div>
+    <div className="concluded-gradient"></div>
+    <div className="concluded-grid"></div>
+  </div>
+
+  <div className="concluded-content">
+    <div className="concluded-badge">
+      <span className="badge-icon">✨</span>
+      <span className="badge-text">February 14, 2026</span>
+    </div>
+
+    <div className="concluded-main-title">
+      <h1 className="concluded-heading">
+        <span className="title-line">ELECTROWIZ'26</span>
+        <span className="title-highlight">HAS CONCLUDED</span>
+      </h1>
+    </div>
+
+    <p className="concluded-message">
+      Thank you to all participants, coordinators, sponsors, and everyone who made this event a grand success!
+    </p>
+
+    <div className="concluded-stats">
+      <div className="concluded-stat-item">
+        <div className="stat-icon">🎯</div>
+        <div className="stat-number">11+</div>
+        <div className="stat-label">Events Conducted</div>
+      </div>
+      <div className="concluded-stat-divider"></div>
+      <div className="concluded-stat-item">
+        <div className="stat-icon">👥</div>
+        <div className="stat-number">400+</div>
+        <div className="stat-label">Participants</div>
+      </div>
+      <div className="concluded-stat-divider"></div>
+      <div className="concluded-stat-item">
+        <div className="stat-icon">🏆</div>
+        <div className="stat-number">₹1L+</div>
+        <div className="stat-label">Prizes Distributed</div>
+      </div>
+      <div className="concluded-stat-divider"></div>
+      <div className="concluded-stat-item">
+        <div className="stat-icon">🎓</div>
+        <div className="stat-number">100+</div>
+        <div className="stat-label">Colleges Participated</div>
+      </div>
+    </div>
+
+    <div className="concluded-actions">
+      <button 
+        className="concluded-btn primary-btn"
+        onClick={() => scrollToSection("gallery")}
+      >
+        <span className="btn-icon">📸</span>
+        <span className="btn-text">View Gallery</span>
+      </button>
+      <button 
+        className="concluded-btn secondary-btn"
+        onClick={() => scrollToSection("winners")}
+      >
+        <span className="btn-icon">🏆</span>
+        <span className="btn-text">See Winners</span>
+      </button>
+    </div>
+
+    <div className="concluded-teaser">
+      <div className="teaser-glow"></div>
+      <div className="teaser-content">
+        <span className="teaser-icon">🚀</span>
+        <div className="teaser-text">
+          <h3>ELECTROWIZ'27</h3>
+          <p>Coming Soon - Stay Tuned!</p>
+        </div>
+        <a 
+          href="https://www.instagram.com/electrowiz.26" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="teaser-follow-btn"
+        >
+          Follow for Updates
+        </a>
+      </div>
+    </div>
+
+    <div className="concluded-scroll-indicator" onClick={() => scrollToSection("about")}>
+      <span className="scroll-text">Explore for the Website reference</span>
+      <div className="scroll-arrow">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ==================== HERO SECTION ==================== */}
       <section id="home" className="hero-section">
@@ -1789,10 +1897,7 @@ const handleRulesDownload = async (rulesFile, eventTitle) => {
           <div className="moment-circle moment-circle-3"></div>
         </div>
       </section>
-      <CyberpunkPopup 
-  delay={7000}
-  onRegister={() => scrollToSection('events')} 
-/>
+      
 
 
       {/* ==================== FAQ SECTION ==================== */}
